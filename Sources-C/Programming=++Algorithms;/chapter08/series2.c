@@ -1,17 +1,17 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
 #define MAX 100
-#define q (1 - (p))                 /* Вероятност B да спечели отделен мач */
+#define q (1 - (p))                 /* Р’РµСЂРѕСЏС‚РЅРѕСЃС‚ B РґР° СЃРїРµС‡РµР»Рё РѕС‚РґРµР»РµРЅ РјР°С‡ */
 
-const float p = 0.5;                /* Вероятност A да спечели отделен мач */
+const float p = 0.5;                /* Р’РµСЂРѕСЏС‚РЅРѕСЃС‚ A РґР° СЃРїРµС‡РµР»Рё РѕС‚РґРµР»РµРЅ РјР°С‡ */
 const unsigned n = 5;
 
 struct {
-  char calculated;                  /* Пресметната ли е вече стойността? */
-  float value;                      /* Пресметната стойност */
+  char calculated;                  /* РџСЂРµСЃРјРµС‚РЅР°С‚Р° Р»Рё Рµ РІРµС‡Рµ СЃС‚РѕР№РЅРѕСЃС‚С‚Р°? */
+  float value;                      /* РџСЂРµСЃРјРµС‚РЅР°С‚Р° СЃС‚РѕР№РЅРѕСЃС‚ */
 } PS[MAX][MAX];
 
-float pDyn(unsigned i, unsigned j)  /* Динамично оптимиране */
+float pDyn(unsigned i, unsigned j)  /* Р”РёРЅР°РјРёС‡РЅРѕ РѕРїС‚РёРјРёСЂР°РЅРµ */
 { if (!PS[i][j].calculated) {
     PS[i][j].value = p * pDyn(i - 1, j) + q * pDyn(i, j - 1);
     PS[i][j].calculated = 1;

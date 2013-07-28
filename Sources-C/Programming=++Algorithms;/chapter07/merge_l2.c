@@ -1,16 +1,16 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 #define INFINITY (int)((1 << (sizeof(int)*8 - 1)) - 1)
 
 
-struct list { /* Тип свързан списък */
+struct list { /* РўРёРї СЃРІСЉСЂР·Р°РЅ СЃРїРёСЃСЉРє */
   int value;
   struct list *next;
-} *z; /* Празен елемент */
+} *z; /* РџСЂР°Р·РµРЅ РµР»РµРјРµРЅС‚ */
 
 const unsigned long n = 100;
 
-/* Генерира примерно множество */
+/* Р“РµРЅРµСЂРёСЂР° РїСЂРёРјРµСЂРЅРѕ РјРЅРѕР¶РµСЃС‚РІРѕ */
 struct list *generate(unsigned long n)
 { struct list *p, *q;
   unsigned long i;
@@ -23,7 +23,7 @@ struct list *generate(unsigned long n)
   return p;
 }
 
-void printList(struct list *p) /* Извежда списъка на екрана */
+void printList(struct list *p) /* РР·РІРµР¶РґР° СЃРїРёСЃСЉРєР° РЅР° РµРєСЂР°РЅР° */
 { for (; p != z; p = p->next)
     printf("%4d", p->value);
 }
@@ -32,7 +32,7 @@ struct list *merge(struct list *a, struct list *b)
 { struct list *c;
   c = z;
 
-  /* Предполага се, че и двата списъка съдържат поне по един елемент */
+  /* РџСЂРµРґРїРѕР»Р°РіР° СЃРµ, С‡Рµ Рё РґРІР°С‚Р° СЃРїРёСЃСЉРєР° СЃСЉРґСЉСЂР¶Р°С‚ РїРѕРЅРµ РїРѕ РµРґРёРЅ РµР»РµРјРµРЅС‚ */
   do {
     if (a->value < b->value) {
       c->next = a;
@@ -53,33 +53,33 @@ struct list *merge(struct list *a, struct list *b)
 struct list *mergeSort(struct list *c)
 { struct list *a, *b;
 
-  /* Ако списъкът съдържа само един елемент: не се прави нищо */
+  /* РђРєРѕ СЃРїРёСЃСЉРєСЉС‚ СЃСЉРґСЉСЂР¶Р° СЃР°РјРѕ РµРґРёРЅ РµР»РµРјРµРЅС‚: РЅРµ СЃРµ РїСЂР°РІРё РЅРёС‰Рѕ */
   if (c->next == z)
 	return c;
 
-  /* Списъкът се разделя на две части */
+  /* РЎРїРёСЃСЉРєСЉС‚ СЃРµ СЂР°Р·РґРµР»СЏ РЅР° РґРІРµ С‡Р°СЃС‚Рё */
   for (a = c, b = c->next->next->next; b != z; c = c->next)
 	b = b->next->next;
   b = c->next;
   c->next = z;
 
-  /* Сортиране поотделно на двете части, последвано от сливане */
+  /* РЎРѕСЂС‚РёСЂР°РЅРµ РїРѕРѕС‚РґРµР»РЅРѕ РЅР° РґРІРµС‚Рµ С‡Р°СЃС‚Рё, РїРѕСЃР»РµРґРІР°РЅРѕ РѕС‚ СЃР»РёРІР°РЅРµ */
   return merge(mergeSort(a), mergeSort(b));
 }
 
 int main(void) {
   struct list *l;
 
-  /* Инициализация на z */
+  /* РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РЅР° z */
   z = (struct list *) malloc(sizeof(struct list));
   z->value = INFINITY;
   z->next = z;
 
   l = generate(n);
-  printf("Преди сортирането:\n");
+  printf("РџСЂРµРґРё СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
   printList(l);
-  l = mergeSort(l); /* Предполага се, че списъкът съдържа поне 1 елемент */
-  printf("След сортирането:\n");
+  l = mergeSort(l); /* РџСЂРµРґРїРѕР»Р°РіР° СЃРµ, С‡Рµ СЃРїРёСЃСЉРєСЉС‚ СЃСЉРґСЉСЂР¶Р° РїРѕРЅРµ 1 РµР»РµРјРµРЅС‚ */
+  printf("РЎР»РµРґ СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
   printList(l);
   return 0;
 }

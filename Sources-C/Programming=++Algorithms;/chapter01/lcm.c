@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 
 unsigned n = 4;
 unsigned A[] = { 10, 8, 5, 9 };

@@ -1,4 +1,4 @@
-#include <assert.h>
+п»ї#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -11,29 +11,29 @@
 struct CElem {
   int key;
   /* .............
-     Някакви данни
+     РќСЏРєР°РєРІРё РґР°РЅРЅРё
      ............. */
 };
 
-void init(struct CElem m[], unsigned n) /* Запълва масива със случайни цели числа */
+void init(struct CElem m[], unsigned n) /* Р—Р°РїСЉР»РІР° РјР°СЃРёРІР° СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅРё С†РµР»Рё С‡РёСЃР»Р° */
 { unsigned i;
 
-  /* 1. Запълване със случайни стойности в нарастващ ред */
+  /* 1. Р—Р°РїСЉР»РІР°РЅРµ СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅРё СЃС‚РѕР№РЅРѕСЃС‚Рё РІ РЅР°СЂР°СЃС‚РІР°С‰ СЂРµРґ */
   srand(time(NULL));
   m[0].key = rand() % FACTOR;
   for (i = 1; i < n; i++)
     m[i].key = 1 + m[i-1].key + rand() % FACTOR;
 
-  /* 2. Разменяме елементи */
+  /* 2. Р Р°Р·РјРµРЅСЏРјРµ РµР»РµРјРµРЅС‚Рё */
   for (i = 1; i < n; i++) {
     unsigned ind1, ind2;
     struct CElem tmp;
 
-    /* 2.1. Избиране на два случайни индекса */
+    /* 2.1. РР·Р±РёСЂР°РЅРµ РЅР° РґРІР° СЃР»СѓС‡Р°Р№РЅРё РёРЅРґРµРєСЃР° */
     ind1 = rand() % n;
     ind2 = rand() % n;
 
-    /* 2.2. Разменяме ги */
+    /* 2.2. Р Р°Р·РјРµРЅСЏРјРµ РіРё */
     tmp = m[ind1];
     m[ind1] = m[ind2];
     m[ind2] = tmp;
@@ -41,7 +41,7 @@ void init(struct CElem m[], unsigned n) /* Запълва масива със случайни цели числ
 
 }
 
-void print(struct CElem m[], unsigned n) /* Извежда ключовете на масива на екрана */
+void print(struct CElem m[], unsigned n) /* РР·РІРµР¶РґР° РєР»СЋС‡РѕРІРµС‚Рµ РЅР° РјР°СЃРёРІР° РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   for (i = 0; i < n; i++)
     printf("%8d", m[i].key);
@@ -50,22 +50,22 @@ void print(struct CElem m[], unsigned n) /* Извежда ключовете на масива на екран
 void do4Elem(const struct CElem e)
 { printf("%8d", e.key); }
 
-void setSort(struct CElem m[], unsigned n) /* Сортира масив с използване на множество */
-{ unsigned indSet[MAX_VALUE]; /* Индексно множество */
+void setSort(struct CElem m[], unsigned n) /* РЎРѕСЂС‚РёСЂР° РјР°СЃРёРІ СЃ РёР·РїРѕР»Р·РІР°РЅРµ РЅР° РјРЅРѕР¶РµСЃС‚РІРѕ */
+{ unsigned indSet[MAX_VALUE]; /* РРЅРґРµРєСЃРЅРѕ РјРЅРѕР¶РµСЃС‚РІРѕ */
   unsigned i,j;
 
-  /* 0. Инициализиране на множеството */
+  /* 0. РРЅРёС†РёР°Р»РёР·РёСЂР°РЅРµ РЅР° РјРЅРѕР¶РµСЃС‚РІРѕС‚Рѕ */
   for (i = 0; i < MAX_VALUE; i++)
     indSet[i] = NO_INDEX;
 
-  /* 1. Формиране на множеството */
+  /* 1. Р¤РѕСЂРјРёСЂР°РЅРµ РЅР° РјРЅРѕР¶РµСЃС‚РІРѕС‚Рѕ */
   for (j = 0; j < n; j++) {
     assert(m[j].key >= 0 && m[j].key < MAX_VALUE);
     assert(NO_INDEX == indSet[m[j].key]);
     indSet[m[j].key] = j;
   }
 
-  /* 2. Генериране на сортирана последователност */
+  /* 2. Р“РµРЅРµСЂРёСЂР°РЅРµ РЅР° СЃРѕСЂС‚РёСЂР°РЅР° РїРѕСЃР»РµРґРѕРІР°С‚РµР»РЅРѕСЃС‚ */
   for (i = j = 0; i < MAX_VALUE; i++)
     if (NO_INDEX != indSet[i])
       do4Elem(m[indSet[i]]);
@@ -74,9 +74,9 @@ void setSort(struct CElem m[], unsigned n) /* Сортира масив с използване на множ
 int main(void) {
   struct CElem m[MAX];
   init(m, MAX);
-  printf("Масивът преди сортирането:\n");
+  printf("РњР°СЃРёРІСЉС‚ РїСЂРµРґРё СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
   print(m,MAX);
-  printf("Масивът след сортирането:\n");
+  printf("РњР°СЃРёРІСЉС‚ СЃР»РµРґ СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
   setSort(m, MAX);
   return 0;
 }

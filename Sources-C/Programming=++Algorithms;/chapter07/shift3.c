@@ -1,4 +1,4 @@
-#include <assert.h>
+п»ї#include <assert.h>
 #include <stdio.h>
 
 #define MAX 100
@@ -8,8 +8,8 @@ struct CElem {
   /* ... */
 } m[MAX];
 
-const unsigned n = 10; /* Брой елементи в масива */
-const unsigned k = 2;  /* Брой позицции на отместване */
+const unsigned n = 10; /* Р‘СЂРѕР№ РµР»РµРјРµРЅС‚Рё РІ РјР°СЃРёРІР° */
+const unsigned k = 2;  /* Р‘СЂРѕР№ РїРѕР·РёС†С†РёРё РЅР° РѕС‚РјРµСЃС‚РІР°РЅРµ */
 
 void init(void)
 { unsigned i;
@@ -17,7 +17,7 @@ void init(void)
     m[i].data = i;
 }
 
-void reverse(unsigned a, unsigned b)  /* Обръща подмасива m[a..b] */
+void reverse(unsigned a, unsigned b)  /* РћР±СЂСЉС‰Р° РїРѕРґРјР°СЃРёРІР° m[a..b] */
 { unsigned i, j, k, cnt;
   struct CElem tmp;
   for (cnt = (b - a) / 2, k = a, j = b, i = 0; i <= cnt; i++, j--, k++) {
@@ -28,7 +28,7 @@ void reverse(unsigned a, unsigned b)  /* Обръща подмасива m[a..b] */
 }
 
 void shiftLeft3(unsigned k)
-{ /* Измества масива m на k позиции наляво, на три стъпки */
+{ /* РР·РјРµСЃС‚РІР° РјР°СЃРёРІР° m РЅР° k РїРѕР·РёС†РёРё РЅР°Р»СЏРІРѕ, РЅР° С‚СЂРё СЃС‚СЉРїРєРё */
   reverse(0, k - 1);
   reverse(k, n - 1);
   reverse(0, n - 1);

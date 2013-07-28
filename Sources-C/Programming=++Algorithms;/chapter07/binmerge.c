@@ -1,4 +1,4 @@
-#include <assert.h>
+п»ї#include <assert.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,7 +12,7 @@
 struct CElem {
   int key;
   /* ............. 
-    Някакви данни 
+    РќСЏРєР°РєРІРё РґР°РЅРЅРё 
   ............. */
 };
 
@@ -44,7 +44,7 @@ void binaryMerge(struct CElem a[], struct CElem b[], struct CElem c[], int n, in
       t = (int) (log(n / m) / log(2));
       t2 = 1 << t;  /* T2 <-- 2^T */
       if (b[m - 1].key < a[n - t2].key) {
-        /* Прехвърляне на a[n-t2-1],...,a[n] в изходната последователност */
+        /* РџСЂРµС…РІСЉСЂР»СЏРЅРµ РЅР° a[n-t2-1],...,a[n] РІ РёР·С…РѕРґРЅР°С‚Р° РїРѕСЃР»РµРґРѕРІР°С‚РµР»РЅРѕСЃС‚ */
         cind -= t2;
         n -= t2;
         for (j = 0; j < t2; j++)
@@ -63,7 +63,7 @@ void binaryMerge(struct CElem a[], struct CElem b[], struct CElem c[], int n, in
       t = (int) (log(m / n) / log(2));
       t2 = 1 << t;  /* T2 <-- 2^T */
       if (a[n - 1].key < b[m - t2].key) {
-        /* Прехвърляне на b[m-t2-1],...,b[m] в изходната последователност */
+        /* РџСЂРµС…РІСЉСЂР»СЏРЅРµ РЅР° b[m-t2-1],...,b[m] РІ РёР·С…РѕРґРЅР°С‚Р° РїРѕСЃР»РµРґРѕРІР°С‚РµР»РЅРѕСЃС‚ */
         cind -= t2;
         m -= t2;
         for (j = 0; j < t2; j++)
@@ -87,14 +87,14 @@ void binaryMerge(struct CElem a[], struct CElem b[], struct CElem c[], int n, in
       c[j] = a[j];
 }
 
-void print(struct CElem m[], unsigned n)            /* Извежда ключовете на масива на екрана */
+void print(struct CElem m[], unsigned n)            /* РР·РІРµР¶РґР° РєР»СЋС‡РѕРІРµС‚Рµ РЅР° РјР°СЃРёРІР° РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   for (i = 0; i < n; i++)
     printf("%8d", m[i].key);
   printf("\n\n");
 }
 
-void check(struct CElem m[], unsigned n)            /* Проверява за възходящ ред */
+void check(struct CElem m[], unsigned n)            /* РџСЂРѕРІРµСЂСЏРІР° Р·Р° РІСЉР·С…РѕРґСЏС‰ СЂРµРґ */
 { unsigned i;
   for (i = 1; i < n; i++)
     assert(m[i-1].key <= m[i-1].key);
@@ -103,8 +103,8 @@ void check(struct CElem m[], unsigned n)            /* Проверява за възходящ ред
 int main(void)
 { struct CElem a[N+1], b[M+1], c[N+M];
   init(a,N,200,20); init(b,M,200,20);
-  printf("Преди сливането:\n"); print(a,N); print(b,M);
+  printf("РџСЂРµРґРё СЃР»РёРІР°РЅРµС‚Рѕ:\n"); print(a,N); print(b,M);
   binaryMerge(a, b, c, N, M);
-  printf("След сливането:\n"); print(c,N+M); 
+  printf("РЎР»РµРґ СЃР»РёРІР°РЅРµС‚Рѕ:\n"); print(c,N+M); 
   return 0;
 }

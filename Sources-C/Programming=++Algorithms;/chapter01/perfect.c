@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 
 #define MN 10
 
@@ -24,16 +24,17 @@ void print(void)
 void perfect(unsigned s, unsigned m)
 { unsigned i;
   k = 1; number[0] = 1;
-  for (i = 0; i < m; i++) doubleN();  /* òîâà ñà äåëèòåëè îò âèäà 2^i */
-  number[0]--;  /* ïîñëåäíàòà öèôðà ñúñ ñèãóðíîñò å èçìåæäó {2,4,8,6} */
+  for (i = 0; i < m; i++) doubleN();  /* Ñ‚Ð¾Ð²Ð° ÑÐ° Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»Ð¸ Ð¾Ñ‚ Ð²Ð¸Ð´Ð° 2^i */
+  number[0]--;  /* Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð°Ñ‚Ð° Ñ†Ð¸Ñ„Ñ€Ð° ÑÑŠÑ ÑÐ¸Ð³ÑƒÑ€Ð½Ð¾ÑÑ‚ Ðµ Ð¸Ð·Ð¼ÐµÐ¶Ð´Ñƒ {2,4,8,6} */
   for (i = 0; i < m - 1; i++) doubleN();
-  printf("%2u-ò ñúâúðøåíî ÷èñëî å = ", s);
-  print();      /* îòïå÷àòâà ïîðåäíîòî ÷èñëî */
+  printf("%2u-Ñ‚ ÑÑŠÐ²ÑŠÑ€ÑˆÐµÐ½Ð¾ Ñ‡Ð¸ÑÐ»Ð¾ Ðµ = ", s);
+  print();      /* Ð¾Ñ‚Ð¿ÐµÑ‡Ð°Ñ‚Ð²Ð° Ð¿Ð¾Ñ€ÐµÐ´Ð½Ð¾Ñ‚Ð¾ Ñ‡Ð¸ÑÐ»Ð¾ */
 }
 
 int main() {
   unsigned i;
   for (i = 1; i <= MN; i++) perfect(i, mPrimes[i - 1]);
+  system("pause");
   return 0;
 }
 

@@ -1,7 +1,7 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
-/* Число, което ще се разлага */
-unsigned n = 435;
+/* Р§РёСЃР»Рѕ, РєРѕРµС‚Рѕ С‰Рµ СЃРµ СЂР°Р·Р»Р°РіР° */
+unsigned n = 520;
 
 int main(void) {
   unsigned how, i, j;
@@ -18,5 +18,6 @@ int main(void) {
     for (j = 0; j < how; j++) printf("%u ", i);
   }
   printf("\n");
+  system("pause");
   return 0;
 }

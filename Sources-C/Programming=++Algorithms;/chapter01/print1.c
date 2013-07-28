@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 const unsigned n = 5;
 
 void printRed(unsigned k, unsigned long result)

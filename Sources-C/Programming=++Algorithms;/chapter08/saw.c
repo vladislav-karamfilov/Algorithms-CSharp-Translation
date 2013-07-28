@@ -1,40 +1,40 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 
 #define MAX       1000
 #define NO_IND    (unsigned) (-1)
 #define OPERATION <
 
-const int x[MAX] = {0,8,3,5,7,0,8,9,10,20,20,20,12,19,11}; /* 0-ият не се ползва */
-const unsigned n = 14; /* Брой */
+const int x[MAX] = {0,8,3,5,7,0,8,9,10,20,20,20,12,19,11}; /* 0-РёСЏС‚ РЅРµ СЃРµ РїРѕР»Р·РІР° */
+const unsigned n = 14; /* Р‘СЂРѕР№ */
 
-unsigned Fmin[MAX];      /* Целева функция: макс. дължина на редица, завършваща с НАМАЛЯВАНЕ */
-unsigned Fmin_back[MAX]; /* Предишен индекс от редицата на целевата функция Fmin */
-unsigned Fmax[MAX];      /* Целева функция: макс. дължина на редица, завършваща с НАРАСТВАНЕ */
-unsigned Fmax_back[MAX]; /* Предишен индекс от редицата на целевата функция Fmax */
+unsigned Fmin[MAX];      /* Р¦РµР»РµРІР° С„СѓРЅРєС†РёСЏ: РјР°РєСЃ. РґСЉР»Р¶РёРЅР° РЅР° СЂРµРґРёС†Р°, Р·Р°РІСЉСЂС€РІР°С‰Р° СЃ РќРђРњРђР›РЇР’РђРќР• */
+unsigned Fmin_back[MAX]; /* РџСЂРµРґРёС€РµРЅ РёРЅРґРµРєСЃ РѕС‚ СЂРµРґРёС†Р°С‚Р° РЅР° С†РµР»РµРІР°С‚Р° С„СѓРЅРєС†РёСЏ Fmin */
+unsigned Fmax[MAX];      /* Р¦РµР»РµРІР° С„СѓРЅРєС†РёСЏ: РјР°РєСЃ. РґСЉР»Р¶РёРЅР° РЅР° СЂРµРґРёС†Р°, Р·Р°РІСЉСЂС€РІР°С‰Р° СЃ РќРђР РђРЎРўР’РђРќР• */
+unsigned Fmax_back[MAX]; /* РџСЂРµРґРёС€РµРЅ РёРЅРґРµРєСЃ РѕС‚ СЂРµРґРёС†Р°С‚Р° РЅР° С†РµР»РµРІР°С‚Р° С„СѓРЅРєС†РёСЏ Fmax */
 
 void calculateFMinMax(void)
 { unsigned ind, ind2;
-  /* Инициализация */
+  /* РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
   Fmin[0] = Fmax[0] = 1;
   Fmin_back[0] = Fmax_back[0] = NO_IND;
-  /* Последователно пресмятане на двете целеви функции */
+  /* РџРѕСЃР»РµРґРѕРІР°С‚РµР»РЅРѕ РїСЂРµСЃРјСЏС‚Р°РЅРµ РЅР° РґРІРµС‚Рµ С†РµР»РµРІРё С„СѓРЅРєС†РёРё */
   for (ind = 1; ind < n; ind++) {
     Fmax_back[ind] = Fmin_back[ind] = NO_IND;
     Fmin[ind] = Fmax[ind] = 0;
     for (ind2 = 0; ind2 < ind; ind2++) {
-      /* Опит за разширяване на намаляваща редица с нарастващ елемент */
+      /* РћРїРёС‚ Р·Р° СЂР°Р·С€РёСЂСЏРІР°РЅРµ РЅР° РЅР°РјР°Р»СЏРІР°С‰Р° СЂРµРґРёС†Р° СЃ РЅР°СЂР°СЃС‚РІР°С‰ РµР»РµРјРµРЅС‚ */
       if (x[ind2] OPERATION x[ind] && Fmin[ind2] > Fmax[ind]) {
         Fmax[ind] = Fmin[ind2];
         Fmax_back[ind] = ind2;
       }
-      /* Опит за разширяване на нарастваща редица с намаляващ елемент */
+      /* РћРїРёС‚ Р·Р° СЂР°Р·С€РёСЂСЏРІР°РЅРµ РЅР° РЅР°СЂР°СЃС‚РІР°С‰Р° СЂРµРґРёС†Р° СЃ РЅР°РјР°Р»СЏРІР°С‰ РµР»РµРјРµРЅС‚ */
       if (x[ind] OPERATION x[ind2] && Fmax[ind2] > Fmin[ind]) {
         Fmin[ind] = Fmax[ind2];
         Fmin_back[ind] = ind2;
       }
     }
-    /* Увеличаване с 1 заради текущия елемент */
+    /* РЈРІРµР»РёС‡Р°РІР°РЅРµ СЃ 1 Р·Р°СЂР°РґРё С‚РµРєСѓС‰РёСЏ РµР»РµРјРµРЅС‚ */
     Fmin[ind]++;
     Fmax[ind]++;
   }
@@ -50,7 +50,7 @@ void markSolutionElements(unsigned *f1, unsigned *f2, unsigned *fInd1,
 
 void findSolution(void)
 { unsigned ind, bestFminInd, bestFmaxInd;
-  /* Намиране (края) на най-дългата редица */
+  /* РќР°РјРёСЂР°РЅРµ (РєСЂР°СЏ) РЅР° РЅР°Р№-РґСЉР»РіР°С‚Р° СЂРµРґРёС†Р° */
   bestFminInd = bestFmaxInd = 0;
   for (ind = 1; ind < n; ind++) {
     if (Fmin[bestFminInd] < Fmin[ind])
@@ -58,12 +58,12 @@ void findSolution(void)
     if (Fmax[bestFmaxInd] < Fmax[ind])
 	  bestFmaxInd = ind;
   }
-  /* Маркиране на елементите й */
+  /* РњР°СЂРєРёСЂР°РЅРµ РЅР° РµР»РµРјРµРЅС‚РёС‚Рµ Р№ */
   if (Fmin[bestFminInd] > Fmax[bestFmaxInd])
     markSolutionElements(Fmin, Fmax, Fmin_back, Fmax_back, bestFminInd);
   else
     markSolutionElements(Fmax, Fmin, Fmax_back, Fmin_back, bestFmaxInd);
-  /* Извеждане на решението на екрана */
+  /* РР·РІРµР¶РґР°РЅРµ РЅР° СЂРµС€РµРЅРёРµС‚Рѕ РЅР° РµРєСЂР°РЅР° */
   for (ind = 0; ind < n; ind++)
     if (NO_IND == Fmin[ind])
 	  printf("%d ", x[ind]);

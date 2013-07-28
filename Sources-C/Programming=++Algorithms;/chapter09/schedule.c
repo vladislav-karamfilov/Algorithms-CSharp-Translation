@@ -1,11 +1,11 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
 #define MAXN 1000
 
 const int n = 5;
 const int v[MAXN] = { 50, 40, 30, 20, 15 };
 const int d[MAXN] = {  2,  1,  2,  2,  1 };
-/* оригинална номерация на задачите */
+/* РѕСЂРёРіРёРЅР°Р»РЅР° РЅРѕРјРµСЂР°С†РёСЏ РЅР° Р·Р°РґР°С‡РёС‚Рµ */
 const int p[MAXN] = {  5,  1,  2,  4,  3 };
 
 int index[MAXN], taken[MAXN], tn;
@@ -29,7 +29,7 @@ void solve(void)
       index[d[k] - 1]++;
     }
 
-  printf("Оптимално разписание: ");
+  printf("РћРїС‚РёРјР°Р»РЅРѕ СЂР°Р·РїРёСЃР°РЅРёРµ: ");
 
   income = 0;
   for (i = 0; i < tn; i++) {
@@ -37,7 +37,7 @@ void solve(void)
     income += v[taken[i]];
   }
 
-  printf("\nОбщ доход: %d\n", income);
+  printf("\nРћР±С‰ РґРѕС…РѕРґ: %d\n", income);
 }
 
 int main(void) {

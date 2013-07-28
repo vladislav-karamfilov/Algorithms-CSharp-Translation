@@ -1,4 +1,4 @@
-int a[n];
+﻿int a[n];
 
 int sum(void)
 { unsigned int i;

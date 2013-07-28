@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 
 typedef int data;
@@ -10,12 +10,12 @@ struct list {
   struct list *next;
 };
 
-/* âêëþ÷âà åëåìåíò â íà÷àëîòî íà ñâúðçàí ñïèñúê */
+/* Ð²ÐºÐ»ÑŽÑ‡Ð²Ð° ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð² Ð½Ð°Ñ‡Ð°Ð»Ð¾Ñ‚Ð¾ Ð½Ð° ÑÐ²ÑŠÑ€Ð·Ð°Ð½ ÑÐ¿Ð¸ÑÑŠÐº */
 void insertBegin(struct list **L, keyType key, data x)
 { struct list *temp;
   temp = (struct list *) malloc(sizeof(*temp));
   if (NULL == temp) {
-    sprintf(stderr, "Íÿìà äîñòàòú÷íî ïàìåò çà ñúçäàâàíå íà íîâ åëåìåíò!\n");
+    sprintf(stderr, "ÐÑÐ¼Ð° Ð´Ð¾ÑÑ‚Ð°Ñ‚ÑŠÑ‡Ð½Ð¾ Ð¿Ð°Ð¼ÐµÑ‚ Ð·Ð° ÑÑŠÐ·Ð´Ð°Ð²Ð°Ð½Ðµ Ð½Ð° Ð½Ð¾Ð² ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚!\n");
     return;
   }
 
@@ -25,19 +25,19 @@ void insertBegin(struct list **L, keyType key, data x)
   (*L)->info = x;
 }
 
-/* âêëþ÷âà ñëåä äàäåí åëåìåíò */
+/* Ð²ÐºÐ»ÑŽÑ‡Ð²Ð° ÑÐ»ÐµÐ´ Ð´Ð°Ð´ÐµÐ½ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ */
 void insertAfter(struct list **L, keyType key, data x)
 { struct list *temp;
 
-  if (NULL == *L) {      /* àêî ñïèñúêúò å ïðàçåí => ñïåöèàëåí ñëó÷àé */
+  if (NULL == *L) {      /* Ð°ÐºÐ¾ ÑÐ¿Ð¸ÑÑŠÐºÑŠÑ‚ Ðµ Ð¿Ñ€Ð°Ð·ÐµÐ½ => ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÐµÐ½ ÑÐ»ÑƒÑ‡Ð°Ð¹ */
     insertBegin(L, key, x);
     return;
   }
 
   temp = (struct list *) malloc(sizeof(*temp));
-  /* ñúçäàâàíå íà íîâèÿ åëåìåíò */
+  /* ÑÑŠÐ·Ð´Ð°Ð²Ð°Ð½Ðµ Ð½Ð° Ð½Ð¾Ð²Ð¸Ñ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ */
   if (NULL == temp) {
-    fprintf(stderr, "Íÿìà äîñòàòú÷íî ïàìåò çà íîâèÿ åëåìåíò!\n");
+    fprintf(stderr, "ÐÑÐ¼Ð° Ð´Ð¾ÑÑ‚Ð°Ñ‚ÑŠÑ‡Ð½Ð¾ Ð¿Ð°Ð¼ÐµÑ‚ Ð·Ð° Ð½Ð¾Ð²Ð¸Ñ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚!\n");
     return;
   }
 
@@ -47,19 +47,19 @@ void insertAfter(struct list **L, keyType key, data x)
   (*L)->next = temp;
 }
 
-/* âêëþ÷âà ïðåäè äàäåí åëåìåíò */
+/* Ð²ÐºÐ»ÑŽÑ‡Ð²Ð° Ð¿Ñ€ÐµÐ´Ð¸ Ð´Ð°Ð´ÐµÐ½ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ */
 void insertBefore(struct list **L, keyType key, data x)
 { struct list *temp;
 
-  if (NULL == *L) {      /* åëåìåíòúò òðÿáâà äà ñå âìúêíå ïðåäè ïúðâèÿ */
+  if (NULL == *L) {      /* ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ÑŠÑ‚ Ñ‚Ñ€ÑÐ±Ð²Ð° Ð´Ð° ÑÐµ Ð²Ð¼ÑŠÐºÐ½Ðµ Ð¿Ñ€ÐµÐ´Ð¸ Ð¿ÑŠÑ€Ð²Ð¸Ñ */
     insertBegin(L, key, x);
     return;
   }
 
   temp = (struct list *) malloc(sizeof(*temp));
-  /* ñúçäàâàíå íà íîâèÿ åëåìåíò */
+  /* ÑÑŠÐ·Ð´Ð°Ð²Ð°Ð½Ðµ Ð½Ð° Ð½Ð¾Ð²Ð¸Ñ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ */
   if (NULL == temp) {
-    fprintf(stderr, "Íÿìà äîñòàòú÷íî ïàìåò çà íîâèÿ åëåìåíò!\n");
+    fprintf(stderr, "ÐÑÐ¼Ð° Ð´Ð¾ÑÑ‚Ð°Ñ‚ÑŠÑ‡Ð½Ð¾ Ð¿Ð°Ð¼ÐµÑ‚ Ð·Ð° Ð½Ð¾Ð²Ð¸Ñ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚!\n");
     return;
   }
 
@@ -69,24 +69,24 @@ void insertBefore(struct list **L, keyType key, data x)
   (*L)->info = x;
 }
 
-/* èçòðèâà åëåìåíò îò ñïèñúêà */
+/* Ð¸Ð·Ñ‚Ñ€Ð¸Ð²Ð° ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¾Ñ‚ ÑÐ¿Ð¸ÑÑŠÐºÐ° */
 void deleteNode(struct list **L, keyType key)
 { struct list *current = *L;
   struct list *save;
-  if ((*L)->key == key) {  /* òðÿáâà äà ñå èçòðèå ïúðâèÿò åëåìåíò */
+  if ((*L)->key == key) {  /* Ñ‚Ñ€ÑÐ±Ð²Ð° Ð´Ð° ÑÐµ Ð¸Ð·Ñ‚Ñ€Ð¸Ðµ Ð¿ÑŠÑ€Ð²Ð¸ÑÑ‚ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ */
     current = (*L)->next;
     free(*L);
     (*L) = current;
     return;
   }
 
-  /* íàìèðà åëåìåíòà, êîéòî ùå ñå òðèå */
+  /* Ð½Ð°Ð¼Ð¸Ñ€Ð° ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°, ÐºÐ¾Ð¹Ñ‚Ð¾ Ñ‰Ðµ ÑÐµ Ñ‚Ñ€Ð¸Ðµ */
   while (current->next != NULL && current->next->key != key) {
     current = current->next;
   }
 
   if (NULL == current->next) {
-    fprintf(stderr, "Ãðåøêà: Åëåìåíòúò çà èçòðèâàíå íå å íàìåðåí! \n");
+    fprintf(stderr, "Ð“Ñ€ÐµÑˆÐºÐ°: Ð•Ð»ÐµÐ¼ÐµÐ½Ñ‚ÑŠÑ‚ Ð·Ð° Ð¸Ð·Ñ‚Ñ€Ð¸Ð²Ð°Ð½Ðµ Ð½Ðµ Ðµ Ð½Ð°Ð¼ÐµÑ€ÐµÐ½! \n");
     return;
   }
   else {
@@ -96,7 +96,7 @@ void deleteNode(struct list **L, keyType key)
   }
 }
 
-/* îòïå÷àòâà åëåìåíòèòå íà ñâúðçàí ñïèñúê */
+/* Ð¾Ñ‚Ð¿ÐµÑ‡Ð°Ñ‚Ð²Ð° ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¸Ñ‚Ðµ Ð½Ð° ÑÐ²ÑŠÑ€Ð·Ð°Ð½ ÑÐ¿Ð¸ÑÑŠÐº */
 void print(struct list *L)
 { while (NULL != L) {
     printf("%d(%d) ", L->key, L->info);
@@ -105,7 +105,7 @@ void print(struct list *L)
   printf("\n");
 }
 
-/* òúðñè ïî êëþ÷ åëåìåíò â ñâúðçàí ñïèñúê */
+/* Ñ‚ÑŠÑ€ÑÐ¸ Ð¿Ð¾ ÐºÐ»ÑŽÑ‡ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð² ÑÐ²ÑŠÑ€Ð·Ð°Ð½ ÑÐ¿Ð¸ÑÑŠÐº */
 struct list* search(struct list *L, keyType key)
 { while (L != NULL) {
     if (L->key == key) return L;
@@ -120,13 +120,13 @@ int main(void) {
   insertBegin(&L, 0, 42);
   for (i = 1; i < 6; i++) {
     edata = rand() % 100;
-    printf("Âìúêâàíå ïðåäè: %d(%d)\n", i, edata);
+    printf("Ð’Ð¼ÑŠÐºÐ²Ð°Ð½Ðµ Ð¿Ñ€ÐµÐ´Ð¸: %d(%d)\n", i, edata);
     insertBefore(&L, i, edata);
   }
 
   for (i = 6; i < 10; i++) {
     edata = rand() % 100;
-    printf("Âìúêâàíå ñëåä: %d(%d)\n", i, edata);
+    printf("Ð’Ð¼ÑŠÐºÐ²Ð°Ð½Ðµ ÑÐ»ÐµÐ´: %d(%d)\n", i, edata);
     insertAfter(&L, i, edata);
   }
 

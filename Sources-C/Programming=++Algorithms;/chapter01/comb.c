@@ -1,9 +1,9 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
 /* comment */
 #define MAXN 20
 
-/* Намира всички комбинации на n елемента от k-ти клас */
+/* РќР°РјРёСЂР° РІСЃРёС‡РєРё РєРѕРјР±РёРЅР°С†РёРё РЅР° n РµР»РµРјРµРЅС‚Р° РѕС‚ k-С‚Рё РєР»Р°СЃ */
 const unsigned n = 5;
 const unsigned k = 3;
 

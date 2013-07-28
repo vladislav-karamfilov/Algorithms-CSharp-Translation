@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 
 #define MAXN 100
 const unsigned n = 10;
@@ -14,7 +14,7 @@ void generate(unsigned i)
   if (Ttemp > M) return;
   if (Vtemp + totalV < VmaX) return;
   if (i == n) {
-    if (Vtemp > VmaX) { /* çàïàçâàíå íà îïòèìàëíîòî ðåøåíèå */
+    if (Vtemp > VmaX) { /* Ð·Ð°Ð¿Ð°Ð·Ð²Ð°Ð½Ðµ Ð½Ð° Ð¾Ð¿Ñ‚Ð¸Ð¼Ð°Ð»Ð½Ð¾Ñ‚Ð¾ Ñ€ÐµÑˆÐµÐ½Ð¸Ðµ */
       VmaX = Vtemp; sn = tn;
       for (k = 0; k < tn; k++) saveTaken[k] = taken[k];
     }
@@ -32,7 +32,7 @@ int main(void) {
   tn = 0; VmaX = 0; totalV = 0;
   for (i = 0; i < n; i++) totalV += c[i];
   generate(0);
-  printf("Ìàêñèìàëíî òåãëî: %.2f\nÈçáðàíè ïðåäìåòè: \n", VmaX);
+  printf("ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»Ð½Ð¾ Ñ‚ÐµÐ³Ð»Ð¾: %.2f\nÐ˜Ð·Ð±Ñ€Ð°Ð½Ð¸ Ð¿Ñ€ÐµÐ´Ð¼ÐµÑ‚Ð¸: \n", VmaX);
   for (i = 0; i < sn; i++) printf("%u ", saveTaken[i] + 1);
   printf("\n");
   return 0;

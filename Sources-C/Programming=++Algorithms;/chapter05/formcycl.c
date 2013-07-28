@@ -1,11 +1,11 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
-/* Максимален брой върхове в графа */
+/* РњР°РєСЃРёРјР°Р»РµРЅ Р±СЂРѕР№ РІСЉСЂС…РѕРІРµ РІ РіСЂР°С„Р° */
 #define MAXN 200
 
-/* Брой върхове в графа */
+/* Р‘СЂРѕР№ РІСЉСЂС…РѕРІРµ РІ РіСЂР°С„Р° */
 const unsigned n = 14;
-/* Матрица на съседство на графа */
+/* РњР°С‚СЂРёС†Р° РЅР° СЃСЉСЃРµРґСЃС‚РІРѕ РЅР° РіСЂР°С„Р° */
 const char A[MAXN][MAXN] = {
 {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 {1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -25,7 +25,7 @@ const char A[MAXN][MAXN] = {
 
 char used[MAXN], cycl;
 
-/* модифициран Depth-First-Search */
+/* РјРѕРґРёС„РёС†РёСЂР°РЅ Depth-First-Search */
 void DFS(unsigned i, int parent)
 { unsigned k;
   used[i] = 1;
@@ -33,7 +33,7 @@ void DFS(unsigned i, int parent)
     if (cycl) return;
     if (A[i][k]) {
       if (used[k] && k != parent) {
-        printf("Графът е цикличен! \n");
+        printf("Р“СЂР°С„СЉС‚ Рµ С†РёРєР»РёС‡РµРЅ! \n");
         cycl = 1;
         return;
       }
@@ -51,6 +51,6 @@ int main(void) {
     if (!used[i]) DFS(i, -1);
     if (cycl) break;
   }
-  if (0 == cycl) printf(" Графът е дърво (не съдържа цикли)!\n");
+  if (0 == cycl) printf(" Р“СЂР°С„СЉС‚ Рµ РґСЉСЂРІРѕ (РЅРµ СЃСЉРґСЉСЂР¶Р° С†РёРєР»Рё)!\n");
   return 0;
 }

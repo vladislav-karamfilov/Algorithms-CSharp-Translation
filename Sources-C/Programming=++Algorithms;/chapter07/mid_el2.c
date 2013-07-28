@@ -1,22 +1,22 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 #define MAX 100
 
 int m[MAX];
 
-const unsigned n = 100; /* Брой елементи в масива */
-const unsigned k = 10;  /* Пореден номер на търсения елемент */
+const unsigned n = 100; /* Р‘СЂРѕР№ РµР»РµРјРµРЅС‚Рё РІ РјР°СЃРёРІР° */
+const unsigned k = 10;  /* РџРѕСЂРµРґРµРЅ РЅРѕРјРµСЂ РЅР° С‚СЉСЂСЃРµРЅРёСЏ РµР»РµРјРµРЅС‚ */
 
-void init(int m[], unsigned n) /* Запълва масива със случайни числа */
+void init(int m[], unsigned n) /* Р—Р°РїСЉР»РІР° РјР°СЃРёРІР° СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅРё С‡РёСЃР»Р° */
 { unsigned i;
   for (i = 0; i < n; i++)
     m[i] = rand() % (2*n+1);
 }
 
-void swap(int *el1, int *el2) /* Разменя стойностите на две променливи */
+void swap(int *el1, int *el2) /* Р Р°Р·РјРµРЅСЏ СЃС‚РѕР№РЅРѕСЃС‚РёС‚Рµ РЅР° РґРІРµ РїСЂРѕРјРµРЅР»РёРІРё */
 { int tmp = *el1; *el1 = *el2; *el2 = tmp; }
 
-unsigned partition(unsigned l, unsigned r) /* Разделяне по Ломуто */
+unsigned partition(unsigned l, unsigned r) /* Р Р°Р·РґРµР»СЏРЅРµ РїРѕ Р›РѕРјСѓС‚Рѕ */
 { int i;
   unsigned j;
   int x;
@@ -26,12 +26,12 @@ unsigned partition(unsigned l, unsigned r) /* Разделяне по Ломуто */
       i++;
       swap(m+i,m+j);
     }
-  if (i == (int)r) /* Всички елементи са <= x. Стесняване на областта с 1. */
+  if (i == (int)r) /* Р’СЃРёС‡РєРё РµР»РµРјРµРЅС‚Рё СЃР° <= x. РЎС‚РµСЃРЅСЏРІР°РЅРµ РЅР° РѕР±Р»Р°СЃС‚С‚Р° СЃ 1. */
     i--;
   return i;
 }
 
-unsigned find(int l, int r, unsigned k) /* Търсене на k-ия елемент по Хоор */
+unsigned find(int l, int r, unsigned k) /* РўСЉСЂСЃРµРЅРµ РЅР° k-РёСЏ РµР»РµРјРµРЅС‚ РїРѕ РҐРѕРѕСЂ */
 { unsigned mid, p;
   if (l == r)
     return l;
@@ -40,7 +40,7 @@ unsigned find(int l, int r, unsigned k) /* Търсене на k-ия елемент по Хоор */
   return k < p ? find(l,mid,k) : find(mid+1,r,k-p);
 }
 
-void print(int m[], unsigned n) /* Извежда масива на екрана */
+void print(int m[], unsigned n) /* РР·РІРµР¶РґР° РјР°СЃРёРІР° РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   for (i = 0; i < n; i++)
     printf("%8d", m[i]);
@@ -48,9 +48,9 @@ void print(int m[], unsigned n) /* Извежда масива на екрана */
 
 int main(void) {
   init(m,n);
-  printf("Масивът преди търсенето:"); print(m,n);
-  printf("\nТърсим k-ия елемент: k=%u", k);
-  printf("\nМасивът след търсенето:"); print(m,n);
-  printf("\nk-ият елемент е: %d", m[find(0,n-1,k)]);
+  printf("РњР°СЃРёРІСЉС‚ РїСЂРµРґРё С‚СЉСЂСЃРµРЅРµС‚Рѕ:"); print(m,n);
+  printf("\nРўСЉСЂСЃРёРј k-РёСЏ РµР»РµРјРµРЅС‚: k=%u", k);
+  printf("\nРњР°СЃРёРІСЉС‚ СЃР»РµРґ С‚СЉСЂСЃРµРЅРµС‚Рѕ:"); print(m,n);
+  printf("\nk-РёСЏС‚ РµР»РµРјРµРЅС‚ Рµ: %d", m[find(0,n-1,k)]);
   return 0;
 }

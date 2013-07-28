@@ -1,12 +1,12 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <math.h>
 #define log2(x) log(x)/log(2)
 #define MAX 100
 
 const double p[MAX] = {0.2, 0.2, 0.15, 0.15, 0.10, 0.10, 0.05, 0.05};
-const unsigned n = 8; /* Брой вероятности */
+const unsigned n = 8; /* Р‘СЂРѕР№ РІРµСЂРѕСЏС‚РЅРѕСЃС‚Рё */
 
-/* Пресмята ентропията на източника */
+/* РџСЂРµСЃРјСЏС‚Р° РµРЅС‚СЂРѕРїРёСЏС‚Р° РЅР° РёР·С‚РѕС‡РЅРёРєР° */
 double calcEntropy(const double *p, const unsigned n) 
 { unsigned i;
   double sum;
@@ -15,7 +15,7 @@ double calcEntropy(const double *p, const unsigned n)
   return sum;
 }
 
-/* Пресмята цената на кода */
+/* РџСЂРµСЃРјСЏС‚Р° С†РµРЅР°С‚Р° РЅР° РєРѕРґР° */
 double calcValue(const double *p, const unsigned *l, const unsigned n)
 { unsigned i;
   double sum;
@@ -24,7 +24,7 @@ double calcValue(const double *p, const unsigned *l, const unsigned n)
   return sum;
 }
 
-/* Пресмята дължините на кодовете на отделните букви */
+/* РџСЂРµСЃРјСЏС‚Р° РґСЉР»Р¶РёРЅРёС‚Рµ РЅР° РєРѕРґРѕРІРµС‚Рµ РЅР° РѕС‚РґРµР»РЅРёС‚Рµ Р±СѓРєРІРё */
 void calcLengths(unsigned *l, const double *p, const unsigned n)
 { unsigned i;
   for (i = 0; i < n; i++)
@@ -36,19 +36,19 @@ int main(void) {
   double entr;
   unsigned l[MAX];
 
-  printf("\n\nИзточник, зададен с честоти на срещане: ");
+  printf("\n\nРР·С‚РѕС‡РЅРёРє, Р·Р°РґР°РґРµРЅ СЃ С‡РµСЃС‚РѕС‚Рё РЅР° СЃСЂРµС‰Р°РЅРµ: ");
   for (i = 0; i < n; i++)
     printf("%2.2lf ",p[i]);
 
   entr = calcEntropy(p,n);
-  printf("\nЕнтропия на източника: %8.5lf",entr);
-  printf("\nТеоретична цена на кода: %8.5lf",entr + 1);
+  printf("\nР•РЅС‚СЂРѕРїРёСЏ РЅР° РёР·С‚РѕС‡РЅРёРєР°: %8.5lf",entr);
+  printf("\nРўРµРѕСЂРµС‚РёС‡РЅР° С†РµРЅР° РЅР° РєРѕРґР°: %8.5lf",entr + 1);
   
   calcLengths(l,p,n);
-  printf("\nДължини на кодовете: ");
+  printf("\nР”СЉР»Р¶РёРЅРё РЅР° РєРѕРґРѕРІРµС‚Рµ: ");
   for (i = 0; i < n; i++)
     printf("%u ",l[i]);
 
-  printf("\nЦена на кода при горните дължини: %2.2lf",calcValue(p,l,n));
+  printf("\nР¦РµРЅР° РЅР° РєРѕРґР° РїСЂРё РіРѕСЂРЅРёС‚Рµ РґСЉР»Р¶РёРЅРё: %2.2lf",calcValue(p,l,n));
   return 0;
 }

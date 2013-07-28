@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 #define CDataType char
 
@@ -35,6 +35,6 @@ int main() {
   CDataType m[14] = "AAACCBBCCCBCC";
   CDataType majority;
   findMajority(m, 13, &majority);
-  printf("Мажорант: %c\n", majority);
+  printf("РњР°Р¶РѕСЂР°РЅС‚: %c\n", majority);
   return 0;
 }

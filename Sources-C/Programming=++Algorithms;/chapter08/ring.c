@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #define MAXN 50
 #define INFINITY (int)((1 << (sizeof(int)*8 - 1)) - 1)
 
@@ -8,13 +8,13 @@
 struct {
   long min, max;
   unsigned lenMin, lenMax;
-} F[MAXN][MAXN];  /* Целеви функции Fmin() и Fmax() */
+} F[MAXN][MAXN];  /* Р¦РµР»РµРІРё С„СѓРЅРєС†РёРё Fmin() Рё Fmax() */
 
-const unsigned n = 7;      /* Брой числа */
-const long x[MAXN] = { 0, 9, -3, 8, 7, -8, 0, 7 }; /* Стойности на числата (без първото) */
-char sign[MAXN] = { ' ', '+', '*', '*', '-', '+', '*', '-' }; /* Знаци между тях */
+const unsigned n = 7;      /* Р‘СЂРѕР№ С‡РёСЃР»Р° */
+const long x[MAXN] = { 0, 9, -3, 8, 7, -8, 0, 7 }; /* РЎС‚РѕР№РЅРѕСЃС‚Рё РЅР° С‡РёСЃР»Р°С‚Р° (Р±РµР· РїСЉСЂРІРѕС‚Рѕ) */
+char sign[MAXN] = { ' ', '+', '*', '*', '-', '+', '*', '-' }; /* Р—РЅР°С†Рё РјРµР¶РґСѓ С‚СЏС… */
 
-/* Извършва операцията */
+/* РР·РІСЉСЂС€РІР° РѕРїРµСЂР°С†РёСЏС‚Р° */
 long oper(long v1, char sign, long v2)
 { switch (sign) {
     case '+': return v1 + v2;
@@ -24,24 +24,24 @@ long oper(long v1, char sign, long v2)
   return 0;
 }
 
-/* Пресмята стойностите на целевата функция */
+/* РџСЂРµСЃРјСЏС‚Р° СЃС‚РѕР№РЅРѕСЃС‚РёС‚Рµ РЅР° С†РµР»РµРІР°С‚Р° С„СѓРЅРєС†РёСЏ */
 void calculate(unsigned beg, unsigned len)
 { unsigned i, beg2;
   long val1, val2, val3, val4, minValue, maxValue;
   if (beg > n)
 	beg -= n;
-  if (F[beg][len].min != INFINITY) /* Стойността вече е била сметната */
+  if (F[beg][len].min != INFINITY) /* РЎС‚РѕР№РЅРѕСЃС‚С‚Р° РІРµС‡Рµ Рµ Р±РёР»Р° СЃРјРµС‚РЅР°С‚Р° */
 	return;
   if (1 == len) {
     F[beg][len].min = F[beg][len].max = x[beg];
     F[beg][len].lenMin = F[beg][len].lenMax = 0;
     return;
   }
-  /* Стойността трябва да се пресметне */
+  /* РЎС‚РѕР№РЅРѕСЃС‚С‚Р° С‚СЂСЏР±РІР° РґР° СЃРµ РїСЂРµСЃРјРµС‚РЅРµ */
   F[beg][len].min = INFINITY;
   F[beg][len].max = -INFINITY;
   for (i = 1; i < len; i++) {
-    /* Пресмятане на всички стойности F[beg][i] и F[beg+i][len-i] */
+    /* РџСЂРµСЃРјСЏС‚Р°РЅРµ РЅР° РІСЃРёС‡РєРё СЃС‚РѕР№РЅРѕСЃС‚Рё F[beg][i] Рё F[beg+i][len-i] */
     calculate(beg, i);
     if (beg + i > n)
 	   beg2 = beg + i - n;
@@ -52,13 +52,13 @@ void calculate(unsigned beg, unsigned len)
     val2 = oper(F[beg][i].min, sign[beg2 - 1], F[beg2][len - i].max);
     val3 = oper(F[beg][i].max, sign[beg2 - 1], F[beg2][len - i].min);
     val4 = oper(F[beg][i].max, sign[beg2 - 1], F[beg2][len - i].max);
-    /* Актуализиране на минималната стойност на F[beg][len] */
+    /* РђРєС‚СѓР°Р»РёР·РёСЂР°РЅРµ РЅР° РјРёРЅРёРјР°Р»РЅР°С‚Р° СЃС‚РѕР№РЅРѕСЃС‚ РЅР° F[beg][len] */
     minValue = MIN(val1, MIN(val2, MIN(val3, val4)));
     if (minValue < F[beg][len].min) {
       F[beg][len].min = minValue;
       F[beg][len].lenMin = i;
     }
-    /* Актуализиране на максималната стойност на F[beg][len] */
+    /* РђРєС‚СѓР°Р»РёР·РёСЂР°РЅРµ РЅР° РјР°РєСЃРёРјР°Р»РЅР°С‚Р° СЃС‚РѕР№РЅРѕСЃС‚ РЅР° F[beg][len] */
     maxValue = MAX(val1, MAX(val2, MAX(val3, val4)));
     if (maxValue > F[beg][len].max) {
       F[beg][len].max = maxValue;
@@ -67,7 +67,7 @@ void calculate(unsigned beg, unsigned len)
   }
 }
 
-/* Извежда израз, за който се получава min/max */
+/* РР·РІРµР¶РґР° РёР·СЂР°Р·, Р·Р° РєРѕР№С‚Рѕ СЃРµ РїРѕР»СѓС‡Р°РІР° min/max */
 void printMinMax(unsigned beg, unsigned len, char printMin)
 { unsigned i, beg2;
   if (beg > n)
@@ -80,28 +80,28 @@ void printMinMax(unsigned beg, unsigned len, char printMin)
     i = printMin ? F[beg][len].lenMin : F[beg][len].lenMax;
 	if ((beg2 = beg + i) > n)
 	  beg2 -= n;
-    printMinMax(beg, i, printMin); /* Рекурсия за лявата част на израза */
-    printf("%c", sign[beg2 - 1]); /* Извеждане на операцията */
-    printMinMax(beg2, len - i, printMin); /* Рекурсия за дясната част на израза */
+    printMinMax(beg, i, printMin); /* Р РµРєСѓСЂСЃРёСЏ Р·Р° Р»СЏРІР°С‚Р° С‡Р°СЃС‚ РЅР° РёР·СЂР°Р·Р° */
+    printf("%c", sign[beg2 - 1]); /* РР·РІРµР¶РґР°РЅРµ РЅР° РѕРїРµСЂР°С†РёСЏС‚Р° */
+    printMinMax(beg2, len - i, printMin); /* Р РµРєСѓСЂСЃРёСЏ Р·Р° РґСЏСЃРЅР°С‚Р° С‡Р°СЃС‚ РЅР° РёР·СЂР°Р·Р° */
     if (len < n)
 	  printf(")");
   }
 }
 
-/* Намира максимума и минимума, както и как се получават */
+/* РќР°РјРёСЂР° РјР°РєСЃРёРјСѓРјР° Рё РјРёРЅРёРјСѓРјР°, РєР°РєС‚Рѕ Рё РєР°Рє СЃРµ РїРѕР»СѓС‡Р°РІР°С‚ */
 void solve(void)
 { unsigned i, j;
-  /* Инициализация */
+  /* РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
   sign[0] = sign[n];
   for (i = 1; i <= n; i++)
     for (j = 1; j <= n; j++)
 	  F[i][j].min = INFINITY;
-  /* Пресмятане на стойностите на целевата функция */
+  /* РџСЂРµСЃРјСЏС‚Р°РЅРµ РЅР° СЃС‚РѕР№РЅРѕСЃС‚РёС‚Рµ РЅР° С†РµР»РµРІР°С‚Р° С„СѓРЅРєС†РёСЏ */
   for (i = 1; i <= n; i++)
 	 calculate(i, n);
 }
 
-/* Търси и извежда максимума и минимума */
+/* РўСЉСЂСЃРё Рё РёР·РІРµР¶РґР° РјР°РєСЃРёРјСѓРјР° Рё РјРёРЅРёРјСѓРјР° */
 void print(void)
 { unsigned i, minIndex, maxIndex;
   for (minIndex = 1, i = 2; i <= n; i++)
@@ -110,9 +110,9 @@ void print(void)
   for (maxIndex = 1, i = 2; i <= n; i++)
     if (F[i][n].max > F[maxIndex][n].max)
 	   maxIndex = i;
-  printf("\nМинимална стойност: %d\n", F[minIndex][n].min);
+  printf("\nРњРёРЅРёРјР°Р»РЅР° СЃС‚РѕР№РЅРѕСЃС‚: %d\n", F[minIndex][n].min);
   printMinMax(minIndex, n, 1);
-  printf("\n\nМаксимална стойност: %d\n", F[maxIndex][n].max);
+  printf("\n\nРњР°РєСЃРёРјР°Р»РЅР° СЃС‚РѕР№РЅРѕСЃС‚: %d\n", F[maxIndex][n].max);
   printMinMax(maxIndex, n, 0);
 }
 

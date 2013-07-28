@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
 #define MAXN 100
 
@@ -8,7 +8,7 @@ const int f[MAXN] = { 8, 10, 12, 14, 15, 19, 20 };
 
 void solve(void)
 { int i = 1, j = 1;
-  printf(" Избрани лекции: %d ", 1);
+  printf(" РР·Р±СЂР°РЅРё Р»РµРєС†РёРё: %d ", 1);
 
   while (j++ <= n)
     if (s[j - 1] > f[i - 1]) printf("%d ", i = j);

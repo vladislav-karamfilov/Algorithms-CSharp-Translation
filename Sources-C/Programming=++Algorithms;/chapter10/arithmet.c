@@ -1,7 +1,7 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <string.h>
 #define SHOW_MORE
-#define MESSAGE "АРИТМЕТИКА"
+#define MESSAGE "РђР РРўРњР•РўРРљРђ"
 
 #define MAX 256
 
@@ -10,7 +10,7 @@ struct {
 } sym[MAX];
 unsigned freq[MAX];
 
-void getStatistics(char *mesg) /* Намира броя на срещанията на всеки символ */
+void getStatistics(char *mesg) /* РќР°РјРёСЂР° Р±СЂРѕСЏ РЅР° СЃСЂРµС‰Р°РЅРёСЏС‚Р° РЅР° РІСЃРµРєРё СЃРёРјРІРѕР» */
 { unsigned i;
   for (i = 0; i < MAX; i++)
     freq[i] = 0;
@@ -18,7 +18,7 @@ void getStatistics(char *mesg) /* Намира броя на срещанията на всеки символ */
     freq[(unsigned char) *mesg++]++;
 }
 
-void buildModel(char *mesg) /* Построява модела */
+void buildModel(char *mesg) /* РџРѕСЃС‚СЂРѕСЏРІР° РјРѕРґРµР»Р° */
 { unsigned i, cnt, n;
   for (n = strlen(mesg), cnt = i = 0; i < MAX; i++) {
     sym[i].low = (double) cnt/n;
@@ -29,14 +29,14 @@ void buildModel(char *mesg) /* Построява модела */
 
 void printModel(void)
 { unsigned i;
-  printf("\n             ГРАНИЦА");
-  printf("\nСИМВОЛ    ДОЛНА   ГОРНА");
+  printf("\n             Р“Р РђРќРР¦Рђ");
+  printf("\nРЎРРњР’РћР›    Р”РћР›РќРђ   Р“РћР РќРђ");
   for (i = 0; i < MAX; i++)
     if (freq[i])
       printf("\n%4c     %1.4f  %1.4f", i,sym[i].low,sym[i].high);
 }
 
-double arithmeticEncode(char *mesg) /* Извършва аритметично кодиране */
+double arithmeticEncode(char *mesg) /* РР·РІСЉСЂС€РІР° Р°СЂРёС‚РјРµС‚РёС‡РЅРѕ РєРѕРґРёСЂР°РЅРµ */
 { double range, low, high;
   low = 0.0, high = 1.0;
   while ('\0' != *mesg) {
@@ -59,7 +59,7 @@ char getSymbol(double encMsg)
   return (char) i;
 }
 
-void arithmeticDecode(double msg, unsigned msgLen) /* Извършва декодиране */
+void arithmeticDecode(double msg, unsigned msgLen) /* РР·РІСЉСЂС€РІР° РґРµРєРѕРґРёСЂР°РЅРµ */
 { double range;
   unsigned char ch, i;
   for (i = 0; i < msgLen; i++) {
@@ -77,16 +77,16 @@ void arithmeticDecode(double msg, unsigned msgLen) /* Извършва декодиране */
 
 int main(void) {
   double code;
-  printf("\n\nИзходно съобщение: %s",MESSAGE);
+  printf("\n\nРР·С…РѕРґРЅРѕ СЃСЉРѕР±С‰РµРЅРёРµ: %s",MESSAGE);
   getStatistics(MESSAGE);
   buildModel(MESSAGE);
 #ifdef SHOW_MORE
   printModel();
-  printf("\nНатиснете <<ENTER>>"); getchar();
+  printf("\nРќР°С‚РёСЃРЅРµС‚Рµ <<ENTER>>"); getchar();
 #endif
   code = arithmeticEncode(MESSAGE);
-  printf("\nКодът на съобщението е: %1.8f",code);
-  printf("\nДекодиране: ");
+  printf("\nРљРѕРґСЉС‚ РЅР° СЃСЉРѕР±С‰РµРЅРёРµС‚Рѕ Рµ: %1.8f",code);
+  printf("\nР”РµРєРѕРґРёСЂР°РЅРµ: ");
   arithmeticDecode(code,strlen(MESSAGE));
   return 0;
 }

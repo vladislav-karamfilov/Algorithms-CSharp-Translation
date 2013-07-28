@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <math.h>
 
 const unsigned long n = 123;
@@ -10,7 +10,7 @@ int main(void)
     digits += log10(i);
   }
 
-  /* операцията [x] ще реализираме, като използваме превръщане до тип unsigned long */
-  printf("Броят на цифрите на %lu! е %lu\n", n, (unsigned long) digits + 1);
+  /* РѕРїРµСЂР°С†РёСЏС‚Р° [x] С‰Рµ СЂРµР°Р»РёР·РёСЂР°РјРµ, РєР°С‚Рѕ РёР·РїРѕР»Р·РІР°РјРµ РїСЂРµРІСЂСЉС‰Р°РЅРµ РґРѕ С‚РёРї unsigned long */
+  printf("Р‘СЂРѕСЏС‚ РЅР° С†РёС„СЂРёС‚Рµ РЅР° %lu! Рµ %lu\n", n, (unsigned long) digits + 1);
   return 0;
 }

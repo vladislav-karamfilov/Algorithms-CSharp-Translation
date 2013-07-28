@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <process.h>
@@ -12,12 +12,12 @@
 
 const char *msg = "abracadabragabramabracadabragabraLALALALALALALALALALALALALALALA";
 
-char dictionary[DICT_SIZE][MAX_S]; /* Речникът */
-unsigned dictIndex;                /* Максимален индекс в речника */
-unsigned encoded[ENCODED_SIZE];    /* Кодирано съобщение */
-unsigned encIndex;                 /* Максимален индекс на кода */
+char dictionary[DICT_SIZE][MAX_S]; /* Р РµС‡РЅРёРєСЉС‚ */
+unsigned dictIndex;                /* РњР°РєСЃРёРјР°Р»РµРЅ РёРЅРґРµРєСЃ РІ СЂРµС‡РЅРёРєР° */
+unsigned encoded[ENCODED_SIZE];    /* РљРѕРґРёСЂР°РЅРѕ СЃСЉРѕР±С‰РµРЅРёРµ */
+unsigned encIndex;                 /* РњР°РєСЃРёРјР°Р»РµРЅ РёРЅРґРµРєСЃ РЅР° РєРѕРґР° */
 
-void initTable(void) /* Инициализира таблицата */
+void initTable(void) /* РРЅРёС†РёР°Р»РёР·РёСЂР° С‚Р°Р±Р»РёС†Р°С‚Р° */
 { unsigned i;
   for (i = 0; i < CHAR_CNT; i++) {
     dictionary[i][0] = i;
@@ -26,7 +26,7 @@ void initTable(void) /* Инициализира таблицата */
   dictIndex = CHAR_CNT;
 }
 
-unsigned findIndex(char *s) /* Търси индекс в таблицата */
+unsigned findIndex(char *s) /* РўСЉСЂСЃРё РёРЅРґРµРєСЃ РІ С‚Р°Р±Р»РёС†Р°С‚Р° */
 { unsigned i;
   for (i = 0; i < dictIndex; i++)
     if (0 == strcmp(s,dictionary[i]))
@@ -34,10 +34,10 @@ unsigned findIndex(char *s) /* Търси индекс в таблицата */
   return NOT_FOUND;
 }
 
-void add2Dictionary(char *s) /* Добавя нов низ в таблицата */
+void add2Dictionary(char *s) /* Р”РѕР±Р°РІСЏ РЅРѕРІ РЅРёР· РІ С‚Р°Р±Р»РёС†Р°С‚Р° */
 { strcpy(dictionary[dictIndex++],s); }
 
-void LZWencode(const char *msg) /* Извършва кодиране по LZW */
+void LZWencode(const char *msg) /* РР·РІСЉСЂС€РІР° РєРѕРґРёСЂР°РЅРµ РїРѕ LZW */
 { unsigned dictIndex, len;
   char ch, str[MAX_S], strch[MAX_S];
 
@@ -61,7 +61,7 @@ void LZWencode(const char *msg) /* Извършва кодиране по LZW */
   encoded[encIndex++] = findIndex(str);
 }
 
-void LZWdecode(char *decodedMsg) /* Извършва декодиране по LZW */
+void LZWdecode(char *decodedMsg) /* РР·РІСЉСЂС€РІР° РґРµРєРѕРґРёСЂР°РЅРµ РїРѕ LZW */
 { unsigned code, oldCode, ind, len;
   char str[MAX_S], str2[MAX_S];
 
@@ -87,7 +87,7 @@ void LZWdecode(char *decodedMsg) /* Извършва декодиране по LZW */
 
 void printEncodedMsg(const unsigned *encoded, const unsigned encIndex)
 { unsigned ind;
-  printf("\n\nКодирано съобщение:\n");
+  printf("\n\nРљРѕРґРёСЂР°РЅРѕ СЃСЉРѕР±С‰РµРЅРёРµ:\n");
   for (ind = 0; ind < encIndex; ind++)
     printf("%u ", encoded[ind]);
   printf("\n");
@@ -95,12 +95,12 @@ void printEncodedMsg(const unsigned *encoded, const unsigned encIndex)
 
 int main(void) {
   char decodedMsg[MAX_MSG_LEN];
-  printf("\n\nВходно съобщение за кодиране:\n%s",msg);
+  printf("\n\nР’С…РѕРґРЅРѕ СЃСЉРѕР±С‰РµРЅРёРµ Р·Р° РєРѕРґРёСЂР°РЅРµ:\n%s",msg);
   
   LZWencode(msg);
   printEncodedMsg(encoded, encIndex);
 
   LZWdecode(decodedMsg);
-  printf("\nДекодирано съобщение:\n%s", decodedMsg);
+  printf("\nР”РµРєРѕРґРёСЂР°РЅРѕ СЃСЉРѕР±С‰РµРЅРёРµ:\n%s", decodedMsg);
   return 0;
 }

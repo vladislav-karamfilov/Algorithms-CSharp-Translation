@@ -1,6 +1,6 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 
-/* Íååôåêòèâåí ðåêóðñèâåí âàðèàíò */
+/* ÐÐµÐµÑ„ÐµÐºÑ‚Ð¸Ð²ÐµÐ½ Ñ€ÐµÐºÑƒÑ€ÑÐ¸Ð²ÐµÐ½ Ð²Ð°Ñ€Ð¸Ð°Ð½Ñ‚ */
 unsigned long binom(unsigned n, unsigned k) 
 { if (k > n) return 0;
     else if (0 == k || k == n) return 1;

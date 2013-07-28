@@ -1,16 +1,16 @@
-#include <stdio.h>
-#define MAXN  5000  /* Максимален брой заявки */
-#define MAXD  365   /* Максимален брой дни */
+п»ї#include <stdio.h>
+#define MAXN  5000  /* РњР°РєСЃРёРјР°Р»РµРЅ Р±СЂРѕР№ Р·Р°СЏРІРєРё */
+#define MAXD  365   /* РњР°РєСЃРёРјР°Р»РµРЅ Р±СЂРѕР№ РґРЅРё */
 struct TZ { unsigned b, e; };
 
 struct { unsigned cntBlue, cntRed; } B[MAXD], R[MAXD];
 
-const unsigned n = 2; /* Брой сини заявки */
-const unsigned m = 4; /* Брой червени заявки */
+const unsigned n = 2; /* Р‘СЂРѕР№ СЃРёРЅРё Р·Р°СЏРІРєРё */
+const unsigned m = 4; /* Р‘СЂРѕР№ С‡РµСЂРІРµРЅРё Р·Р°СЏРІРєРё */
 struct TZ blueOrders[MAXN] = { {1,5}, {12,20} };
 struct TZ redOrders[MAXN] = { {2,10}, {6,11}, {15,25}, {26,30} };
 
-/* Сортира заявките */
+/* РЎРѕСЂС‚РёСЂР° Р·Р°СЏРІРєРёС‚Рµ */
 void sort(struct TZ Z[], const unsigned count)
 { unsigned i, j;
   struct TZ swp;
@@ -23,15 +23,15 @@ void sort(struct TZ Z[], const unsigned count)
       }
 }
 
-/* Решава задачата с динамично оптимиране */
+/* Р РµС€Р°РІР° Р·Р°РґР°С‡Р°С‚Р° СЃ РґРёРЅР°РјРёС‡РЅРѕ РѕРїС‚РёРјРёСЂР°РЅРµ */
 void solveDynamic(void)
 { unsigned d, bb, be, blueIndex, redIndex;
-  /* Инициализация */
+  /* РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
   B[0].cntBlue = B[0].cntRed = R[0].cntBlue = R[0].cntRed = 0; 
   blueIndex = redIndex = 1;
-  /* Пресмятане на B[1..MAXD], R[1..MAXD] */
+  /* РџСЂРµСЃРјСЏС‚Р°РЅРµ РЅР° B[1..MAXD], R[1..MAXD] */
   for (d = 1; d <= MAXD; d++) {
-    /* Пресмятане на B[d] */
+    /* РџСЂРµСЃРјСЏС‚Р°РЅРµ РЅР° B[d] */
     B[d] = B[d - 1];
     for (blueIndex = 0; blueIndex < n; blueIndex++) {
       if (blueOrders[blueIndex].e > d)
@@ -45,7 +45,7 @@ void solveDynamic(void)
         }
       }
     }
-    /* Пресмятане на R[d]: аналогично на B[d] */
+    /* РџСЂРµСЃРјСЏС‚Р°РЅРµ РЅР° R[d]: Р°РЅР°Р»РѕРіРёС‡РЅРѕ РЅР° B[d] */
     R[d] = R[d - 1];
     for (redIndex = 0; redIndex < m; redIndex++) {
       if (redOrders[redIndex].e > d)
@@ -62,17 +62,17 @@ void solveDynamic(void)
   }
 }
 
-/* Извежда резултата на екрана */
+/* РР·РІРµР¶РґР° СЂРµР·СѓР»С‚Р°С‚Р° РЅР° РµРєСЂР°РЅР° */
 void printResult(void)
 { if (B[MAXD].cntBlue + B[MAXD].cntRed > R[MAXD].cntBlue + R[MAXD].cntRed) {
-    printf("\nЗаетост на залата (дни): %u", B[MAXD].cntBlue + B[MAXD].cntRed);
-    printf("\nБрой дни за червените: %u", B[MAXD].cntRed);
-    printf("\nБрой дни за сините: %u", B[MAXD].cntBlue);
+    printf("\nР—Р°РµС‚РѕСЃС‚ РЅР° Р·Р°Р»Р°С‚Р° (РґРЅРё): %u", B[MAXD].cntBlue + B[MAXD].cntRed);
+    printf("\nР‘СЂРѕР№ РґРЅРё Р·Р° С‡РµСЂРІРµРЅРёС‚Рµ: %u", B[MAXD].cntRed);
+    printf("\nР‘СЂРѕР№ РґРЅРё Р·Р° СЃРёРЅРёС‚Рµ: %u", B[MAXD].cntBlue);
   }
   else {
-    printf("\nЗаетост на залата (дни): %u", R[MAXD].cntBlue + R[MAXD].cntRed);
-    printf("\nБрой дни за червените: %u", R[MAXD].cntRed);
-    printf("\nБрой дни за сините: %u", R[MAXD].cntBlue);
+    printf("\nР—Р°РµС‚РѕСЃС‚ РЅР° Р·Р°Р»Р°С‚Р° (РґРЅРё): %u", R[MAXD].cntBlue + R[MAXD].cntRed);
+    printf("\nР‘СЂРѕР№ РґРЅРё Р·Р° С‡РµСЂРІРµРЅРёС‚Рµ: %u", R[MAXD].cntRed);
+    printf("\nР‘СЂРѕР№ РґРЅРё Р·Р° СЃРёРЅРёС‚Рµ: %u", R[MAXD].cntBlue);
   }
 }
 

@@ -1,11 +1,11 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
-/* Максимален брой върхове в графа */
+/* РњР°РєСЃРёРјР°Р»РµРЅ Р±СЂРѕР№ РІСЉСЂС…РѕРІРµ РІ РіСЂР°С„Р° */
 #define MAXN 150
 
-/* Брой върхове в графа */
+/* Р‘СЂРѕР№ РІСЉСЂС…РѕРІРµ РІ РіСЂР°С„Р° */
 const unsigned n = 6;
-/* Матрица на теглата на графа */
+/* РњР°С‚СЂРёС†Р° РЅР° С‚РµРіР»Р°С‚Р° РЅР° РіСЂР°С„Р° */
 const int A[MAXN][MAXN] = {
   { 0, 5, 0, 0, 7, 7 },
   { 5, 0, 5, 0, 0, 0 },
@@ -23,12 +23,12 @@ int curSum, minSum;
 
 void printCycle(void)
 { unsigned i;
-  printf("Минимален Хамилтонов цикъл: 1");
+  printf("РњРёРЅРёРјР°Р»РµРЅ РҐР°РјРёР»С‚РѕРЅРѕРІ С†РёРєСЉР»: 1");
   for (i = 0; i < n - 1; i++) printf(" %u", minCycle[i] + 1);
-  printf(" 1, дължина %d\n", minSum);
+  printf(" 1, РґСЉР»Р¶РёРЅР° %d\n", minSum);
 }
 
-/* Намира минимален Хамилтонов цикъл */
+/* РќР°РјРёСЂР° РјРёРЅРёРјР°Р»РµРЅ РҐР°РјРёР»С‚РѕРЅРѕРІ С†РёРєСЉР» */
 void hamilton(unsigned i, unsigned level)
 { unsigned k;
   if ((0 == i) && (level > 0)) {
@@ -44,7 +44,7 @@ void hamilton(unsigned i, unsigned level)
     if (A[i][k] && k != i) {
       cycle[level] = k;
       curSum += A[i][k];
-      if (curSum < minSum) /* прекъсване на генерирането */
+      if (curSum < minSum) /* РїСЂРµРєСЉСЃРІР°РЅРµ РЅР° РіРµРЅРµСЂРёСЂР°РЅРµС‚Рѕ */
         hamilton(k, level + 1);
       curSum -= A[i][k];
     }

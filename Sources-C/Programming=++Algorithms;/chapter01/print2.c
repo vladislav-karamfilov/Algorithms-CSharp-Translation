@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 const unsigned n = 5;
 unsigned k = 0;
 

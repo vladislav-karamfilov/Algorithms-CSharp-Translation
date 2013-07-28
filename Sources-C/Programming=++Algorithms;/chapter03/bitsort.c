@@ -1,4 +1,4 @@
-#include <assert.h>
+п»ї#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -8,7 +8,7 @@
 struct CElem {
   int key;
   /* .............
-     Някакви данни
+     РќСЏРєР°РєРІРё РґР°РЅРЅРё
      ............. */
 };
 
@@ -17,7 +17,7 @@ struct CList {
   struct CList *next;
 };
 
-struct CList *init(unsigned n) /* Запълва масива със случайни цели числа */
+struct CList *init(unsigned n) /* Р—Р°РїСЉР»РІР° РјР°СЃРёРІР° СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅРё С†РµР»Рё С‡РёСЃР»Р° */
 { struct CList *head, *p;
   unsigned i;
   srand(time(NULL));
@@ -35,17 +35,17 @@ struct CList *bitSort(struct CList *head)
 { struct CList *zeroEnd, *oneEnd, *zero, *one;
   unsigned maxBit, bitPow2;
 
-  /* 0. Определяне на максималната битова маска */
+  /* 0. РћРїСЂРµРґРµР»СЏРЅРµ РЅР° РјР°РєСЃРёРјР°Р»РЅР°С‚Р° Р±РёС‚РѕРІР° РјР°СЃРєР° */
   maxBit = 1 << (8*sizeof(head->data.key)-1);
 
-  /* 1. Фиктивен елемент в началото на списъците */
+  /* 1. Р¤РёРєС‚РёРІРµРЅ РµР»РµРјРµРЅС‚ РІ РЅР°С‡Р°Р»РѕС‚Рѕ РЅР° СЃРїРёСЃСЉС†РёС‚Рµ */
   zero = (struct CList *) malloc(sizeof(struct CList));
   one  = (struct CList *) malloc(sizeof(struct CList));
 
-  /* 2. Сортиране */
+  /* 2. РЎРѕСЂС‚РёСЂР°РЅРµ */
   for (bitPow2 = 1; bitPow2 < maxBit; bitPow2 <<= 1) {
 
-    /* 2.1. Разпределяне по списъци */
+    /* 2.1. Р Р°Р·РїСЂРµРґРµР»СЏРЅРµ РїРѕ СЃРїРёСЃСЉС†Рё */
     for (zeroEnd = zero, oneEnd = one; NULL != head; head = head->next)
       if (!(head->data.key & bitPow2)) {
         zeroEnd->next = head;
@@ -56,13 +56,13 @@ struct CList *bitSort(struct CList *head)
         oneEnd = oneEnd->next;
       }
 
-    /* 2.2. Обединение на списъците */
+    /* 2.2. РћР±РµРґРёРЅРµРЅРёРµ РЅР° СЃРїРёСЃСЉС†РёС‚Рµ */
     oneEnd->next = NULL;
     zeroEnd->next = one->next;
     head = zero->next;
   }
 
-  /* 3. Освобождаване на паметта */
+  /* 3. РћСЃРІРѕР±РѕР¶РґР°РІР°РЅРµ РЅР° РїР°РјРµС‚С‚Р° */
   free(zero);
   free(one);
 
@@ -93,10 +93,10 @@ void clear(struct CList *head)
 int main(void) {
   struct CList *head;
   head = init(MAX);
-  printf("Масивът преди сортирането:\n");
+  printf("РњР°СЃРёРІСЉС‚ РїСЂРµРґРё СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
   print(head);
   head = bitSort(head);
-  printf("Масивът след сортирането:\n");
+  printf("РњР°СЃРёРІСЉС‚ СЃР»РµРґ СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
   print(head);
   check(head);
   clear(head);

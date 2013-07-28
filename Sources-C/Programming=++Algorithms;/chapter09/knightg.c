@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
 #define MAXN      100
 #define MAX_MOVES   8
@@ -12,7 +12,7 @@ int a[MAXN][MAXN], x, y, p;
 int countMoves(int x, int y)
 { int i, number = 0;
   if (x < 0 || y < 0 || x >= n || y >= n || a[x][y] != 0)
-    return MAX_MOVES + 1;  /* невалиден ход */
+    return MAX_MOVES + 1;  /* РЅРµРІР°Р»РёРґРµРЅ С…РѕРґ */
   for (i = 0; i < MAX_MOVES; i++) {
     int nx = x + moveX[i], ny = y + moveY[i];
     if (nx >= 0 && ny >= 0 && nx < n && ny < n && a[nx][ny] == 0) number++;
@@ -23,7 +23,7 @@ int countMoves(int x, int y)
 void solve(void) {
   unsigned i, j, n2;
 
-  /* инициализация */
+  /* РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
   for (i = 0; i < n; i++)
     for (j = 0; j < n; j++) a[i][j] = 0;
   x = 0;
@@ -31,7 +31,7 @@ void solve(void) {
   a[0][0] = 1;
   p = 1;
 
-  /* повтаря "алчната" стъпка, докато попълни цялата дъска */
+  /* РїРѕРІС‚Р°СЂСЏ "Р°Р»С‡РЅР°С‚Р°" СЃС‚СЉРїРєР°, РґРѕРєР°С‚Рѕ РїРѕРїСЉР»РЅРё С†СЏР»Р°С‚Р° РґСЉСЃРєР° */
   n2 = n * n;
   while (p < n2) {
     int min = MAX_MOVES + 1, choose;
@@ -47,7 +47,7 @@ void solve(void) {
     a[x][y] = ++p;
   }
 
-  /* отпечатва резултата */
+  /* РѕС‚РїРµС‡Р°С‚РІР° СЂРµР·СѓР»С‚Р°С‚Р° */
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++) printf("%4d", a[i][j]);
     printf("\n");

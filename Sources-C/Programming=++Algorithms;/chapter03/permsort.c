@@ -1,4 +1,4 @@
-#include <assert.h>
+п»ї#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -10,14 +10,14 @@
 struct CElem {
   int key;
   /* .............
-     Някакви данни
+     РќСЏРєР°РєРІРё РґР°РЅРЅРё
      ............. */
 };
 
 void swap(struct CElem *x1, struct CElem *x2)
 { struct CElem tmp = *x1; *x1 = *x2; *x2 = tmp; }
 
-void init(struct CElem m[], unsigned n) /* Запълва масива със случайни цели числа */
+void init(struct CElem m[], unsigned n) /* Р—Р°РїСЉР»РІР° РјР°СЃРёРІР° СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅРё С†РµР»Рё С‡РёСЃР»Р° */
 { unsigned i;
   srand(time(NULL));
   for (i = 0; i < n; i++)
@@ -33,7 +33,7 @@ void permSort(struct CElem m[], unsigned n)
       swap(&m[i],&m[m[i].key]);
 }
 
-void print(struct CElem m[], unsigned n) /* Извежда ключовете на масива на екрана */
+void print(struct CElem m[], unsigned n) /* РР·РІРµР¶РґР° РєР»СЋС‡РѕРІРµС‚Рµ РЅР° РјР°СЃРёРІР° РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   for (i = 0; i < n ; i++)
     printf("%8d", m[i].key);
@@ -41,13 +41,13 @@ void print(struct CElem m[], unsigned n) /* Извежда ключовете на масива на екран
 
 void check(const struct CElem m[], const struct CElem saveM[], unsigned n)
 { unsigned i, j;
-  char *found; /* третира се като масив от булев тип */
+  char *found; /* С‚СЂРµС‚РёСЂР° СЃРµ РєР°С‚Рѕ РјР°СЃРёРІ РѕС‚ Р±СѓР»РµРІ С‚РёРї */
 
-  /* 1. Проверка за наредба във възходящ ред */
+  /* 1. РџСЂРѕРІРµСЂРєР° Р·Р° РЅР°СЂРµРґР±Р° РІСЉРІ РІСЉР·С…РѕРґСЏС‰ СЂРµРґ */
   for (i = 0; i < n-1; i++)
     assert(m[i].key <= m[i+1].key);
 
-  /* 2. Проверка за пермутация на изходните елементи */
+  /* 2. РџСЂРѕРІРµСЂРєР° Р·Р° РїРµСЂРјСѓС‚Р°С†РёСЏ РЅР° РёР·С…РѕРґРЅРёС‚Рµ РµР»РµРјРµРЅС‚Рё */
   found = (char *) calloc(n,sizeof(*found));
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++)
@@ -55,7 +55,7 @@ void check(const struct CElem m[], const struct CElem saveM[], unsigned n)
 	found[j] = 1;
 	break;
       }
-    assert(j < n); /* Пропада, ако не е намерен съответен */
+    assert(j < n); /* РџСЂРѕРїР°РґР°, Р°РєРѕ РЅРµ Рµ РЅР°РјРµСЂРµРЅ СЃСЉРѕС‚РІРµС‚РµРЅ */
   }
 
   free(found);
@@ -65,13 +65,13 @@ int main(void) {
   struct CElem m[MAX], saveM[MAX];
   unsigned loopInd;
   for (loopInd = 1; loopInd <= TEST_LOOP_CNT; loopInd++) {
-    printf("\n<<<<< Тест %u >>>>>\n", loopInd);
+    printf("\n<<<<< РўРµСЃС‚ %u >>>>>\n", loopInd);
     init(m,MAX);
-    memcpy(saveM, m, sizeof(m)); /* Запазва се копие на масива */
-    printf("Масивът преди сортирането:\n");
+    memcpy(saveM, m, sizeof(m)); /* Р—Р°РїР°Р·РІР° СЃРµ РєРѕРїРёРµ РЅР° РјР°СЃРёРІР° */
+    printf("РњР°СЃРёРІСЉС‚ РїСЂРµРґРё СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
     print(m,MAX);
     permSort(m,MAX);
-    printf("Масивът след сортирането:\n");
+    printf("РњР°СЃРёРІСЉС‚ СЃР»РµРґ СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
     print(m,MAX);
     check(m,saveM,MAX);
   }

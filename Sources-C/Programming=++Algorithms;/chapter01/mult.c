@@ -1,4 +1,4 @@
-int a[n];
+﻿int a[n];
 int mult(void)
 { unsigned int i;
   int s = 1;

@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 
 #define MAXN 100
 
@@ -25,5 +25,6 @@ unsigned long bell(unsigned n)
 int main(void) {
   stirling(n);
   printf("bell(%lu)= %lu\n", n, bell(n));
+  system("pause");
   return 0;
 }

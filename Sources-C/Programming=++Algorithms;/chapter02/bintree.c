@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 
 typedef char *data;
@@ -11,7 +11,7 @@ struct tree {
   struct tree *right;
 };
 
-/* Търсене в двоично дърво */
+/* РўСЉСЂСЃРµРЅРµ РІ РґРІРѕРёС‡РЅРѕ РґСЉСЂРІРѕ */
 struct tree *search(keyType key, struct tree *T)
 { if (NULL == T)
     return NULL;
@@ -23,7 +23,7 @@ struct tree *search(keyType key, struct tree *T)
     return T;
 }
 
-/* Включване в двоично дърво */
+/* Р’РєР»СЋС‡РІР°РЅРµ РІ РґРІРѕРёС‡РЅРѕ РґСЉСЂРІРѕ */
 void insertKey(keyType key, data x, struct tree **T)
 { if (NULL == *T) {
     *T = (struct tree *) malloc(sizeof(**T));
@@ -37,12 +37,12 @@ void insertKey(keyType key, data x, struct tree **T)
   else if (key > (*T)->key)
     insertKey(key, x, &(*T)->right);
   else
-    fprintf(stderr, "Елементът е вече в дървото!\n");
+    fprintf(stderr, "Р•Р»РµРјРµРЅС‚СЉС‚ Рµ РІРµС‡Рµ РІ РґСЉСЂРІРѕС‚Рѕ!\n");
 }
 
-/* Изключване от двоично дърво Ј */
+/* РР·РєР»СЋС‡РІР°РЅРµ РѕС‚ РґРІРѕРёС‡РЅРѕ РґСЉСЂРІРѕ Р€ */
 
-/* Намиране на минималния елемент в дърво */
+/* РќР°РјРёСЂР°РЅРµ РЅР° РјРёРЅРёРјР°Р»РЅРёСЏ РµР»РµРјРµРЅС‚ РІ РґСЉСЂРІРѕ */
 struct tree *findMin(struct tree *T)
 { while (NULL != T->left) T = T->left;
   return T;
@@ -50,21 +50,21 @@ struct tree *findMin(struct tree *T)
 
 void deleteKey(keyType key, struct tree **T)
 { if (NULL == *T) {
-    fprintf(stderr, "върхът, който трябва да се изключи, липсва! \n");
+    fprintf(stderr, "РІСЉСЂС…СЉС‚, РєРѕР№С‚Рѕ С‚СЂСЏР±РІР° РґР° СЃРµ РёР·РєР»СЋС‡Рё, Р»РёРїСЃРІР°! \n");
   } else {
     if (key < (*T)->key)
       deleteKey(key, &(*T)->left);
     else if (key > (*T)->key)
       deleteKey(key, &(*T)->right);
-    else  /* елемента за изключване е намерен */
-    if ((*T)->left && (*T)->right) {       /* елементът има и ляво и дясно поддърво */
-      /* намира се върхът за размяна */
+    else  /* РµР»РµРјРµРЅС‚Р° Р·Р° РёР·РєР»СЋС‡РІР°РЅРµ Рµ РЅР°РјРµСЂРµРЅ */
+    if ((*T)->left && (*T)->right) {       /* РµР»РµРјРµРЅС‚СЉС‚ РёРјР° Рё Р»СЏРІРѕ Рё РґСЏСЃРЅРѕ РїРѕРґРґСЉСЂРІРѕ */
+      /* РЅР°РјРёСЂР° СЃРµ РІСЉСЂС…СЉС‚ Р·Р° СЂР°Р·РјСЏРЅР° */
       struct tree *replace = findMin((*T)->right);
       (*T)->key = replace->key;
       (*T)->info = replace->info;
-      deleteKey((*T)->key, &(*T)->right);    /* върхът се изключва */
+      deleteKey((*T)->key, &(*T)->right);    /* РІСЉСЂС…СЉС‚ СЃРµ РёР·РєР»СЋС‡РІР° */
     }
-    else {  /* елементът има нула или едно поддървета */
+    else {  /* РµР»РµРјРµРЅС‚СЉС‚ РёРјР° РЅСѓР»Р° РёР»Рё РµРґРЅРѕ РїРѕРґРґСЉСЂРІРµС‚Р° */
       struct tree *temp = *T;
       if ((*T)->left)
         *T = (*T)->left;
@@ -86,30 +86,30 @@ int main(void) {
   struct tree *T = NULL, *result;
   int i;
 
-  /* включва 10 върха с произволни ключове */
+  /* РІРєР»СЋС‡РІР° 10 РІСЉСЂС…Р° СЃ РїСЂРѕРёР·РІРѕР»РЅРё РєР»СЋС‡РѕРІРµ */
   for (i = 0; i < 10; i++) {
     int ikey = random(20) + 1;
-    printf("Вмъква се елемент с ключ %d \n", ikey);
+    printf("Р’РјСЉРєРІР° СЃРµ РµР»РµРјРµРЅС‚ СЃ РєР»СЋС‡ %d \n", ikey);
     insertKey(ikey, "someinfo", &T);
   }
 
-  printf("Дърво: ");
+  printf("Р”СЉСЂРІРѕ: ");
 
   printTree(T);
   printf("\n");
 
-  /* претърсва за елемента с ключ 5 */
+  /* РїСЂРµС‚СЉСЂСЃРІР° Р·Р° РµР»РµРјРµРЅС‚Р° СЃ РєР»СЋС‡ 5 */
   result = search(5, T);
-  printf("намерен е: %s\n", result->info);
+  printf("РЅР°РјРµСЂРµРЅ Рµ: %s\n", result->info);
 
-  /* изтрива произволни 10 върха от дървото */
+  /* РёР·С‚СЂРёРІР° РїСЂРѕРёР·РІРѕР»РЅРё 10 РІСЉСЂС…Р° РѕС‚ РґСЉСЂРІРѕС‚Рѕ */
   for (i = 0; i < 10; i++) {
     int ikey = random(20) + 1;
-    printf("Изтрива се елемента с ключ %d \n", ikey);
+    printf("РР·С‚СЂРёРІР° СЃРµ РµР»РµРјРµРЅС‚Р° СЃ РєР»СЋС‡ %d \n", ikey);
     deleteKey(ikey, &T);
   }
 
-  printf("Дърво: ");
+  printf("Р”СЉСЂРІРѕ: ");
 
   printTree(T);
   printf("\n");

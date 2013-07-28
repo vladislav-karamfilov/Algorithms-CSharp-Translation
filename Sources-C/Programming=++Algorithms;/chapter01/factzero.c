@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
 const unsigned n = 10;
 
@@ -8,6 +8,6 @@ int main(void) {
     zeroes += n / p;
     p *= 5;
   }
-  printf("Броят на нулите в края на %u! е %u\n", n, zeroes);
+  printf("Р‘СЂРѕСЏС‚ РЅР° РЅСѓР»РёС‚Рµ РІ РєСЂР°СЏ РЅР° %u! Рµ %u\n", n, zeroes);
   return 0;
 }

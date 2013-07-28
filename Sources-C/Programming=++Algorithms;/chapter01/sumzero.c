@@ -1,18 +1,18 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <math.h>
 
-/* Брой числа в редицата */
+/* Р‘СЂРѕР№ С‡РёСЃР»Р° РІ СЂРµРґРёС†Р°С‚Р° */
 const unsigned n = 8;
-/* Редица */
+/* Р РµРґРёС†Р° */
 int a[] = { 1, 2, 3, 4, 5, 6, 7, 8 };
-/* Търсена сума */
+/* РўСЉСЂСЃРµРЅР° СЃСѓРјР° */
 int sum = 0;
 
 void checkSol(void)
 { unsigned i;
   int tempSum = 0;
   for (i = 0; i < n; i++) tempSum += a[i];
-  if (tempSum == sum) { /* намерено е решение => отпечатваме го */
+  if (tempSum == sum) { /* РЅР°РјРµСЂРµРЅРѕ Рµ СЂРµС€РµРЅРёРµ => РѕС‚РїРµС‡Р°С‚РІР°РјРµ РіРѕ */
     for (i = 0; i < n; i++)
       if (a[i] > 0) printf("+%d ", a[i]);
         else printf("%d ", a[i]);

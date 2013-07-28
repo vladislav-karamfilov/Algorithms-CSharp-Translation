@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #define CDataType char
 #define MAX 100
 
@@ -28,6 +28,6 @@ int main(void) {
   CDataType majority;
   CDataType m[MAX] = "AAACCBBCCCBCC";
   findMajority(m, 13, &majority);
-  printf("Мажорант: %c\n", majority);
+  printf("РњР°Р¶РѕСЂР°РЅС‚: %c\n", majority);
   return 0;
 }

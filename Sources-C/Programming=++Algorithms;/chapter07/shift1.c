@@ -1,4 +1,4 @@
-#include <assert.h>
+п»ї#include <assert.h>
 #include <stdio.h>
 
 #define MAX 100
@@ -8,8 +8,8 @@ struct CElem {
   /* ... */
 } m[MAX];
 
-const unsigned n = 10; /* Брой елементи в масива */
-const unsigned k = 2;  /* Брой позиции на отместване */
+const unsigned n = 10; /* Р‘СЂРѕР№ РµР»РµРјРµРЅС‚Рё РІ РјР°СЃРёРІР° */
+const unsigned k = 2;  /* Р‘СЂРѕР№ РїРѕР·РёС†РёРё РЅР° РѕС‚РјРµСЃС‚РІР°РЅРµ */
 
 void init(void)
 { unsigned i;
@@ -27,7 +27,7 @@ unsigned gcd(unsigned x, unsigned y)
 }
 
 void shiftLeft1(unsigned k)
-{ /* Измества масива m на k позиции наляво, като използва помощна променлива */
+{ /* РР·РјРµСЃС‚РІР° РјР°СЃРёРІР° m РЅР° k РїРѕР·РёС†РёРё РЅР°Р»СЏРІРѕ, РєР°С‚Рѕ РёР·РїРѕР»Р·РІР° РїРѕРјРѕС‰РЅР° РїСЂРѕРјРµРЅР»РёРІР° */
   unsigned i, ths, next, gcdNK;
   struct CElem tmp;
 

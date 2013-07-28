@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
 #define MAXN 100
 
@@ -20,7 +20,7 @@ void permute(unsigned i)
     if (!used[k]) {
       used[k] = 1;
       mp[i] = k;
-      permute(i+1); /* if (ако има смисъл да продължава генерирането) {permute(i+1);} */
+      permute(i+1); /* if (Р°РєРѕ РёРјР° СЃРјРёСЃСЉР» РґР° РїСЂРѕРґСЉР»Р¶Р°РІР° РіРµРЅРµСЂРёСЂР°РЅРµС‚Рѕ) {permute(i+1);} */
       used[k] = 0;
     }
   }
@@ -30,5 +30,6 @@ int main(void) {
   unsigned i;
   for (i = 0; i < n; i++) used[i] = 0;
   permute(0);
+  system("pause");
   return 0;
 }

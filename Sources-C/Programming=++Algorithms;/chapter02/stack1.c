@@ -1,4 +1,4 @@
-// GC-to tuk zasira qko - zashtoto funkciite mi sa ednoredovi
+﻿// GC-to tuk zasira qko - zashtoto funkciite mi sa ednoredovi
 #include <stdio.h>
 
 typedef int data;

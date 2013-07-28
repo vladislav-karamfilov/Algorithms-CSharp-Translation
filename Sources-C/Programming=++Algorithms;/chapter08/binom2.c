@@ -1,8 +1,8 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
 #define MAX 200
 
-/* Динамично оптимиране */
+/* Р”РёРЅР°РјРёС‡РЅРѕ РѕРїС‚РёРјРёСЂР°РЅРµ */
 unsigned long m[MAX];
 unsigned long binomDynamic(unsigned n, unsigned k)
 { unsigned i, j;

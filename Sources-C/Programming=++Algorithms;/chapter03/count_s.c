@@ -1,4 +1,4 @@
-#include <assert.h>
+п»ї#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -9,28 +9,28 @@
 #define MAX_VALUE     (MAX*FACTOR)
 #define TEST_LOOP_CNT 100
 
-void init(unsigned m[], unsigned n) /* Запълва масива със случайни цели числа */
+void init(unsigned m[], unsigned n) /* Р—Р°РїСЉР»РІР° РјР°СЃРёРІР° СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅРё С†РµР»Рё С‡РёСЃР»Р° */
 { unsigned i;
   srand(time(NULL));
   for (i = 0; i < n; i++)
     m[i] = rand() % n;
 }
 
-void countSort(unsigned m[], unsigned n) /* Сортира чрез броене */
+void countSort(unsigned m[], unsigned n) /* РЎРѕСЂС‚РёСЂР° С‡СЂРµР· Р±СЂРѕРµРЅРµ */
 { unsigned char cnt[MAX_VALUE];
   unsigned i,j;
 
-  /* 0. Инициализиране на множеството */
+  /* 0. РРЅРёС†РёР°Р»РёР·РёСЂР°РЅРµ РЅР° РјРЅРѕР¶РµСЃС‚РІРѕС‚Рѕ */
   for (i = 0; i < MAX_VALUE; i++)
     cnt[i] = 0;
 
-  /* 1. Формиране на множеството */
+  /* 1. Р¤РѕСЂРјРёСЂР°РЅРµ РЅР° РјРЅРѕР¶РµСЃС‚РІРѕС‚Рѕ */
   for (j = 0; j < n; j++) {
     assert(m[j] >= 0 && m[j] < MAX_VALUE);
     cnt[m[j]]++;
   }
 
-  /* 2. Генериране на сортирана последователност */
+  /* 2. Р“РµРЅРµСЂРёСЂР°РЅРµ РЅР° СЃРѕСЂС‚РёСЂР°РЅР° РїРѕСЃР»РµРґРѕРІР°С‚РµР»РЅРѕСЃС‚ */
   for (i = j = 0; i < MAX_VALUE; i++)
     while (cnt[i]--)
       m[j++] = i;
@@ -38,7 +38,7 @@ void countSort(unsigned m[], unsigned n) /* Сортира чрез броене */
   assert(j == n);
 }
 
-void print(unsigned m[], unsigned n) /* Извежда ключовете на масива на екрана */
+void print(unsigned m[], unsigned n) /* РР·РІРµР¶РґР° РєР»СЋС‡РѕРІРµС‚Рµ РЅР° РјР°СЃРёРІР° РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   for (i = 0; i < n; i++)
     printf("%8u", m[i]);
@@ -46,13 +46,13 @@ void print(unsigned m[], unsigned n) /* Извежда ключовете на масива на екрана */
 
 void check(const unsigned m[], const unsigned saveM[], unsigned n)
 { unsigned i, j;
-  char *found; /* третира се като масив от булев тип */
+  char *found; /* С‚СЂРµС‚РёСЂР° СЃРµ РєР°С‚Рѕ РјР°СЃРёРІ РѕС‚ Р±СѓР»РµРІ С‚РёРї */
 
-  /* 1. Проверка за наредба във възходящ ред */
+  /* 1. РџСЂРѕРІРµСЂРєР° Р·Р° РЅР°СЂРµРґР±Р° РІСЉРІ РІСЉР·С…РѕРґСЏС‰ СЂРµРґ */
   for (i = 0; i < n-1; i++)
     assert(m[i] <= m[i+1]);
 
-  /* 2. Проверка за пермутация на изходните елементи */
+  /* 2. РџСЂРѕРІРµСЂРєР° Р·Р° РїРµСЂРјСѓС‚Р°С†РёСЏ РЅР° РёР·С…РѕРґРЅРёС‚Рµ РµР»РµРјРµРЅС‚Рё */
   found = (char *) calloc(n+1,sizeof(*found));
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++)
@@ -60,7 +60,7 @@ void check(const unsigned m[], const unsigned saveM[], unsigned n)
 	    found[j] = 1;
 	    break;
       }
-    assert(j < n); /* Пропада, ако не е намерен съответен */
+    assert(j < n); /* РџСЂРѕРїР°РґР°, Р°РєРѕ РЅРµ Рµ РЅР°РјРµСЂРµРЅ СЃСЉРѕС‚РІРµС‚РµРЅ */
   }
   free(found);
 }
@@ -71,11 +71,11 @@ int main(void) {
   printf("start -- \n");
   for (loopInd = 1; loopInd <= TEST_LOOP_CNT; loopInd++) {
     init(m,MAX);
-    memcpy(saveM, m, sizeof(m)); /* Запазва се копие на масива */
-    printf("Масивът преди сортирането:\n");
+    memcpy(saveM, m, sizeof(m)); /* Р—Р°РїР°Р·РІР° СЃРµ РєРѕРїРёРµ РЅР° РјР°СЃРёРІР° */
+    printf("РњР°СЃРёРІСЉС‚ РїСЂРµРґРё СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
     print(m,MAX);
     countSort(m,MAX);
-    printf("Масивът след сортирането:\n");
+    printf("РњР°СЃРёРІСЉС‚ СЃР»РµРґ СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
     print(m,MAX);
     check(m,saveM,MAX);
   }

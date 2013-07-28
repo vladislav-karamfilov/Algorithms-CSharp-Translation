@@ -1,7 +1,7 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #define CDataType char
 
-/* Променливи, функции и дефиниции за работа със стек */
+/* РџСЂРѕРјРµРЅР»РёРІРё, С„СѓРЅРєС†РёРё Рё РґРµС„РёРЅРёС†РёРё Р·Р° СЂР°Р±РѕС‚Р° СЃСЉСЃ СЃС‚РµРє */
 #define STACK_SIZE  100
 CDataType stack[STACK_SIZE];
 unsigned stIndex;
@@ -32,8 +32,8 @@ char findMajority(CDataType m[], unsigned size, CDataType *majority)
 int main() {
   CDataType majority;
   if (findMajority("AAACCBBCCCBCC", 13, &majority))
-    printf("Мажорант: %c\n", majority);
+    printf("РњР°Р¶РѕСЂР°РЅС‚: %c\n", majority);
   else
-    printf("Няма мажорант.\n");
+    printf("РќСЏРјР° РјР°Р¶РѕСЂР°РЅС‚.\n");
   return 0;
 }

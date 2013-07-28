@@ -1,9 +1,9 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <string.h>
 #define NOT_CALCULATED (unsigned char)(-1)
-#define MAXSLEN 100 /* Максимална дължина на низа */
-#define LETTS   3   /* Брой букви */
-/* Таблица на умножение */
+#define MAXSLEN 100 /* РњР°РєСЃРёРјР°Р»РЅР° РґСЉР»Р¶РёРЅР° РЅР° РЅРёР·Р° */
+#define LETTS   3   /* Р‘СЂРѕР№ Р±СѓРєРІРё */
+/* РўР°Р±Р»РёС†Р° РЅР° СѓРјРЅРѕР¶РµРЅРёРµ */
 char rel[LETTS][LETTS] = {
   { 'b', 'b', 'a' },
   { 'c', 'b', 'a' },
@@ -16,7 +16,7 @@ unsigned char split[MAXSLEN][MAXSLEN];
 unsigned char can(unsigned char i, unsigned char j, unsigned char ch)
 { unsigned char c1, c2, pos;
   if (table[i][j][ch] != NOT_CALCULATED)
-	return table[i][j][ch]; /* Вече сметнато */
+	return table[i][j][ch]; /* Р’РµС‡Рµ СЃРјРµС‚РЅР°С‚Рѕ */
   if (i == j)
 	return(s[i] == ch + 'a');
   for (c1 = 0; c1 < LETTS; c1++)
@@ -34,7 +34,7 @@ unsigned char can(unsigned char i, unsigned char j, unsigned char ch)
 }
 
 void putBrackets(unsigned char i, unsigned char j)
-{ /* Поставя скобите с израза */
+{ /* РџРѕСЃС‚Р°РІСЏ СЃРєРѕР±РёС‚Рµ СЃ РёР·СЂР°Р·Р° */
   if (i == j)
     printf("%c", s[i]);
   else {
@@ -52,6 +52,6 @@ int main(void) {
   if (can(0, len - 1, 0))
 	putBrackets(0, len - 1);
   else
-	printf("Няма решение");
+	printf("РќСЏРјР° СЂРµС€РµРЅРёРµ");
   return 0;
 }

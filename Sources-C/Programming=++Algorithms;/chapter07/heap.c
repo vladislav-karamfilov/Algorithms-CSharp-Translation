@@ -1,18 +1,18 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 #define MAX 100
 int m[MAX];
 
-const unsigned n = 100; /* Брой елементи в масива */
-const unsigned k = 10;  /* Пореден номер на търсения елемент */
+const unsigned n = 100; /* Р‘СЂРѕР№ РµР»РµРјРµРЅС‚Рё РІ РјР°СЃРёРІР° */
+const unsigned k = 10;  /* РџРѕСЂРµРґРµРЅ РЅРѕРјРµСЂ РЅР° С‚СЉСЂСЃРµРЅРёСЏ РµР»РµРјРµРЅС‚ */
 
-void init(int m[], unsigned n) /* Запълва масива със случайни числа */
+void init(int m[], unsigned n) /* Р—Р°РїСЉР»РІР° РјР°СЃРёРІР° СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅРё С‡РёСЃР»Р° */
 { unsigned i;
   for (i = 0; i < n; i++)
     m[i] = rand() % (2*n + 1);
 }
 
-void siftMin(int l, int r) /* Отсяване на елемента от върха на пирамидата */
+void siftMin(int l, int r) /* РћС‚СЃСЏРІР°РЅРµ РЅР° РµР»РµРјРµРЅС‚Р° РѕС‚ РІСЉСЂС…Р° РЅР° РїРёСЂР°РјРёРґР°С‚Р° */
 { int i,j;
   int x;
   i = l; j = i + i + 1; x = m[i];
@@ -29,7 +29,7 @@ void siftMin(int l, int r) /* Отсяване на елемента от върха на пирамидата */
   m[i] = x;
 }
 
-void siftMax(int l, int r) /* Отсяване на елемента от върха на пирамидата */
+void siftMax(int l, int r) /* РћС‚СЃСЏРІР°РЅРµ РЅР° РµР»РµРјРµРЅС‚Р° РѕС‚ РІСЉСЂС…Р° РЅР° РїРёСЂР°РјРёРґР°С‚Р° */
 { int i,j;
   int x;
   i = l; j = i + i + 1; x = m[i];
@@ -46,23 +46,23 @@ void siftMax(int l, int r) /* Отсяване на елемента от върха на пирамидата */
   m[i] = x;
 }
 
-void heapFindK(unsigned k) /* Търсене на k-ия елемент с пирамида */
+void heapFindK(unsigned k) /* РўСЉСЂСЃРµРЅРµ РЅР° k-РёСЏ РµР»РµРјРµРЅС‚ СЃ РїРёСЂР°РјРёРґР° */
 { int l,r;
   char useMax;
   if (useMax = (k > n/2))
     k = n - k - 1;
   l = n/2; r = n - 1;
-  /* Построяване на пирамидата */
+  /* РџРѕСЃС‚СЂРѕСЏРІР°РЅРµ РЅР° РїРёСЂР°РјРёРґР°С‚Р° */
   while (l-- > 0)
     if (useMax) siftMax(l,r); else siftMin(l,r);
-  /* (k-1)-кратно премахване на минималния елемент */
+  /* (k-1)-РєСЂР°С‚РЅРѕ РїСЂРµРјР°С…РІР°РЅРµ РЅР° РјРёРЅРёРјР°Р»РЅРёСЏ РµР»РµРјРµРЅС‚ */
   for (r = (int)n-1; r >= (int)(n-k); r--) {
     m[0] = m[r];
     if (useMax) siftMax(0,r); else siftMin(0,r);
   }
 }
 
-void print(int m[], unsigned n) /* Извежда масива на екрана */
+void print(int m[], unsigned n) /* РР·РІРµР¶РґР° РјР°СЃРёРІР° РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   for (i = 0; i < n; i++)
     printf("%8d", m[i]);
@@ -70,9 +70,9 @@ void print(int m[], unsigned n) /* Извежда масива на екрана */
 
 int main(void) {
   init(m,n);
-  printf("Масивът преди търсенето:"); print(m,n);
-  printf("\nТърсим k-ия елемент: k=%u", k);
+  printf("РњР°СЃРёРІСЉС‚ РїСЂРµРґРё С‚СЉСЂСЃРµРЅРµС‚Рѕ:"); print(m,n);
+  printf("\nРўСЉСЂСЃРёРј k-РёСЏ РµР»РµРјРµРЅС‚: k=%u", k);
   heapFindK(k);
-  printf("\nk-ият елемент е: %d", m[0]);
+  printf("\nk-РёСЏС‚ РµР»РµРјРµРЅС‚ Рµ: %d", m[0]);
   return 0;
 }

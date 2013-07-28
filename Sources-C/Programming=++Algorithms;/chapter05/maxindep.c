@@ -1,11 +1,11 @@
-#include <stdio.h>
+Ôªø#include <stdio.h>
 
-/* Ã‡ÍÒËÏ‡ÎÂÌ ·ÓÈ ‚˙ıÓ‚Â ‚ „‡Ù‡ */
+/* –ú–∞–∫—Å–∏–º–∞–ª–µ–Ω –±—Ä–æ–π –≤—ä—Ä—Ö–æ–≤–µ –≤ –≥—Ä–∞—Ñ–∞ */
 #define MAXN 200
 
-/* ¡ÓÈ ‚˙ıÓ‚Â ‚ „‡Ù‡ */
+/* –ë—Ä–æ–π –≤—ä—Ä—Ö–æ–≤–µ –≤ –≥—Ä–∞—Ñ–∞ */
 const unsigned n = 8;
-/* Ã‡ÚËˆ‡ Ì‡ Ò˙ÒÂ‰ÒÚ‚Ó Ì‡ „‡Ù‡ */
+/* –ú–∞—Ç—Ä–∏—Ü–∞ –Ω–∞ —Å—ä—Å–µ–¥—Å—Ç–≤–æ –Ω–∞ –≥—Ä–∞—Ñ–∞ */
 const char A[MAXN][MAXN] = {
   { 0, 1, 0, 0, 0, 1, 0, 1 },
   { 1, 0, 1, 0, 0, 1, 0, 0 },
@@ -30,7 +30,7 @@ void print(void)
 void maxSubSet(unsigned last)
 { unsigned i, j;
   if (sN + tN == n) {
-    print(); /* SuT=V -> ÓÚÔÂ˜‡Ú‚‡ ÒÂ Â¯ÂÌËÂÚÓ */
+    print(); /* SuT=V -> –æ—Ç–ø–µ—á–∞—Ç–≤–∞ —Å–µ —Ä–µ—à–µ–Ω–∏–µ—Ç–æ */
     return;
   }
   for (i = last; i < n; i++) {
@@ -40,7 +40,7 @@ void maxSubSet(unsigned last)
           S[j] = last+1; sN++;
         }
       T[i] = 1; tN++;
-      maxSubSet(i+1);     /* ÂÍÛÒËˇ */
+      maxSubSet(i+1);     /* —Ä–µ–∫—É—Ä—Å–∏—è */
       T[i] = 0; tN--;
       for (j = 0; j < n; j++)
         if (S[j] == last+1) { S[j] = 0; sN--; }
@@ -50,7 +50,7 @@ void maxSubSet(unsigned last)
 
 void main(void) {
   unsigned i;
-  printf("≈ÚÓ ‚ÒË˜ÍË Ï‡ÍÒËÏ‡ÎÌË ÌÂÁ‡‚ËÒËÏË ÏÌÓÊÂÒÚ‚‡ ‚ „‡Ù‡:\n");
+  printf("–ï—Ç–æ –≤—Å–∏—á–∫–∏ –º–∞–∫—Å–∏–º–∞–ª–Ω–∏ –Ω–µ–∑–∞–≤–∏—Å–∏–º–∏ –º–Ω–æ–∂–µ—Å—Ç–≤–∞ –≤ –≥—Ä–∞—Ñ–∞:\n");
   sN = tN = 0;
   for (i = 0; i < n; i++) S[i] = T[i] = 0;
   maxSubSet(0);

@@ -1,6 +1,6 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
-/* намалява p/q, докато p стане равно на 1 */
+/* РЅР°РјР°Р»СЏРІР° p/q, РґРѕРєР°С‚Рѕ p СЃС‚Р°РЅРµ СЂР°РІРЅРѕ РЅР° 1 */
 void cancel(unsigned long *p, unsigned long *q) {
   if (0 == *q % *p) {
     *q /= *p;
@@ -13,12 +13,12 @@ void solve(unsigned long p, unsigned long q) {
   cancel(&p, &q);
 
   while (p > 1) {
-    /* намира максималната дроб 1/r, 1/r<=p/q */
+    /* РЅР°РјРёСЂР° РјР°РєСЃРёРјР°Р»РЅР°С‚Р° РґСЂРѕР± 1/r, 1/r<=p/q */
     unsigned long r;
     r = (q + p) / p;
     printf("%d/%ld + ", 1, r);
 
-    /* изчислява p/q - 1/r */
+    /* РёР·С‡РёСЃР»СЏРІР° p/q - 1/r */
     p = p * r - q;
     q = q * r;
     cancel(&p, &q);

@@ -1,18 +1,18 @@
-#include <stdio.h>
-#define MAXN    100     /* Максимален брой километри */
-#define MAXK    20      /* Максимален брой спирки */
+п»ї#include <stdio.h>
+#define MAXN    100     /* РњР°РєСЃРёРјР°Р»РµРЅ Р±СЂРѕР№ РєРёР»РѕРјРµС‚СЂРё */
+#define MAXK    20      /* РњР°РєСЃРёРјР°Р»РµРЅ Р±СЂРѕР№ СЃРїРёСЂРєРё */
 #define INFINITY (unsigned)(-1)
 
 struct {
-  unsigned last;         /* Последна измината отсечка */
-  unsigned value;        /* Цена на разстоянието */
+  unsigned last;         /* РџРѕСЃР»РµРґРЅР° РёР·РјРёРЅР°С‚Р° РѕС‚СЃРµС‡РєР° */
+  unsigned value;        /* Р¦РµРЅР° РЅР° СЂР°Р·СЃС‚РѕСЏРЅРёРµС‚Рѕ */
 } dist[MAXN];
 
 const unsigned values[MAXK+1] = {0,12,21,31,40,49,58,69,79,90,101};
 const unsigned n = 15;
 const unsigned k = 10;
 
-void solve(unsigned n) /* Решава задачата чрез динамично оптимиране */
+void solve(unsigned n) /* Р РµС€Р°РІР° Р·Р°РґР°С‡Р°С‚Р° С‡СЂРµР· РґРёРЅР°РјРёС‡РЅРѕ РѕРїС‚РёРјРёСЂР°РЅРµ */
 { unsigned i, j;
   dist[0].value = 0;
   for (i = 1; i <= n; i++) {
@@ -25,9 +25,9 @@ void solve(unsigned n) /* Решава задачата чрез динамично оптимиране */
   }
 }
 
-void print(unsigned n)  /* Извежда резултата на екрана */
-{ printf("\n%s%u", "Обща стойност на пътуването: ", dist[n].value);
-  printf("\nДължина и стойности на отделните отсечки:");
+void print(unsigned n)  /* РР·РІРµР¶РґР° СЂРµР·СѓР»С‚Р°С‚Р° РЅР° РµРєСЂР°РЅР° */
+{ printf("\n%s%u", "РћР±С‰Р° СЃС‚РѕР№РЅРѕСЃС‚ РЅР° РїСЉС‚СѓРІР°РЅРµС‚Рѕ: ", dist[n].value);
+  printf("\nР”СЉР»Р¶РёРЅР° Рё СЃС‚РѕР№РЅРѕСЃС‚Рё РЅР° РѕС‚РґРµР»РЅРёС‚Рµ РѕС‚СЃРµС‡РєРё:");
   while (n > 0) {
     printf("\n%u %u", dist[n].last, values[dist[n].last]);
     n -= dist[n].last;

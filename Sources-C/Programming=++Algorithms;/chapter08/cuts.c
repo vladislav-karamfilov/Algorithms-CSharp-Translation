@@ -1,27 +1,27 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #define MAXSIZE 100
 #define NOT_CALCULATED (unsigned)(-1)
 
-struct {  /* Целева функция */
+struct {  /* Р¦РµР»РµРІР° С„СѓРЅРєС†РёСЏ */
   unsigned value;
   int action;
 } F[MAXSIZE][MAXSIZE];
 
-unsigned sizeX, sizeY; /* Размерност на парчето */
+unsigned sizeX, sizeY; /* Р Р°Р·РјРµСЂРЅРѕСЃС‚ РЅР° РїР°СЂС‡РµС‚Рѕ */
 
-/* Инициализираща функция */
+/* РРЅРёС†РёР°Р»РёР·РёСЂР°С‰Р° С„СѓРЅРєС†РёСЏ */
 void init(void)
 { unsigned x, y;
-  /* Входни данни */
+  /* Р’С…РѕРґРЅРё РґР°РЅРЅРё */
   sizeX = 13;
   sizeY = 9;
-  /* Инициализация */
+  /* РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
   for (x = 1; x <= sizeX; x++)
     for (y = 1; y <= sizeY; y++) {
       F[x][y].value = NOT_CALCULATED;
       F[x][y].action = 0;
     }
-  /* Входни данни */
+  /* Р’С…РѕРґРЅРё РґР°РЅРЅРё */
   F[11][1].value = 28; F[5][3].value = 31;
   F[1][2].value = 4;  F[2][1].value = 2;
   F[3][1].value = 7;  F[10][1].value = 23;
@@ -29,20 +29,20 @@ void init(void)
   F[5][4].value = 41;  F[5][7].value = 96;
 }
 
-/* Намира максималния доход от парчето (x,y) */
+/* РќР°РјРёСЂР° РјР°РєСЃРёРјР°Р»РЅРёСЏ РґРѕС…РѕРґ РѕС‚ РїР°СЂС‡РµС‚Рѕ (x,y) */
 unsigned solve(unsigned x, unsigned y)
 { int bestAction;
   unsigned i, bestSol, x2 = x / 2, y2 = y / 2;
-  if (NOT_CALCULATED != F[x][y].value) return F[x][y].value; /* Вече е пресмятана */
+  if (NOT_CALCULATED != F[x][y].value) return F[x][y].value; /* Р’РµС‡Рµ Рµ РїСЂРµСЃРјСЏС‚Р°РЅР° */
   bestSol = 0;
-  if (x > 1) {  /* Срязваме го хоризонтално и викаме рекурсия за двете части */
+  if (x > 1) {  /* РЎСЂСЏР·РІР°РјРµ РіРѕ С…РѕСЂРёР·РѕРЅС‚Р°Р»РЅРѕ Рё РІРёРєР°РјРµ СЂРµРєСѓСЂСЃРёСЏ Р·Р° РґРІРµС‚Рµ С‡Р°СЃС‚Рё */
     for (i = 1; i <= x2; i++)
       if (solve(i, y) + solve(x - i, y) > bestSol) {
         bestSol = solve(i, y) + solve(x - i, y);
         bestAction = i;
       }
   }
-  if (y > 1) {  /* Срязваме го вертикално и викаме рекурсия за двете части */
+  if (y > 1) {  /* РЎСЂСЏР·РІР°РјРµ РіРѕ РІРµСЂС‚РёРєР°Р»РЅРѕ Рё РІРёРєР°РјРµ СЂРµРєСѓСЂСЃРёСЏ Р·Р° РґРІРµС‚Рµ С‡Р°СЃС‚Рё */
     for (i = 1; i <= y2; i++)
       if (solve(x, i) + solve(x, y - i) > bestSol) {
         bestSol = solve(x, i) + solve(x, y - i);
@@ -54,7 +54,7 @@ unsigned solve(unsigned x, unsigned y)
   return bestSol;
 }
 
-/* Извежда резултата на екрана */
+/* РР·РІРµР¶РґР° СЂРµР·СѓР»С‚Р°С‚Р° РЅР° РµРєСЂР°РЅР° */
 void printSolution(int x, int y)
 { if (x > 0 && y > 0 && F[x][y].value > 0) {
     if (F[x][y].action > 0) {
@@ -72,8 +72,8 @@ void printSolution(int x, int y)
 
 int main(void) { 
   init();
-  printf("\nМаксимална цена %u", solve(sizeX, sizeY));
-  printf("\nРазмери (X,Y)-->Цена\n");
+  printf("\nРњР°РєСЃРёРјР°Р»РЅР° С†РµРЅР° %u", solve(sizeX, sizeY));
+  printf("\nР Р°Р·РјРµСЂРё (X,Y)-->Р¦РµРЅР°\n");
   printSolution(sizeX, sizeY);
   return 0;
 }

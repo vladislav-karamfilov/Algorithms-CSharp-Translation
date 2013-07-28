@@ -1,18 +1,18 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define S 107           /* стъпка на увеличаване при колизия */
-unsigned long n = 32;   /* начален размер на хеш-таблицата */
+#define S 107           /* СЃС‚СЉРїРєР° РЅР° СѓРІРµР»РёС‡Р°РІР°РЅРµ РїСЂРё РєРѕР»РёР·РёСЏ */
+unsigned long n = 32;   /* РЅР°С‡Р°Р»РµРЅ СЂР°Р·РјРµСЂ РЅР° С…РµС€-С‚Р°Р±Р»РёС†Р°С‚Р° */
 
 struct singleWord {
-  char *word;           /* ключ - символен низ */
-  unsigned long freq;   /* честота на срещане на думата */
+  char *word;           /* РєР»СЋС‡ - СЃРёРјРІРѕР»РµРЅ РЅРёР· */
+  unsigned long freq;   /* С‡РµСЃС‚РѕС‚Р° РЅР° СЃСЂРµС‰Р°РЅРµ РЅР° РґСѓРјР°С‚Р° */
 } *ht;
 
 unsigned long count;
 
-/* Хеш-функция за символен низ */
+/* РҐРµС€-С„СѓРЅРєС†РёСЏ Р·Р° СЃРёРјРІРѕР»РµРЅ РЅРёР· */
 unsigned long hashFunction(const char *key)
 { unsigned long result = 0;
   while (*key)
@@ -20,7 +20,7 @@ unsigned long hashFunction(const char *key)
   return result & (n - 1);
 }
 
-/* Инициализиране на хеш-таблицата */
+/* РРЅРёС†РёР°Р»РёР·РёСЂР°РЅРµ РЅР° С…РµС€-С‚Р°Р±Р»РёС†Р°С‚Р° */
 void initHashtable(void)
 { unsigned long i;
   count = 0;
@@ -29,9 +29,9 @@ void initHashtable(void)
     ht[i].word = NULL;
 }
 
-/* Търсене в хеш-таблицата: връща 1 при успех, и 0 – иначе */
-/* При успех: *ind съдържа индекса на намерения елемент */
-/* При неуспех: свободна позиция, където може да бъде вмъкнат */
+/* РўСЉСЂСЃРµРЅРµ РІ С…РµС€-С‚Р°Р±Р»РёС†Р°С‚Р°: РІСЂСЉС‰Р° 1 РїСЂРё СѓСЃРїРµС…, Рё 0 вЂ“ РёРЅР°С‡Рµ */
+/* РџСЂРё СѓСЃРїРµС…: *ind СЃСЉРґСЉСЂР¶Р° РёРЅРґРµРєСЃР° РЅР° РЅР°РјРµСЂРµРЅРёСЏ РµР»РµРјРµРЅС‚ */
+/* РџСЂРё РЅРµСѓСЃРїРµС…: СЃРІРѕР±РѕРґРЅР° РїРѕР·РёС†РёСЏ, РєСЉРґРµС‚Рѕ РјРѕР¶Рµ РґР° Р±СЉРґРµ РІРјСЉРєРЅР°С‚ */
 char get(const char *key, unsigned long *ind)
 { unsigned long k;
   *ind = hashFunction(key);
@@ -44,41 +44,41 @@ char get(const char *key, unsigned long *ind)
   return 0;
 }
 
-/* Разширяване на хеш-таблицата */
+/* Р Р°Р·С€РёСЂСЏРІР°РЅРµ РЅР° С…РµС€-С‚Р°Р±Р»РёС†Р°С‚Р° */
 void resize(void)
 { unsigned long ind, hashInd;
   struct singleWord *oldHashTable;
 
-  /* 1. Запазване на указател към хеш-таблицата */
+  /* 1. Р—Р°РїР°Р·РІР°РЅРµ РЅР° СѓРєР°Р·Р°С‚РµР» РєСЉРј С…РµС€-С‚Р°Р±Р»РёС†Р°С‚Р° */
   oldHashTable = ht;
 
-  /* 2. Двойно разширяване */
+  /* 2. Р”РІРѕР№РЅРѕ СЂР°Р·С€РёСЂСЏРІР°РЅРµ */
   n <<= 1;
 
-  /* 3. Заделяне на памет за новата хеш-таблица */
+  /* 3. Р—Р°РґРµР»СЏРЅРµ РЅР° РїР°РјРµС‚ Р·Р° РЅРѕРІР°С‚Р° С…РµС€-С‚Р°Р±Р»РёС†Р° */
   ht = (struct singleWord *) malloc(sizeof(*ht)*n);
   for (ind = 0; ind < n; ind++)
     ht[ind].word = NULL;
 
-  /* 4. Преместване на записите в новата хеш-таблица */
+  /* 4. РџСЂРµРјРµСЃС‚РІР°РЅРµ РЅР° Р·Р°РїРёСЃРёС‚Рµ РІ РЅРѕРІР°С‚Р° С…РµС€-С‚Р°Р±Р»РёС†Р° */
   for (ind = 0; ind < (n >> 1); ind++) {
     if (oldHashTable[ind].word != NULL) {
-      /* Премества записа на новото място */
+      /* РџСЂРµРјРµСЃС‚РІР° Р·Р°РїРёСЃР° РЅР° РЅРѕРІРѕС‚Рѕ РјСЏСЃС‚Рѕ */
       if (!get(oldHashTable[ind].word, &hashInd))
         ht[hashInd] = oldHashTable[ind];
       else
-        printf("Грешка при разширяване на хеш-таблицата!\n");
+        printf("Р“СЂРµС€РєР° РїСЂРё СЂР°Р·С€РёСЂСЏРІР°РЅРµ РЅР° С…РµС€-С‚Р°Р±Р»РёС†Р°С‚Р°!\n");
     }
   }
 
-  /* 5. Освобождаване на старата памет */
+  /* 5. РћСЃРІРѕР±РѕР¶РґР°РІР°РЅРµ РЅР° СЃС‚Р°СЂР°С‚Р° РїР°РјРµС‚ */
   free(oldHashTable);
 }
 
-/* Добавяне на елемент в хеш-таблицата */
+/* Р”РѕР±Р°РІСЏРЅРµ РЅР° РµР»РµРјРµРЅС‚ РІ С…РµС€-С‚Р°Р±Р»РёС†Р°С‚Р° */
 void put(char *key)
 { unsigned long ind;
-  if (!get(key, &ind)) { /* Думата не е в хеш-таблицата */
+  if (!get(key, &ind)) { /* Р”СѓРјР°С‚Р° РЅРµ Рµ РІ С…РµС€-С‚Р°Р±Р»РёС†Р°С‚Р° */
     ht[ind].word = strdup(key);
     ht[ind].freq = 1;
     if (++count > ((unsigned long) n * 0.9)) resize();
@@ -87,7 +87,7 @@ void put(char *key)
     ht[ind].freq++;
 }
 
-/* Отпечатване на хеш-таблица */
+/* РћС‚РїРµС‡Р°С‚РІР°РЅРµ РЅР° С…РµС€-С‚Р°Р±Р»РёС†Р° */
 void printAll(void)
 { unsigned long ind;
   for (ind = 0; ind < n; ind++)
@@ -95,7 +95,7 @@ void printAll(void)
 	  printf("%s %ld \n", ht[ind].word, ht[ind].freq);
 }
 
-/* Унищожаване на хеш-таблица */
+/* РЈРЅРёС‰РѕР¶Р°РІР°РЅРµ РЅР° С…РµС€-С‚Р°Р±Р»РёС†Р° */
 void destroy(void)
 { unsigned long ind;
   for (ind = 0; ind < n; ind++)
@@ -117,14 +117,14 @@ int main(void) {
   printAll();
 
   if (get("reload", &find))
-    printf("Честота на думата 'reload': %d \n", ht[find].freq);
+    printf("Р§РµСЃС‚РѕС‚Р° РЅР° РґСѓРјР°С‚Р° 'reload': %d \n", ht[find].freq);
   else
-	printf("Думата 'reload' липсва!");
+	printf("Р”СѓРјР°С‚Р° 'reload' Р»РёРїСЃРІР°!");
 
   if (get("download", &find))
-    printf("Честота на думата 'download': %d \n", ht[find].freq);
+    printf("Р§РµСЃС‚РѕС‚Р° РЅР° РґСѓРјР°С‚Р° 'download': %d \n", ht[find].freq);
   else
-	printf("Думата 'download' липсва!");
+	printf("Р”СѓРјР°С‚Р° 'download' Р»РёРїСЃРІР°!");
 
   destroy();
   return 0;

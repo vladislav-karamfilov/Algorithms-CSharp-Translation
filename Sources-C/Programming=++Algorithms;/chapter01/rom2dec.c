@@ -1,4 +1,4 @@
-#define MAX_ROMAN_LEN 20
+п»ї#define MAX_ROMAN_LEN 20
 
 #include <stdio.h>
 #include <string.h>
@@ -60,7 +60,7 @@ int main(void) {
   unsigned decimal;
   char error;
   decimal = roman2Decimal(roman2test,&error);
-  if (error) printf("Некоректнo римско число!");
-  else printf("Числото в десетична бройна система е %u", decimal);
+  if (error) printf("РќРµРєРѕСЂРµРєС‚РЅo СЂРёРјСЃРєРѕ С‡РёСЃР»Рѕ!");
+  else printf("Р§РёСЃР»РѕС‚Рѕ РІ РґРµСЃРµС‚РёС‡РЅР° Р±СЂРѕР№РЅР° СЃРёСЃС‚РµРјР° Рµ %u", decimal);
   return 0;
 }

@@ -1,13 +1,13 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #define MAX 100
 #define INFINITY (unsigned long)(-1)
 
-unsigned long m[MAX][MAX];    /* Таблица - целева функция */
+unsigned long m[MAX][MAX];    /* РўР°Р±Р»РёС†Р° - С†РµР»РµРІР° С„СѓРЅРєС†РёСЏ */
 
-const unsigned long r[MAX+1] = {12,13,35,3,34,2,21,10,21,6}; /* Размерности на матриците */
-const unsigned n = 9;         /* Брой матрици */
+const unsigned long r[MAX+1] = {12,13,35,3,34,2,21,10,21,6}; /* Р Р°Р·РјРµСЂРЅРѕСЃС‚Рё РЅР° РјР°С‚СЂРёС†РёС‚Рµ */
+const unsigned n = 9;         /* Р‘СЂРѕР№ РјР°С‚СЂРёС†Рё */
 
-/* Неефективна рекурсивна функция */
+/* РќРµРµС„РµРєС‚РёРІРЅР° СЂРµРєСѓСЂСЃРёРІРЅР° С„СѓРЅРєС†РёСЏ */
 unsigned long solveRecursive(unsigned i, unsigned j)
 { unsigned k;
   if (i == j) return 0;
@@ -25,9 +25,9 @@ unsigned long solveRecursive(unsigned i, unsigned j)
   return m[i][j];
 }
 
-void printMatrix(void) /* Извежда матрицата на минимумите на екрана */
+void printMatrix(void) /* РР·РІРµР¶РґР° РјР°С‚СЂРёС†Р°С‚Р° РЅР° РјРёРЅРёРјСѓРјРёС‚Рµ РЅР° РµРєСЂР°РЅР° */
 { unsigned i,j;
-  printf("\nМатрица на минимумите:");
+  printf("\nРњР°С‚СЂРёС†Р° РЅР° РјРёРЅРёРјСѓРјРёС‚Рµ:");
   for (i = 1; i <= n; i++) {
     printf("\n");
     for (j = 1; j <= n; j++)
@@ -36,7 +36,7 @@ void printMatrix(void) /* Извежда матрицата на минимумите на екрана */
 }
 
 int main(void) {
-  printf("\nМинималният брой умножения е: %lu",solveRecursive(1,n));
+  printf("\nРњРёРЅРёРјР°Р»РЅРёСЏС‚ Р±СЂРѕР№ СѓРјРЅРѕР¶РµРЅРёСЏ Рµ: %lu",solveRecursive(1,n));
   printMatrix();
   return 0;
 }

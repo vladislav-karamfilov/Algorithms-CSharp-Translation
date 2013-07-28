@@ -1,17 +1,17 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 
-/* Максимален размер на дъската */
+/* РњР°РєСЃРёРјР°Р»РµРЅ СЂР°Р·РјРµСЂ РЅР° РґСЉСЃРєР°С‚Р° */
 #define MAXN 10
-/* Максимален брой правила за движение на коня */
+/* РњР°РєСЃРёРјР°Р»РµРЅ Р±СЂРѕР№ РїСЂР°РІРёР»Р° Р·Р° РґРІРёР¶РµРЅРёРµ РЅР° РєРѕРЅСЏ */
 #define MAXD 10
 
-/* Размер на дъската */
+/* Р Р°Р·РјРµСЂ РЅР° РґСЉСЃРєР°С‚Р° */
 const unsigned n = 6;
-/* Стартова позиция */
+/* РЎС‚Р°СЂС‚РѕРІР° РїРѕР·РёС†РёСЏ */
 const unsigned startX = 1;
 const unsigned startY = 1;
-/* Правила за движение на коня */
+/* РџСЂР°РІРёР»Р° Р·Р° РґРІРёР¶РµРЅРёРµ РЅР° РєРѕРЅСЏ */
 const unsigned maxDiff = 8;
 const int diffX[MAXD] = { 1, 1, -1, -1, 2, -2, 2, -2 };
 const int diffY[MAXD] = { 2, -2, 2, -2, 1, 1, -1, -1 };
@@ -25,7 +25,7 @@ void printBoard(void)
     for (j = 0; j < n; j++) printf("%3u", board[i-1][j]);
     printf("\n");
   }
-  exit(0);  /* изход от програмата */
+  exit(0);  /* РёР·С…РѕРґ РѕС‚ РїСЂРѕРіСЂР°РјР°С‚Р° */
 }
 
 void nextMove(unsigned X, unsigned Y, unsigned i)
@@ -45,6 +45,6 @@ int main(void) {
   for (i = 0; i < n; i++)
     for (j = 0; j < n; j++) board[i][j] = 0;
   nextMove(startX-1, startY-1, 1);
-  printf("Задачата няма решение. \n");
+  printf("Р—Р°РґР°С‡Р°С‚Р° РЅСЏРјР° СЂРµС€РµРЅРёРµ. \n");
   return 0;
 }

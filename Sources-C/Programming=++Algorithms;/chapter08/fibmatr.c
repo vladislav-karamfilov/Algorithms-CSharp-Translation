@@ -1,4 +1,4 @@
-#include <assert.h>
+п»ї#include <assert.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -6,12 +6,12 @@
 
 const unsigned n = 10;
 
-unsigned long matrE[2][2] = { { 1, 1 }, { 1, 0 } }; /* Изходна матрица */
-unsigned long matr[2][2]; /* Резултатна матрица */
+unsigned long matrE[2][2] = { { 1, 1 }, { 1, 0 } }; /* РР·С…РѕРґРЅР° РјР°С‚СЂРёС†Р° */
+unsigned long matr[2][2]; /* Р РµР·СѓР»С‚Р°С‚РЅР° РјР°С‚СЂРёС†Р° */
 
 void fibMatr(unsigned n, unsigned long matr[][2])
-{ static unsigned long sq12;         /* Помощна променлива */
-  static unsigned long lMatr[2][2];  /* Помощна матрица */
+{ static unsigned long sq12;         /* РџРѕРјРѕС‰РЅР° РїСЂРѕРјРµРЅР»РёРІР° */
+  static unsigned long lMatr[2][2];  /* РџРѕРјРѕС‰РЅР° РјР°С‚СЂРёС†Р° */
 
   if (n < 2)
     memcpy(matr, matrE, 4 * sizeof(matr[0][0]));
@@ -34,6 +34,6 @@ void fibMatr(unsigned n, unsigned long matr[][2])
 
 int main(void) { 
   fibMatr(n - 1, matr);
-  printf("\n%u-тото число на Фибоначи е: %lu", n, matr[0][0]);
+  printf("\n%u-С‚РѕС‚Рѕ С‡РёСЃР»Рѕ РЅР° Р¤РёР±РѕРЅР°С‡Рё Рµ: %lu", n, matr[0][0]);
   return 0;
 }

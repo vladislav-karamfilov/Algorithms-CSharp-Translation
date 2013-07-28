@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #define CDataType char
 
 char findMajority(CDataType m[], unsigned size, CDataType *majority)
@@ -20,8 +20,8 @@ char findMajority(CDataType m[], unsigned size, CDataType *majority)
 int main(void) {
   CDataType majority;
   if (findMajority("AAACCBBCCCBCC", 13, &majority))
-    printf("Мажорант: %c\n", majority);
+    printf("РњР°Р¶РѕСЂР°РЅС‚: %c\n", majority);
   else
-    printf("Няма мажорант.\n");
+    printf("РќСЏРјР° РјР°Р¶РѕСЂР°РЅС‚.\n");
   return 0;
 }

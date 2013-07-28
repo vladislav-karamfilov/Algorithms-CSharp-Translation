@@ -1,4 +1,4 @@
-// da oprawq w teksta
+﻿// da oprawq w teksta
 // fib(7) dawaha razlichno - da checkna koe e po definiciqta!!!
 #include <stdio.h>
 

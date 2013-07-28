@@ -1,11 +1,11 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
-/* Максимален брой върхове в графа */
+/* РњР°РєСЃРёРјР°Р»РµРЅ Р±СЂРѕР№ РІСЉСЂС…РѕРІРµ РІ РіСЂР°С„Р° */
 #define MAXN 150
 
-/* Брой върхове в графа */
+/* Р‘СЂРѕР№ РІСЉСЂС…РѕРІРµ РІ РіСЂР°С„Р° */
 const unsigned n = 6;
-/* Матрица на теглата на графа */
+/* РњР°С‚СЂРёС†Р° РЅР° С‚РµРіР»Р°С‚Р° РЅР° РіСЂР°С„Р° */
 const unsigned A[MAXN][MAXN] = {
   { 0, 12,  0, 0,  0,  0 },
   { 0,  0, 40, 0, 17,  0 },
@@ -37,7 +37,7 @@ void DFS(unsigned i)
 
 void solve(void)
 { unsigned i, maxi;
-  /* инициализация */
+  /* РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
   for (i = 0; i < n; i++) {
     maxDist[i] = 0;
     savePath[i] = -1;
@@ -50,7 +50,7 @@ void solve(void)
   for (i = 0; i < n; i++)
     if (maxDist[i] > maxDist[maxi]) maxi = i;
 
-  printf("Дължината на критичния път е %d\nПътят е: ", maxDist[maxi]);
+  printf("Р”СЉР»Р¶РёРЅР°С‚Р° РЅР° РєСЂРёС‚РёС‡РЅРёСЏ РїСЉС‚ Рµ %d\nРџСЉС‚СЏС‚ Рµ: ", maxDist[maxi]);
   while (savePath[maxi] >= 0) {
     printf("%d ", maxi + 1);
     maxi = savePath[maxi];

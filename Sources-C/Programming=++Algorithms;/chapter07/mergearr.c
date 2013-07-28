@@ -1,4 +1,4 @@
-#include <assert.h>
+п»ї#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -9,7 +9,7 @@
 struct CElem {
   int key;
   /* .............
-     Някакви данни
+     РќСЏРєР°РєРІРё РґР°РЅРЅРё
      ............. */
 };
 
@@ -19,7 +19,7 @@ struct CList {
   struct CList *next;
 };
 
-struct CList *init(unsigned mod)  /* Запълва масива със случайни цели числа */
+struct CList *init(unsigned mod)  /* Р—Р°РїСЉР»РІР° РјР°СЃРёРІР° СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅРё С†РµР»Рё С‡РёСЃР»Р° */
 { struct CList *head, *p;
   unsigned i, j;
   srand(time(NULL));
@@ -29,7 +29,7 @@ struct CList *init(unsigned mod)  /* Запълва масива със случайни цели числа */
     p->point = 0;
     p->data[0].key = (rand() % mod);
     for (j = 1; j<MAX; j++)
-      /* Генерира сортирана последователност */
+      /* Р“РµРЅРµСЂРёСЂР° СЃРѕСЂС‚РёСЂР°РЅР° РїРѕСЃР»РµРґРѕРІР°С‚РµР»РЅРѕСЃС‚ */
       p->data[j].key = p->data[j-1].key + (rand() % mod);
     p->next = head;
     head = p;
@@ -79,9 +79,9 @@ void print(struct CList *head)
 int main(void)
 { struct CList *head;
   head = init(500);
-  printf("\nМасивите преди сортирането:\n");
+  printf("\nРњР°СЃРёРІРёС‚Рµ РїСЂРµРґРё СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
   print(head);
-  printf("Резултатът от сливането:");
+  printf("Р РµР·СѓР»С‚Р°С‚СЉС‚ РѕС‚ СЃР»РёРІР°РЅРµС‚Рѕ:");
   merge(head);
   return 0;
 }

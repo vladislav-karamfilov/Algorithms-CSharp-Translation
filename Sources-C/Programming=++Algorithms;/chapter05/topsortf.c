@@ -1,11 +1,11 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
-/* Максимален брой върхове в графа */
+/* РњР°РєСЃРёРјР°Р»РµРЅ Р±СЂРѕР№ РІСЉСЂС…РѕРІРµ РІ РіСЂР°С„Р° */
 #define MAXN 200
 
-/* Брой върхове в графа */
+/* Р‘СЂРѕР№ РІСЉСЂС…РѕРІРµ РІ РіСЂР°С„Р° */
 const unsigned n = 8;
-/* Матрица на съседство на графа */
+/* РњР°С‚СЂРёС†Р° РЅР° СЃСЉСЃРµРґСЃС‚РІРѕ РЅР° РіСЂР°С„Р° */
 char A[MAXN][MAXN] = {
   { 0, 1, 0, 0, 0, 0, 0, 0 },
   { 0, 0, 1, 0, 0, 0, 1, 0 },
@@ -22,7 +22,7 @@ unsigned topsort[MAXN], total = 0;
 
 void printSort(void)
 { unsigned i;
-  printf("Топологично сортиране номер %u: ", ++total);
+  printf("РўРѕРїРѕР»РѕРіРёС‡РЅРѕ СЃРѕСЂС‚РёСЂР°РЅРµ РЅРѕРјРµСЂ %u: ", ++total);
   for (i = 0; i < n; i++) printf("%u ", topsort[i] + 1);
   printf("\n");
 }
@@ -32,7 +32,7 @@ void fullTopSort(unsigned count)
 
   if (count == n) { printSort(); return; }
 
-  /* намира всички върхове без предшественик */
+  /* РЅР°РјРёСЂР° РІСЃРёС‡РєРё РІСЉСЂС…РѕРІРµ Р±РµР· РїСЂРµРґС€РµСЃС‚РІРµРЅРёРє */
   for (i = 0; i < n; i++) {
     if (!used[i]) {
       for (j = 0; j < n; j++)
@@ -43,7 +43,7 @@ void fullTopSort(unsigned count)
         }
         used[i] = 1;
         topsort[count] = i;
-        fullTopSort(count + 1); /* рекурсия */
+        fullTopSort(count + 1); /* СЂРµРєСѓСЂСЃРёСЏ */
         used[i] = 0;
         for (k = 0; k < n; k++) A[i][k] = saved[k];
       }

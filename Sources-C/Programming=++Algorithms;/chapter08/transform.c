@@ -1,28 +1,28 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <string.h>
 #define MAX                 100
 #define COST_DELETE         1
 #define COST_INSERT         2
 #define COST_REPLACE(i, j)  ((s1[i] == s2[j]) ? 0 : 3)
-#define min2(a, b)          ((a < b) ? a : b)   /* Âðúùà ïî-ìàëêèÿ îò 2 àðãóìåíòà */
-#define min(a, b, c)        min2(min2(a, b), c) /* Âðúùà íàé-ìàëêèÿ îò 3 àðãóìåíòà */
+#define min2(a, b)          ((a < b) ? a : b)   /* Ð’Ñ€ÑŠÑ‰Ð° Ð¿Ð¾-Ð¼Ð°Ð»ÐºÐ¸Ñ Ð¾Ñ‚ 2 Ð°Ñ€Ð³ÑƒÐ¼ÐµÐ½Ñ‚Ð° */
+#define min(a, b, c)        min2(min2(a, b), c) /* Ð’Ñ€ÑŠÑ‰Ð° Ð½Ð°Ð¹-Ð¼Ð°Ð»ÐºÐ¸Ñ Ð¾Ñ‚ 3 Ð°Ñ€Ð³ÑƒÐ¼ÐµÐ½Ñ‚Ð° */
 
-unsigned F[MAX+1][MAX+1];   /* Öåëåâà ôóíêöèÿ */
-unsigned n1;                /* Äúëæèíà íà ïúðâèÿ íèç */
-unsigned n2;                /* Äúëæèíà íà âòîðèÿ íèç */
+unsigned F[MAX+1][MAX+1];   /* Ð¦ÐµÐ»ÐµÐ²Ð° Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ */
+unsigned n1;                /* Ð”ÑŠÐ»Ð¶Ð¸Ð½Ð° Ð½Ð° Ð¿ÑŠÑ€Ð²Ð¸Ñ Ð½Ð¸Ð· */
+unsigned n2;                /* Ð”ÑŠÐ»Ð¶Ð¸Ð½Ð° Ð½Ð° Ð²Ñ‚Ð¾Ñ€Ð¸Ñ Ð½Ð¸Ð· */
 
-const char *s1 = "_abracadabra";  /* Èçõîäåí íèç (ïúðâèÿò ñèìâîë íÿìà çíà÷åíèå) */
-const char *s2 = "_mabragabra";   /* Íèç-öåë (ïúðâèÿò ñèìâîë íÿìà çíà÷åíèå) */
+const char *s1 = "_abracadabra";  /* Ð˜Ð·Ñ…Ð¾Ð´ÐµÐ½ Ð½Ð¸Ð· (Ð¿ÑŠÑ€Ð²Ð¸ÑÑ‚ ÑÐ¸Ð¼Ð²Ð¾Ð» Ð½ÑÐ¼Ð° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ) */
+const char *s2 = "_mabragabra";   /* ÐÐ¸Ð·-Ñ†ÐµÐ» (Ð¿ÑŠÑ€Ð²Ð¸ÑÑ‚ ÑÐ¸Ð¼Ð²Ð¾Ð» Ð½ÑÐ¼Ð° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ) */
 
-/* Íàìèðà ðàçñòîÿíèåòî ìåæäó äâà íèçà */
+/* ÐÐ°Ð¼Ð¸Ñ€Ð° Ñ€Ð°Ð·ÑÑ‚Ð¾ÑÐ½Ð¸ÐµÑ‚Ð¾ Ð¼ÐµÐ¶Ð´Ñƒ Ð´Ð²Ð° Ð½Ð¸Ð·Ð° */
 unsigned editDistance(void)
 { unsigned i, j;
-  /* Èíèöèàëèçàöèÿ */
+  /* Ð˜Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ */
   for (i = 0; i <= n1; i++)
 	F[i][0] = i * COST_DELETE;
   for (j = 0; j <= n2; j++)
 	F[0][j] = j * COST_INSERT;
-  /* Îñíîâåí öèêúë */
+  /* ÐžÑÐ½Ð¾Ð²ÐµÐ½ Ñ†Ð¸ÐºÑŠÐ» */
   for (i = 1; i <= n1; i++)
     for (j = 1; j <= n2; j++)
       F[i][j] = min(F[i - 1][j - 1] + COST_REPLACE(i, j),
@@ -31,7 +31,7 @@ unsigned editDistance(void)
   return F[n1][n2];
 }
 
-/* Èçâåæäà îïåðàöèèòå ïî ðåäàêòèðàíåòî */
+/* Ð˜Ð·Ð²ÐµÐ¶Ð´Ð° Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¸Ñ‚Ðµ Ð¿Ð¾ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð°Ð½ÐµÑ‚Ð¾ */
 void printEditOperations(unsigned i, unsigned j)
 {     
   if (0 == j)
@@ -60,7 +60,7 @@ void printEditOperations(unsigned i, unsigned j)
 int main(void) { 
   n1 = strlen(s1) - 1;
   n2 = strlen(s2) - 1;
-  printf("\nÌèíèìàëíî ðàçñòîÿíèå ìåæäó äâàòà íèçà: %u\n", editDistance());
+  printf("\nÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»Ð½Ð¾ Ñ€Ð°Ð·ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¼ÐµÐ¶Ð´Ñƒ Ð´Ð²Ð°Ñ‚Ð° Ð½Ð¸Ð·Ð°: %u\n", editDistance());
   printEditOperations(n1, n2);
   return 0;
 }

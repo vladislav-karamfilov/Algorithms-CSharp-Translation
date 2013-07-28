@@ -1,13 +1,13 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <string.h>
 
 #define MAX 256
 
-const unsigned n = 10; /* търсим 10-тото число на Фибоначи */
+const unsigned n = 10; /* С‚СЉСЂСЃРёРј 10-С‚РѕС‚Рѕ С‡РёСЃР»Рѕ РЅР° Р¤РёР±РѕРЅР°С‡Рё */
 
 unsigned long m[MAX + 1];
 
-/* Бърз рекурсивен линеен вариант, запаметяващ вече пресметнатото */
+/* Р‘СЉСЂР· СЂРµРєСѓСЂСЃРёРІРµРЅ Р»РёРЅРµРµРЅ РІР°СЂРёР°РЅС‚, Р·Р°РїР°РјРµС‚СЏРІР°С‰ РІРµС‡Рµ РїСЂРµСЃРјРµС‚РЅР°С‚РѕС‚Рѕ */
 unsigned long fibMemo(unsigned n) 
 { if (n < 2)
     m[n] = n;
@@ -18,6 +18,6 @@ unsigned long fibMemo(unsigned n)
 
 int main(void) {
   memset(m, 0, MAX * sizeof(*m));
-  printf("\n%u-тото число на Фибоначи е: %lu", n, fibMemo(n));
+  printf("\n%u-С‚РѕС‚Рѕ С‡РёСЃР»Рѕ РЅР° Р¤РёР±РѕРЅР°С‡Рё Рµ: %lu", n, fibMemo(n));
   return 0;
 }

@@ -1,29 +1,29 @@
-#include <stdio.h>
-#define MAXCOINS  100 /* Максимален брой монети */
-#define MAXSUM    100 /* Максимална сума */
+п»ї#include <stdio.h>
+#define MAXCOINS  100 /* РњР°РєСЃРёРјР°Р»РµРЅ Р±СЂРѕР№ РјРѕРЅРµС‚Рё */
+#define MAXSUM    100 /* РњР°РєСЃРёРјР°Р»РЅР° СЃСѓРјР° */
 
-unsigned long F[MAXSUM][MAXSUM];    /* Целева функция */
-unsigned char exist[MAXSUM];        /* Съществува ли монета с такава стойност */
+unsigned long F[MAXSUM][MAXSUM];    /* Р¦РµР»РµРІР° С„СѓРЅРєС†РёСЏ */
+unsigned char exist[MAXSUM];        /* РЎСЉС‰РµСЃС‚РІСѓРІР° Р»Рё РјРѕРЅРµС‚Р° СЃ С‚Р°РєР°РІР° СЃС‚РѕР№РЅРѕСЃС‚ */
 
-const unsigned coins[MAXCOINS] = {1,2,3,4,6}; /* Налични типове монети */
-const unsigned sum = 6;                       /* Сума, която искаме да получим */
-const unsigned n = 5;                         /* Общ брой налични монети */
+const unsigned coins[MAXCOINS] = {1,2,3,4,6}; /* РќР°Р»РёС‡РЅРё С‚РёРїРѕРІРµ РјРѕРЅРµС‚Рё */
+const unsigned sum = 6;                       /* РЎСѓРјР°, РєРѕСЏС‚Рѕ РёСЃРєР°РјРµ РґР° РїРѕР»СѓС‡РёРј */
+const unsigned n = 5;                         /* РћР±С‰ Р±СЂРѕР№ РЅР°Р»РёС‡РЅРё РјРѕРЅРµС‚Рё */
 
-/* Инициализираща функция */
+/* РРЅРёС†РёР°Р»РёР·РёСЂР°С‰Р° С„СѓРЅРєС†РёСЏ */
 void init(void)
 { unsigned i, j;
-  /* Нулиране на целевата функция */
+  /* РќСѓР»РёСЂР°РЅРµ РЅР° С†РµР»РµРІР°С‚Р° С„СѓРЅРєС†РёСЏ */
   for (i = 0; i <= sum; i++)
     for (j = 0; j <= sum; j++)
 	   F[i][j] = 0;
-  /* Друго представяне на стойностите на монетите за по-бърз достъп */
+  /* Р”СЂСѓРіРѕ РїСЂРµРґСЃС‚Р°РІСЏРЅРµ РЅР° СЃС‚РѕР№РЅРѕСЃС‚РёС‚Рµ РЅР° РјРѕРЅРµС‚РёС‚Рµ Р·Р° РїРѕ-Р±СЉСЂР· РґРѕСЃС‚СЉРї */
   for (i = 0; i <= sum; i++)
 	 exist[i] = 0;
   for (i = 0; i < n; i++)
 	 exist[coins[i]] = 1;
 }
 
-/* Намира броя на представянията на sum */
+/* РќР°РјРёСЂР° Р±СЂРѕСЏ РЅР° РїСЂРµРґСЃС‚Р°РІСЏРЅРёСЏС‚Р° РЅР° sum */
 unsigned long count(unsigned sum, unsigned max)
 { unsigned long i;
   if (sum <= 0)
@@ -33,9 +33,9 @@ unsigned long count(unsigned sum, unsigned max)
   else {
     if (sum < max)
 	   max = sum;
-    if (sum == max && exist[sum])   /* Съществува монета с такава стойност */
+    if (sum == max && exist[sum])   /* РЎСЉС‰РµСЃС‚РІСѓРІР° РјРѕРЅРµС‚Р° СЃ С‚Р°РєР°РІР° СЃС‚РѕР№РЅРѕСЃС‚ */
       F[sum][max] = 1;
-    for (i = max; i > 0; i--)  /* Пресмятаме всички */
+    for (i = max; i > 0; i--)  /* РџСЂРµСЃРјСЏС‚Р°РјРµ РІСЃРёС‡РєРё */
       if (exist[i])
 		 F[sum][max] += count(sum - i, i);
   }
@@ -44,7 +44,7 @@ unsigned long count(unsigned sum, unsigned max)
 
 int main(void) {
   init();
-  printf("\nБроят на представянията на %u с наличните монети е %lu",
+  printf("\nР‘СЂРѕСЏС‚ РЅР° РїСЂРµРґСЃС‚Р°РІСЏРЅРёСЏС‚Р° РЅР° %u СЃ РЅР°Р»РёС‡РЅРёС‚Рµ РјРѕРЅРµС‚Рё Рµ %lu",
          sum, count(sum, sum));
   return 0;
 }

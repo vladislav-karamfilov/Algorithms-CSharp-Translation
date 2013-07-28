@@ -1,9 +1,9 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <math.h>
 
 const unsigned n = 23;
 
-/* Функцията връща 1 ако n е просто и 0 ако n е съставно */
+/* Р¤СѓРЅРєС†РёСЏС‚Р° РІСЂСЉС‰Р° 1 Р°РєРѕ n Рµ РїСЂРѕСЃС‚Рѕ Рё 0 Р°РєРѕ n Рµ СЃСЉСЃС‚Р°РІРЅРѕ */
 char isPrime(unsigned n)
 { unsigned i = 2;
   if (n == 2) return 1;
@@ -16,7 +16,7 @@ char isPrime(unsigned n)
 
 int main(void) {
   if (isPrime(n))
-    printf("Числото %u е просто.\n", n);
+    printf("Р§РёСЃР»РѕС‚Рѕ %u Рµ РїСЂРѕСЃС‚Рѕ.\n", n);
   else
-    printf("Числото %u е съставно.\n", n);
+    printf("Р§РёСЃР»РѕС‚Рѕ %u Рµ СЃСЉСЃС‚Р°РІРЅРѕ.\n", n);
 }

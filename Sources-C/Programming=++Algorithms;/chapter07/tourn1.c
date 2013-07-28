@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #define MAX 100
 
 unsigned m[MAX][MAX];
@@ -10,7 +10,7 @@ void copyMatrix(unsigned stX, unsigned stY, unsigned cnt, unsigned add)
 	  m[i + stX][j + stY] = m[i + 1][j + 1] + add;
 }
 
-void findSolution(unsigned n) /* Построява таблицата */
+void findSolution(unsigned n) /* РџРѕСЃС‚СЂРѕСЏРІР° С‚Р°Р±Р»РёС†Р°С‚Р° */
 { unsigned i;
   m[1][1] = 0;
   for (i = 1; i <= n; i <<= 1) {
@@ -20,7 +20,7 @@ void findSolution(unsigned n) /* Построява таблицата */
   }
 }
 
-void print(unsigned n)        /* Извежда резултата */
+void print(unsigned n)        /* РР·РІРµР¶РґР° СЂРµР·СѓР»С‚Р°С‚Р° */
 { unsigned i, j;
   for (i = 1; i <= n; i++) {
     for (j = 1; j <= n; j++)

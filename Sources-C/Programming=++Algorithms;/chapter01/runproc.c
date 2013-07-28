@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 
 #define MAXN 10000
 const unsigned n = 500;
@@ -29,6 +29,7 @@ void findPrimes(unsigned n)
 int main(void) {
   findPrimes(n);
   printf("\n");
+  system("pause");
   return 0;
 }
 

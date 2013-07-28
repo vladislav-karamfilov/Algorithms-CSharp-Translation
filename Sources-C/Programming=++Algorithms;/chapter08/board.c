@@ -1,20 +1,20 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #define MAX 1000
 
-unsigned F[MAX];                               /* Целева функция */
-unsigned next[MAX];                            /* Следващ проводник */
+unsigned F[MAX];                               /* Р¦РµР»РµРІР° С„СѓРЅРєС†РёСЏ */
+unsigned next[MAX];                            /* РЎР»РµРґРІР°С‰ РїСЂРѕРІРѕРґРЅРёРє */
 
-const unsigned n = 9;                          /* Брой накрайници */
-const unsigned p[MAX] = {0,9,1,3,6,2,7,5,4,8}; /* Изходна пермутация */
+const unsigned n = 9;                          /* Р‘СЂРѕР№ РЅР°РєСЂР°Р№РЅРёС†Рё */
+const unsigned p[MAX] = {0,9,1,3,6,2,7,5,4,8}; /* РР·С…РѕРґРЅР° РїРµСЂРјСѓС‚Р°С†РёСЏ */
 
 void solve(void)
 { unsigned k, i;
-  /* Инициализация */
+  /* РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
   for (i = 1; i <= n; i++) {
     F[i] = 1;
     next[i] = 0;
   }
-  /* Основен цикъл */
+  /* РћСЃРЅРѕРІРµРЅ С†РёРєСЉР» */
   for (k = n; k >= 1; k--)
     for (i = k + 1; i <= n; i++)
       if (p[k] < p[i])
@@ -24,7 +24,7 @@ void solve(void)
         }
 }
 
-/* Извежда резултата на екрана */
+/* РР·РІРµР¶РґР° СЂРµР·СѓР»С‚Р°С‚Р° РЅР° РµРєСЂР°РЅР° */
 void print(void)
 { unsigned i, max, index;
   for (max = F[index = 1], i = 2; i <= n; i++)
@@ -32,7 +32,7 @@ void print(void)
       max = F[i];
       index = i;
     }
-  printf("\nМаксимален брой кабели: %u\n", max);
+  printf("\nРњР°РєСЃРёРјР°Р»РµРЅ Р±СЂРѕР№ РєР°Р±РµР»Рё: %u\n", max);
   do {
     printf("%u ", index);
     index = next[index];

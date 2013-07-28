@@ -1,10 +1,10 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
 int main(void)
-{ long t = 1000000;  /* брой тестове */
-  double r = 10000;  /* радиус на окръжността */
+{ long t = 1000000;  /* Р±СЂРѕР№ С‚РµСЃС‚РѕРІРµ */
+  double r = 10000;  /* СЂР°РґРёСѓСЃ РЅР° РѕРєСЂСЉР¶РЅРѕСЃС‚С‚Р° */
   double r2 = r / 2;
   long k = 0, i;
 
@@ -14,6 +14,6 @@ int main(void)
     if (sqrt(a * a + b * b) <= r2) k++;
   }
 
-  printf("Приближение на p = %.2f\n", (4.0 * k) / t);
+  printf("РџСЂРёР±Р»РёР¶РµРЅРёРµ РЅР° p = %.2f\n", (4.0 * k) / t);
   return 0;
 }

@@ -1,10 +1,10 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #define MAX 8000
 #define NOT_CALCULATED  (unsigned long)(-1)
 
-unsigned long minPrice[MAX];  /* Ìèíèìàëíà öåíà íà áèëåòà îò íà÷àëíàòà äî òåêóùàòà ãàðà */
+unsigned long minPrice[MAX];  /* ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»Ð½Ð° Ñ†ÐµÐ½Ð° Ð½Ð° Ð±Ð¸Ð»ÐµÑ‚Ð° Ð¾Ñ‚ Ð½Ð°Ñ‡Ð°Ð»Ð½Ð°Ñ‚Ð° Ð´Ð¾ Ñ‚ÐµÐºÑƒÑ‰Ð°Ñ‚Ð° Ð³Ð°Ñ€Ð° */
 
-const unsigned long dist[MAX] = {0,3,7,8,13,15,23}; /* Ðàçñòîÿíèå îò íà÷àëíàòà ãàðà */
+const unsigned long dist[MAX] = {0,3,7,8,13,15,23}; /* Ð Ð°Ð·ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¾Ñ‚ Ð½Ð°Ñ‡Ð°Ð»Ð½Ð°Ñ‚Ð° Ð³Ð°Ñ€Ð° */
 const unsigned long l1 = 3,  l2 = 6,  l3 = 8,
                     c1 = 20, c2 = 30, c3 = 40;
 const unsigned n = 7;
@@ -15,16 +15,16 @@ unsigned long calc(unsigned cur)
 { unsigned i;
   unsigned long price;
   if (NOT_CALCULATED == minPrice[cur]) {
-    /* Òúðñèì íàé-ëÿâàòà ãàðà è ïðåñìÿòàìå åâåíòóàëíàòà öåíà, àêî âçåìåì áèëåò òèï 1 */
+    /* Ð¢ÑŠÑ€ÑÐ¸Ð¼ Ð½Ð°Ð¹-Ð»ÑÐ²Ð°Ñ‚Ð° Ð³Ð°Ñ€Ð° Ð¸ Ð¿Ñ€ÐµÑÐ¼ÑÑ‚Ð°Ð¼Ðµ ÐµÐ²ÐµÐ½Ñ‚ÑƒÐ°Ð»Ð½Ð°Ñ‚Ð° Ñ†ÐµÐ½Ð°, Ð°ÐºÐ¾ Ð²Ð·ÐµÐ¼ÐµÐ¼ Ð±Ð¸Ð»ÐµÑ‚ Ñ‚Ð¸Ð¿ 1 */
     for (i = cur - 1; i >= start && (dist[cur] - dist[i]) <= l1; i--);
     if (++i < cur)
       if ((price = calc(i) + c1) < minPrice[cur])
 		 minPrice[cur] = price;
-    /* Òúðñèì íàé-ëÿâàòà ãàðà è ïðåñìÿòàìå åâåíòóàëíàòà öåíà, àêî âçåìåì áèëåò òèï 2 */
+    /* Ð¢ÑŠÑ€ÑÐ¸Ð¼ Ð½Ð°Ð¹-Ð»ÑÐ²Ð°Ñ‚Ð° Ð³Ð°Ñ€Ð° Ð¸ Ð¿Ñ€ÐµÑÐ¼ÑÑ‚Ð°Ð¼Ðµ ÐµÐ²ÐµÐ½Ñ‚ÑƒÐ°Ð»Ð½Ð°Ñ‚Ð° Ñ†ÐµÐ½Ð°, Ð°ÐºÐ¾ Ð²Ð·ÐµÐ¼ÐµÐ¼ Ð±Ð¸Ð»ÐµÑ‚ Ñ‚Ð¸Ð¿ 2 */
     for (; i >= start && (dist[cur] - dist[i]) <= l2; i--);
     if (++i < cur)
       if ((price = calc(i) + c2) < minPrice[cur]) minPrice[cur] = price;
-    /* Òúðñèì íàé-ëÿâàòà ãàðà è ïðåñìÿòàìå åâåíòóàëíàòà öåíà, àêî âçåìåì áèëåò òèï 3 */
+    /* Ð¢ÑŠÑ€ÑÐ¸Ð¼ Ð½Ð°Ð¹-Ð»ÑÐ²Ð°Ñ‚Ð° Ð³Ð°Ñ€Ð° Ð¸ Ð¿Ñ€ÐµÑÐ¼ÑÑ‚Ð°Ð¼Ðµ ÐµÐ²ÐµÐ½Ñ‚ÑƒÐ°Ð»Ð½Ð°Ñ‚Ð° Ñ†ÐµÐ½Ð°, Ð°ÐºÐ¾ Ð²Ð·ÐµÐ¼ÐµÐ¼ Ð±Ð¸Ð»ÐµÑ‚ Ñ‚Ð¸Ð¿ 3 */
     for (; i >= start && (dist[cur] - dist[i]) <= l3; i--);
     if (++i < cur)
       if ((price = calc(i) + c3) < minPrice[cur]) minPrice[cur] = price;
@@ -34,13 +34,13 @@ unsigned long calc(unsigned cur)
 
 int main(void) {
   unsigned i;
-  /* Èíèöàëèçàöèÿ */
+  /* Ð˜Ð½Ð¸Ñ†Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ */
   for (i = 0; i < start; i++)
 	minPrice[i] = 0;
   for (; i < n; i++)
 	minPrice[i] = NOT_CALCULATED;
-  /* Ðåøàâàíå íà çàäà÷àòà */
+  /* Ð ÐµÑˆÐ°Ð²Ð°Ð½Ðµ Ð½Ð° Ð·Ð°Ð´Ð°Ñ‡Ð°Ñ‚Ð° */
   start--;
-  printf("Ìèíèìàëíà öåíà: %lu\n", calc(end-1));
+  printf("ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»Ð½Ð° Ñ†ÐµÐ½Ð°: %lu\n", calc(end-1));
   return 0;
 }

@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 
 #define MAX 100
@@ -8,24 +8,24 @@ struct CElem {
   int key;
   DataType data;
   /* ... */
-} m[MAX + 1]; /* Масив от записи */
-unsigned n;   /* Брой елементи в масива */
+} m[MAX + 1]; /* РњР°СЃРёРІ РѕС‚ Р·Р°РїРёСЃРё */
+unsigned n;   /* Р‘СЂРѕР№ РµР»РµРјРµРЅС‚Рё РІ РјР°СЃРёРІР° */
 
-void seqInit(void) { n = 0; }              /* Инициализация */
+void seqInit(void) { n = 0; }              /* РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
 
-unsigned seqSearch(int key)            /* Последователно търсене */
+unsigned seqSearch(int key)            /* РџРѕСЃР»РµРґРѕРІР°С‚РµР»РЅРѕ С‚СЉСЂСЃРµРЅРµ */
 { unsigned x;
-  m[0].key = key; /* Ограничител */
+  m[0].key = key; /* РћРіСЂР°РЅРёС‡РёС‚РµР» */
   for (x = n + 1; key != m[--x].key; ) ;
   return x;
 }
 
-void seqInsert(int key, DataType data) /* Добавя нов елемент */
+void seqInsert(int key, DataType data) /* Р”РѕР±Р°РІСЏ РЅРѕРІ РµР»РµРјРµРЅС‚ */
 { m[++n].key = key;
   m[n].data = data;
 }
 
-void seqPrint(void)                    /* Извежда списъка на екрана */
+void seqPrint(void)                    /* РР·РІРµР¶РґР° СЃРїРёСЃСЉРєР° РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   char buf[9];
   for (i = 1; i <= n; i++) {
@@ -38,11 +38,11 @@ void performSearchTest(void)
 { unsigned ind, elem2Search;
 
   for (elem2Search = 0; elem2Search < 2*MAX; elem2Search++) {
-    printf("Търсим елемент с ключ %u.\n", elem2Search);
+    printf("РўСЉСЂСЃРёРј РµР»РµРјРµРЅС‚ СЃ РєР»СЋС‡ %u.\n", elem2Search);
     if (0 == (ind = seqSearch(elem2Search)))
-      printf("%s","Елемент с такъв ключ не съществува!\n");
+      printf("%s","Р•Р»РµРјРµРЅС‚ СЃ С‚Р°РєСЉРІ РєР»СЋС‡ РЅРµ СЃСЉС‰РµСЃС‚РІСѓРІР°!\n");
     else
-      printf("%Елементът е намерен! Стойност на инф. част: %d\n", m[ind].data);
+      printf("%Р•Р»РµРјРµРЅС‚СЉС‚ Рµ РЅР°РјРµСЂРµРЅ! РЎС‚РѕР№РЅРѕСЃС‚ РЅР° РёРЅС„. С‡Р°СЃС‚: %d\n", m[ind].data);
   }
 }
 
@@ -51,8 +51,8 @@ int main(void) {
   seqInit();
   for (ind = 0; ind < MAX; ind++)
     seqInsert(rand() % (MAX*2), ind);
-  printf("Списъкът съдържа следните елементи: \n"); seqPrint();
-  printf("\nТестване:\n");
+  printf("РЎРїРёСЃСЉРєСЉС‚ СЃСЉРґСЉСЂР¶Р° СЃР»РµРґРЅРёС‚Рµ РµР»РµРјРµРЅС‚Рё: \n"); seqPrint();
+  printf("\nРўРµСЃС‚РІР°РЅРµ:\n");
   performSearchTest();
   return 0;
 }

@@ -1,48 +1,48 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 
 #define MAX 256
 #define MSG "afbabcdefacbabcdecde"
 
 struct tree {
-  char sym;                  /* Символ */
-  struct tree *left, *right; /* Ляв и десен наследници */
+  char sym;                  /* РЎРёРјРІРѕР» */
+  struct tree *left, *right; /* Р›СЏРІ Рё РґРµСЃРµРЅ РЅР°СЃР»РµРґРЅРёС†Рё */
 };
 
 struct CForest {
-  unsigned weight;           /* Тегло на дървото */
-  struct tree *root;         /* Родител */
-} forest[MAX];               /* Гора: масив от дървета */
+  unsigned weight;           /* РўРµРіР»Рѕ РЅР° РґСЉСЂРІРѕС‚Рѕ */
+  struct tree *root;         /* Р РѕРґРёС‚РµР» */
+} forest[MAX];               /* Р“РѕСЂР°: РјР°СЃРёРІ РѕС‚ РґСЉСЂРІРµС‚Р° */
 
-unsigned treeCnt;            /* Брой дървета в гората */
-char code[MAX];              /* Код на Хъфман за съответния символ */
+unsigned treeCnt;            /* Р‘СЂРѕР№ РґСЉСЂРІРµС‚Р° РІ РіРѕСЂР°С‚Р° */
+char code[MAX];              /* РљРѕРґ РЅР° РҐСЉС„РјР°РЅ Р·Р° СЃСЉРѕС‚РІРµС‚РЅРёСЏ СЃРёРјРІРѕР» */
 
 /***********************************************************/
-/************** Функции за работа с пирамиди ***************/
+/************** Р¤СѓРЅРєС†РёРё Р·Р° СЂР°Р±РѕС‚Р° СЃ РїРёСЂР°РјРёРґРё ***************/
 /***********************************************************/
 
-void siftUp(unsigned k) /* "Отсява" елемент НАГОРЕ по пирамидата */
-{ struct CForest save = forest[k]; /* Помощна променлива */
-  unsigned parent = k/2;           /* "Баща" на разглеждания елемент */
+void siftUp(unsigned k) /* "РћС‚СЃСЏРІР°" РµР»РµРјРµРЅС‚ РќРђР“РћР Р• РїРѕ РїРёСЂР°РјРёРґР°С‚Р° */
+{ struct CForest save = forest[k]; /* РџРѕРјРѕС‰РЅР° РїСЂРѕРјРµРЅР»РёРІР° */
+  unsigned parent = k/2;           /* "Р‘Р°С‰Р°" РЅР° СЂР°Р·РіР»РµР¶РґР°РЅРёСЏ РµР»РµРјРµРЅС‚ */
   while (parent >= 1) {
-    if (save.weight < forest[parent].weight) { /* Придвижване към върха на пирамидата */
+    if (save.weight < forest[parent].weight) { /* РџСЂРёРґРІРёР¶РІР°РЅРµ РєСЉРј РІСЉСЂС…Р° РЅР° РїРёСЂР°РјРёРґР°С‚Р° */
       forest[k] = forest[parent];
       k = parent;
     }
     parent /= 2;
   }
-  forest[k] = save; /* Намерено е окончателното място за вмъкване */
+  forest[k] = save; /* РќР°РјРµСЂРµРЅРѕ Рµ РѕРєРѕРЅС‡Р°С‚РµР»РЅРѕС‚Рѕ РјСЏСЃС‚Рѕ Р·Р° РІРјСЉРєРІР°РЅРµ */
 }
 
-void siftDown(void) /* "Отсява" елемент НАДОЛУ по пирамидата */
-{ unsigned parent = 1,         /* "Баща" */
-           child  = 2;         /* "Дете" */
-  struct CForest save = forest[1]; /* Помощна променлива */
+void siftDown(void) /* "РћС‚СЃСЏРІР°" РµР»РµРјРµРЅС‚ РќРђР”РћР›РЈ РїРѕ РїРёСЂР°РјРёРґР°С‚Р° */
+{ unsigned parent = 1,         /* "Р‘Р°С‰Р°" */
+           child  = 2;         /* "Р”РµС‚Рµ" */
+  struct CForest save = forest[1]; /* РџРѕРјРѕС‰РЅР° РїСЂРѕРјРµРЅР»РёРІР° */
   while (child <= treeCnt) {
-    if (child+1 <= treeCnt) /* Търсене на по-големия наследник */
+    if (child+1 <= treeCnt) /* РўСЉСЂСЃРµРЅРµ РЅР° РїРѕ-РіРѕР»РµРјРёСЏ РЅР°СЃР»РµРґРЅРёРє */
       if (forest[child+1].weight < forest[child].weight)
         child++;
-    if (save.weight > forest[child].weight) { /* Отсяване на елемента надолу */
+    if (save.weight > forest[child].weight) { /* РћС‚СЃСЏРІР°РЅРµ РЅР° РµР»РµРјРµРЅС‚Р° РЅР°РґРѕР»Сѓ */
       forest[parent] = forest[child];
       parent = child;
       child *= 2;
@@ -50,30 +50,30 @@ void siftDown(void) /* "Отсява" елемент НАДОЛУ по пирамидата */
     else
       break;
   }
-  forest[parent] = save; /* Намерено е окончателното място за вмъкване */
+  forest[parent] = save; /* РќР°РјРµСЂРµРЅРѕ Рµ РѕРєРѕРЅС‡Р°С‚РµР»РЅРѕС‚Рѕ РјСЏСЃС‚Рѕ Р·Р° РІРјСЉРєРІР°РЅРµ */
 }
 
-void removeMin(void) /* Премахва върха на пирамидата */
+void removeMin(void) /* РџСЂРµРјР°С…РІР° РІСЉСЂС…Р° РЅР° РїРёСЂР°РјРёРґР°С‚Р° */
 { forest[1] = forest[treeCnt--];
   siftDown();
 }
 
 /*********************************************/
-/************* Основна програма **************/
+/************* РћСЃРЅРѕРІРЅР° РїСЂРѕРіСЂР°РјР° **************/
 /*********************************************/
 
-void initModel(char *msg)   /* Намира честотата на срещане на символите */
+void initModel(char *msg)   /* РќР°РјРёСЂР° С‡РµСЃС‚РѕС‚Р°С‚Р° РЅР° СЃСЂРµС‰Р°РЅРµ РЅР° СЃРёРјРІРѕР»РёС‚Рµ */
 { char *c = msg;
-  unsigned freqs[MAX]; /* Честоти на срещане на символите */
+  unsigned freqs[MAX]; /* Р§РµСЃС‚РѕС‚Рё РЅР° СЃСЂРµС‰Р°РЅРµ РЅР° СЃРёРјРІРѕР»РёС‚Рµ */
   unsigned i;
 
-  /* Построяваме таблица на честотите на срещане */
+  /* РџРѕСЃС‚СЂРѕСЏРІР°РјРµ С‚Р°Р±Р»РёС†Р° РЅР° С‡РµСЃС‚РѕС‚РёС‚Рµ РЅР° СЃСЂРµС‰Р°РЅРµ */
   for (i = 0; i < MAX; i++)
     freqs[i] = 0;
   while (*c)
     freqs[(unsigned char) *c++]++;
 
-  /* За всеки символ с ненулева честота на срещане създаваме тривиално дърво */
+  /* Р—Р° РІСЃРµРєРё СЃРёРјРІРѕР» СЃ РЅРµРЅСѓР»РµРІР° С‡РµСЃС‚РѕС‚Р° РЅР° СЃСЂРµС‰Р°РЅРµ СЃСЉР·РґР°РІР°РјРµ С‚СЂРёРІРёР°Р»РЅРѕ РґСЉСЂРІРѕ */
   treeCnt = 0;
   for (i = 0; i < MAX; i++)
     if (freqs[i]) {
@@ -89,23 +89,23 @@ void initModel(char *msg)   /* Намира честотата на срещане на символите */
 void huffman(void)
 { struct CForest min1, min2;
   while (treeCnt > 1) {
-    /* Намиране и премахване на двата най-леки върха */
+    /* РќР°РјРёСЂР°РЅРµ Рё РїСЂРµРјР°С…РІР°РЅРµ РЅР° РґРІР°С‚Р° РЅР°Р№-Р»РµРєРё РІСЉСЂС…Р° */
     min1 = forest[1];
     removeMin();
     min2 = forest[1];
     removeMin();
-    /* Създаване на нов възел - обединение на двата най-редки */
+    /* РЎСЉР·РґР°РІР°РЅРµ РЅР° РЅРѕРІ РІСЉР·РµР» - РѕР±РµРґРёРЅРµРЅРёРµ РЅР° РґРІР°С‚Р° РЅР°Р№-СЂРµРґРєРё */
     forest[++treeCnt].root = (struct tree *) malloc(sizeof(struct tree));
     forest[treeCnt].root->left = min1.root;
     forest[treeCnt].root->right = min2.root;
     forest[treeCnt].weight = min1.weight + min2.weight;
-    /* Вмъкване на възела */
+    /* Р’РјСЉРєРІР°РЅРµ РЅР° РІСЉР·РµР»Р° */
     siftUp(treeCnt);
   }
 }
 
 void printTree(struct tree *t, unsigned h)
-/* Извежда дървото на екрана, връща като резултат теглото му */
+/* РР·РІРµР¶РґР° РґСЉСЂРІРѕС‚Рѕ РЅР° РµРєСЂР°РЅР°, РІСЂСЉС‰Р° РєР°С‚Рѕ СЂРµР·СѓР»С‚Р°С‚ С‚РµРіР»РѕС‚Рѕ РјСѓ */
 { unsigned i;
   if (NULL != t) {
     printTree(t->left,h+1);
@@ -119,11 +119,11 @@ void printTree(struct tree *t, unsigned h)
   }
 }
 
-void writeCodes(struct tree *t, unsigned index) /* Извежда кодовете */
+void writeCodes(struct tree *t, unsigned index) /* РР·РІРµР¶РґР° РєРѕРґРѕРІРµС‚Рµ */
 { if (NULL != t) {
     code[index] = '0';
     writeCodes(t->left,index+1);
-    if (NULL == t->left) { /* Всеки връх на Хъфм. дърво има 0 или 2 наследника */
+    if (NULL == t->left) { /* Р’СЃРµРєРё РІСЂСЉС… РЅР° РҐСЉС„Рј. РґСЉСЂРІРѕ РёРјР° 0 РёР»Рё 2 РЅР°СЃР»РµРґРЅРёРєР° */
       code[index] = '\0';
       printf("%c = %s\n",t->sym,code);
     }
@@ -135,7 +135,7 @@ void writeCodes(struct tree *t, unsigned index) /* Извежда кодовете */
 int main(void) {
   initModel(MSG);
   huffman();
-  printf("Дърво на Хъфман за %s:\n",MSG);
+  printf("Р”СЉСЂРІРѕ РЅР° РҐСЉС„РјР°РЅ Р·Р° %s:\n",MSG);
   printTree(forest[1].root,0);
   writeCodes(forest[1].root,0);
   return 0;

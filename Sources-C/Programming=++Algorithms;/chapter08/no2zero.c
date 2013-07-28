@@ -1,9 +1,9 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #define MAX         100
 #define NOT_SOLVED  (unsigned long)(-1)
 
-unsigned long F[MAX];   /* Целева функция */
-unsigned long pow[MAX]; /* Степените на k */
+unsigned long F[MAX];   /* Р¦РµР»РµРІР° С„СѓРЅРєС†РёСЏ */
+unsigned long pow[MAX]; /* РЎС‚РµРїРµРЅРёС‚Рµ РЅР° k */
 
 const unsigned n = 10;
 const unsigned k = 7;

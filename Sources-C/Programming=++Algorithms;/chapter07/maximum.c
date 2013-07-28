@@ -1,24 +1,24 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 #define MAX 100
 
 int m[MAX];
 
-const unsigned n = 100; /* Брой елементи в масива */
+const unsigned n = 100; /* Р‘СЂРѕР№ РµР»РµРјРµРЅС‚Рё РІ РјР°СЃРёРІР° */
 
-void init(int m[], unsigned n) /* Запълва масива със случайни числа */
+void init(int m[], unsigned n) /* Р—Р°РїСЉР»РІР° РјР°СЃРёРІР° СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅРё С‡РёСЃР»Р° */
 { unsigned i;
   for (i = 0; i < n; i++)
     m[i] = rand() % (2*n + 1);
 }
 
-void print(int m[], unsigned n) /* Извежда масива на екрана */
+void print(int m[], unsigned n) /* РР·РІРµР¶РґР° РјР°СЃРёРІР° РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   for (i = 0; i < n; i++)
     printf("%8d", m[i]);
 }
 
-int findMax(int m[], unsigned n) /* Намира максималния елемент */
+int findMax(int m[], unsigned n) /* РќР°РјРёСЂР° РјР°РєСЃРёРјР°Р»РЅРёСЏ РµР»РµРјРµРЅС‚ */
 { unsigned i;
   int max;
   for (max = m[0], i = 1; i < n; i++)
@@ -27,7 +27,7 @@ int findMax(int m[], unsigned n) /* Намира максималния елемент */
   return max;
 }
 
-int findMin(int m[], unsigned n) /* Намира минималния елемент */
+int findMin(int m[], unsigned n) /* РќР°РјРёСЂР° РјРёРЅРёРјР°Р»РЅРёСЏ РµР»РµРјРµРЅС‚ */
 { unsigned i;
   int min;
   for (min = m[0], i = 1; i < n; i++)
@@ -37,7 +37,7 @@ int findMin(int m[], unsigned n) /* Намира минималния елемент */
 }
 
 void findMinMax(int *min, int *max, const int m[], const unsigned n)
-/* Намира едновременно максималния и минималния елементи */
+/* РќР°РјРёСЂР° РµРґРЅРѕРІСЂРµРјРµРЅРЅРѕ РјР°РєСЃРёРјР°Р»РЅРёСЏ Рё РјРёРЅРёРјР°Р»РЅРёСЏ РµР»РµРјРµРЅС‚Рё */
 { unsigned i, n2;
   for (*min = *max = m[n2 = n/2], i = 0; i < n2; i++)
     if (m[i] > m[n-i-1]) {
@@ -54,10 +54,10 @@ void findMinMax(int *min, int *max, const int m[], const unsigned n)
     }
 }
 
-void swap(int *el1, int *el2) /* Разменя стойностите на две променливи */
+void swap(int *el1, int *el2) /* Р Р°Р·РјРµРЅСЏ СЃС‚РѕР№РЅРѕСЃС‚РёС‚Рµ РЅР° РґРІРµ РїСЂРѕРјРµРЅР»РёРІРё */
 { int tmp = *el1; *el1 = *el2; *el2 = tmp; }
 
-int findSecondMax(int m[], unsigned n) /* Намира втория по големина елемент */
+int findSecondMax(int m[], unsigned n) /* РќР°РјРёСЂР° РІС‚РѕСЂРёСЏ РїРѕ РіРѕР»РµРјРёРЅР° РµР»РµРјРµРЅС‚ */
 { int x,y;
   unsigned i;
   x = m[0]; y = m[1];
@@ -73,11 +73,11 @@ int findSecondMax(int m[], unsigned n) /* Намира втория по големина елемент */
 int main(void) {
   int max, min;
   init(m,n);
-  printf("Масивът:\n"); print(m,n);
-  printf("Максимален елемент: %d\n", findMax(m,n));
-  printf("Минимален елемент: %d\n", findMin(m,n));
+  printf("РњР°СЃРёРІСЉС‚:\n"); print(m,n);
+  printf("РњР°РєСЃРёРјР°Р»РµРЅ РµР»РµРјРµРЅС‚: %d\n", findMax(m,n));
+  printf("РњРёРЅРёРјР°Р»РµРЅ РµР»РµРјРµРЅС‚: %d\n", findMin(m,n));
   findMinMax(&min, &max, m, n);
-  printf("Минимален и максимален елемент едновременно: %d %d\n", min, max);
-  printf("Втори по големина елемент: %d\n", findSecondMax(m,n));
+  printf("РњРёРЅРёРјР°Р»РµРЅ Рё РјР°РєСЃРёРјР°Р»РµРЅ РµР»РµРјРµРЅС‚ РµРґРЅРѕРІСЂРµРјРµРЅРЅРѕ: %d %d\n", min, max);
+  printf("Р’С‚РѕСЂРё РїРѕ РіРѕР»РµРјРёРЅР° РµР»РµРјРµРЅС‚: %d\n", findSecondMax(m,n));
   return 0;
 }

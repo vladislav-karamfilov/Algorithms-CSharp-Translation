@@ -1,4 +1,4 @@
-#include <assert.h>
+п»ї#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -12,7 +12,7 @@
 struct CElem {
   int key;
   /* .............
-     Някакви данни
+     РќСЏРєР°РєРІРё РґР°РЅРЅРё
      ............. */
 };
 
@@ -21,7 +21,7 @@ struct CList {
   struct CList *next;
 };
 
-void init(struct CElem m[], unsigned n) /* Запълва масива със случайни цели числа */
+void init(struct CElem m[], unsigned n) /* Р—Р°РїСЉР»РІР° РјР°СЃРёРІР° СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅРё С†РµР»Рё С‡РёСЃР»Р° */
 { unsigned i;
   srand(time(NULL));
   for (i = 0; i < n; i++)
@@ -29,26 +29,26 @@ void init(struct CElem m[], unsigned n) /* Запълва масива със случайни цели числ
 }
 
 void countSort(struct CElem m[], unsigned n)
-{ /* Сортира масив по метода на броенето. Внимание - неустойчив метод! */
+{ /* РЎРѕСЂС‚РёСЂР° РјР°СЃРёРІ РїРѕ РјРµС‚РѕРґР° РЅР° Р±СЂРѕРµРЅРµС‚Рѕ. Р’РЅРёРјР°РЅРёРµ - РЅРµСѓСЃС‚РѕР№С‡РёРІ РјРµС‚РѕРґ! */
   unsigned i,j;
   struct CList *lst[MAX_VALUE], *p;
 
-  /* 0. Начална инициализация */
+  /* 0. РќР°С‡Р°Р»РЅР° РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
   for (i = 0; i < MAX_VALUE; i++)
     lst[i] = NULL;
 
-  /* 1. Разпределяне на елементите по списъци */
+  /* 1. Р Р°Р·РїСЂРµРґРµР»СЏРЅРµ РЅР° РµР»РµРјРµРЅС‚РёС‚Рµ РїРѕ СЃРїРёСЃСЉС†Рё */
   for (j = 0; j < n; j++) {
-    /* 1.1. Проверка за ключа */
+    /* 1.1. РџСЂРѕРІРµСЂРєР° Р·Р° РєР»СЋС‡Р° */
     assert(m[j].key >= 0 && m[j].key < MAX_VALUE);
-    /* 1.2. Добавяне на елемента в началото на списъка */
+    /* 1.2. Р”РѕР±Р°РІСЏРЅРµ РЅР° РµР»РµРјРµРЅС‚Р° РІ РЅР°С‡Р°Р»РѕС‚Рѕ РЅР° СЃРїРёСЃСЉРєР° */
     p = (struct CList *) malloc(sizeof(struct CList));
     p->data = m[j];
     p->next = lst[m[j].key];
     lst[m[j].key] = p;
   }
 
-  /* 2. Извеждане на ключовете на сортираната последователност */
+  /* 2. РР·РІРµР¶РґР°РЅРµ РЅР° РєР»СЋС‡РѕРІРµС‚Рµ РЅР° СЃРѕСЂС‚РёСЂР°РЅР°С‚Р° РїРѕСЃР»РµРґРѕРІР°С‚РµР»РЅРѕСЃС‚ */
   for (i = j = 0; i < MAX_VALUE; i++)
      while (NULL != (p = lst[i])) {
 	   m[j++] = lst[i]->data;
@@ -57,7 +57,7 @@ void countSort(struct CElem m[], unsigned n)
      }
 }
 
-void print(struct CElem m[], unsigned n) /* Извежда ключовете на масива на екрана */
+void print(struct CElem m[], unsigned n) /* РР·РІРµР¶РґР° РєР»СЋС‡РѕРІРµС‚Рµ РЅР° РјР°СЃРёРІР° РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   for (i = 0; i < n; i++)
     printf("%8d", m[i].key);
@@ -65,13 +65,13 @@ void print(struct CElem m[], unsigned n) /* Извежда ключовете на масива на екран
 
 void check(const struct CElem m[], const struct CElem saveM[], unsigned n)
 { unsigned i, j;
-  char *found; /* третира се като масив от булев тип */
+  char *found; /* С‚СЂРµС‚РёСЂР° СЃРµ РєР°С‚Рѕ РјР°СЃРёРІ РѕС‚ Р±СѓР»РµРІ С‚РёРї */
 
-  /* 1. Проверка за наредба във възходящ ред */
+  /* 1. РџСЂРѕРІРµСЂРєР° Р·Р° РЅР°СЂРµРґР±Р° РІСЉРІ РІСЉР·С…РѕРґСЏС‰ СЂРµРґ */
   for (i = 0; i < n-1; i++)
     assert(m[i].key <= m[i+1].key);
 
-  /* 2. Проверка за пермутация на изходните елементи */
+  /* 2. РџСЂРѕРІРµСЂРєР° Р·Р° РїРµСЂРјСѓС‚Р°С†РёСЏ РЅР° РёР·С…РѕРґРЅРёС‚Рµ РµР»РµРјРµРЅС‚Рё */
   found = (char *) calloc(n,sizeof(*found));
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++)
@@ -79,7 +79,7 @@ void check(const struct CElem m[], const struct CElem saveM[], unsigned n)
         found[j] = 1;
         break;
       }
-    assert(j < n); /* Пропада, ако не е намерен съответен */
+    assert(j < n); /* РџСЂРѕРїР°РґР°, Р°РєРѕ РЅРµ Рµ РЅР°РјРµСЂРµРЅ СЃСЉРѕС‚РІРµС‚РµРЅ */
   }
 
   free(found);
@@ -89,13 +89,13 @@ int main(void) {
   struct CElem m[MAX], saveM[MAX];
   unsigned loopInd;
   for (loopInd = 1; loopInd <= TEST_LOOP_CNT; loopInd++) {
-    printf("\n<<<<< Тест %u >>>>>\n", loopInd);
+    printf("\n<<<<< РўРµСЃС‚ %u >>>>>\n", loopInd);
     init(m,MAX);
-    memcpy(saveM, m, sizeof(m)); /* Запазва се копие на масива */
-    printf("Масивът преди сортирането:\n");
+    memcpy(saveM, m, sizeof(m)); /* Р—Р°РїР°Р·РІР° СЃРµ РєРѕРїРёРµ РЅР° РјР°СЃРёРІР° */
+    printf("РњР°СЃРёРІСЉС‚ РїСЂРµРґРё СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
     print(m,MAX);
     countSort(m,MAX);
-    printf("Масивът след сортирането:\n");
+    printf("РњР°СЃРёРІСЉС‚ СЃР»РµРґ СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
     print(m,MAX);
     check(m,saveM,MAX);
   }

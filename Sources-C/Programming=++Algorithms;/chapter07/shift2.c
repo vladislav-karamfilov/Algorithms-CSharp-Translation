@@ -1,4 +1,4 @@
-#include <assert.h>
+п»ї#include <assert.h>
 #include <stdio.h>
 
 #define MAX 100
@@ -8,8 +8,8 @@ struct CElem {
   /* ... */
 } m[MAX];
 
-const unsigned n = 10; /* Брой елементи в масива */
-const unsigned k = 2;  /* Брой позицции на отместване */
+const unsigned n = 10; /* Р‘СЂРѕР№ РµР»РµРјРµРЅС‚Рё РІ РјР°СЃРёРІР° */
+const unsigned k = 2;  /* Р‘СЂРѕР№ РїРѕР·РёС†С†РёРё РЅР° РѕС‚РјРµСЃС‚РІР°РЅРµ */
 
 void init(void)
 { unsigned i;
@@ -18,7 +18,7 @@ void init(void)
 }
 
 void swap(unsigned a, unsigned b, unsigned l)
-{ /* Разменя местата на подмасивите m[a..a+l-1] и m[b..b+l-1] */
+{ /* Р Р°Р·РјРµРЅСЏ РјРµСЃС‚Р°С‚Р° РЅР° РїРѕРґРјР°СЃРёРІРёС‚Рµ m[a..a+l-1] Рё m[b..b+l-1] */
   unsigned i;
   struct CElem tmp;
   for (i = 0; i < l; i++) {
@@ -29,8 +29,8 @@ void swap(unsigned a, unsigned b, unsigned l)
 }
 
 void shiftLeft2(unsigned k)
-{ /* Измества масива m[] на k позиции наляво. 
-   * рекурсивен процес, реализиран итеративно } */
+{ /* РР·РјРµСЃС‚РІР° РјР°СЃРёРІР° m[] РЅР° k РїРѕР·РёС†РёРё РЅР°Р»СЏРІРѕ. 
+   * СЂРµРєСѓСЂСЃРёРІРµРЅ РїСЂРѕС†РµСЃ, СЂРµР°Р»РёР·РёСЂР°РЅ РёС‚РµСЂР°С‚РёРІРЅРѕ } */
   unsigned i, j, p;
   p = i = k;
   j = n - k;

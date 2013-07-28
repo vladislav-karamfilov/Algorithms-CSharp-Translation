@@ -1,13 +1,13 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define MAX 100
 #define NOT_CALCULATED 2
 
-unsigned char F[MAX][MAX]; /* Öåëåâà ôóíêöèÿ */
+unsigned char F[MAX][MAX]; /* Ð¦ÐµÐ»ÐµÐ²Ð° Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ */
 
-const char *s = "NNNNNNNNECINNxqpCDNNNNNwNNNtNNNNs"; /* Èçðå÷åíèå çà ïðîâåðêà */
-unsigned n; /* Äúëæèíà íà èçðå÷åíèåòî */
+const char *s = "NNNNNNNNECINNxqpCDNNNNNwNNNtNNNNs"; /* Ð˜Ð·Ñ€ÐµÑ‡ÐµÐ½Ð¸Ðµ Ð·Ð° Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° */
+unsigned n; /* Ð”ÑŠÐ»Ð¶Ð¸Ð½Ð° Ð½Ð° Ð¸Ð·Ñ€ÐµÑ‡ÐµÐ½Ð¸ÐµÑ‚Ð¾ */
 
 void init(void)
 { unsigned i, j;
@@ -22,7 +22,7 @@ unsigned char check(unsigned st, unsigned en)
   if (NOT_CALCULATED != F[st][en])
     return F[st][en];
   else {
-    /* Âìåñòî ñëåäâàùèòå 2 ðåäà */
+    /* Ð’Ð¼ÐµÑÑ‚Ð¾ ÑÐ»ÐµÐ´Ð²Ð°Ñ‰Ð¸Ñ‚Ðµ 2 Ñ€ÐµÐ´Ð° */
     if (st == en)
 	  F[st][en] = (s[st] >= 'p' && s[st] <= 'z');
     else if ('N' == s[st])
@@ -41,6 +41,6 @@ unsigned char check(unsigned st, unsigned en)
 
 int main(void) {
   init();
-  printf("\nÈçðå÷åíèåòî å %s", check(0, n - 1) ? "ïðàâèëíî!" : "ÍÅÏÐÀÂÈËÍÎ!!!");
+  printf("\nÐ˜Ð·Ñ€ÐµÑ‡ÐµÐ½Ð¸ÐµÑ‚Ð¾ Ðµ %s", check(0, n - 1) ? "Ð¿Ñ€Ð°Ð²Ð¸Ð»Ð½Ð¾!" : "ÐÐ•ÐŸÐ ÐÐ’Ð˜Ð›ÐÐž!!!");
   return 0;
 }

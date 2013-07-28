@@ -1,14 +1,14 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 
-struct list { /* Тип свързан списък */
+struct list { /* РўРёРї СЃРІСЉСЂР·Р°РЅ СЃРїРёСЃСЉРє */
   int value;
   struct list *next;
-} *empty; /* Празен елемент */
+} *empty; /* РџСЂР°Р·РµРЅ РµР»РµРјРµРЅС‚ */
 
 const unsigned long n = 100;
 
-struct list *generate(unsigned long n) { /* Генерира примерно множество */
+struct list *generate(unsigned long n) { /* Р“РµРЅРµСЂРёСЂР° РїСЂРёРјРµСЂРЅРѕ РјРЅРѕР¶РµСЃС‚РІРѕ */
   struct list *p, *q;
   unsigned long i;
   for (p = NULL, i = 0; i < n; i++) {
@@ -23,7 +23,7 @@ struct list *generate(unsigned long n) { /* Генерира примерно множество */
 struct list *merge(struct list *a, struct list *b)
 { struct list *head, *tail;
 
-  /* Предполага се, че и двата списъка съдържат поне по един елемент */
+  /* РџСЂРµРґРїРѕР»Р°РіР° СЃРµ, С‡Рµ Рё РґРІР°С‚Р° СЃРїРёСЃСЉРєР° СЃСЉРґСЉСЂР¶Р°С‚ РїРѕРЅРµ РїРѕ РµРґРёРЅ РµР»РµРјРµРЅС‚ */
   tail = head = empty;
   for (;;) {
     if (a->value < b->value) {
@@ -52,21 +52,21 @@ struct list *mergeSort(struct list *c, unsigned long n)
 { struct list *a, *b;
   unsigned long i, n2;
 
-  /* Ако списъкът съдържа само един елемент: не се прави нищо */
+  /* РђРєРѕ СЃРїРёСЃСЉРєСЉС‚ СЃСЉРґСЉСЂР¶Р° СЃР°РјРѕ РµРґРёРЅ РµР»РµРјРµРЅС‚: РЅРµ СЃРµ РїСЂР°РІРё РЅРёС‰Рѕ */
   if (n < 2)
 	return c;
 
-  /* Разделяне на списъка на две части */
+  /* Р Р°Р·РґРµР»СЏРЅРµ РЅР° СЃРїРёСЃСЉРєР° РЅР° РґРІРµ С‡Р°СЃС‚Рё */
   for (a = c, n2 = n / 2, i = 2; i <= n2; i++)
 	c = c->next;
   b = c->next;
   c->next = NULL;
 
-  /* Сортиране поотделно на двете части, последвано от сливане */
+  /* РЎРѕСЂС‚РёСЂР°РЅРµ РїРѕРѕС‚РґРµР»РЅРѕ РЅР° РґРІРµС‚Рµ С‡Р°СЃС‚Рё, РїРѕСЃР»РµРґРІР°РЅРѕ РѕС‚ СЃР»РёРІР°РЅРµ */
   return merge(mergeSort(a, n2), mergeSort(b, n - n2));
 }
 
-void printList(struct list *p) { /* Извежда списъка на екрана */
+void printList(struct list *p) { /* РР·РІРµР¶РґР° СЃРїРёСЃСЉРєР° РЅР° РµРєСЂР°РЅР° */
   for (; p != NULL; p = p->next)
     printf("%4d", p->value);
 }
@@ -75,8 +75,8 @@ int main(void) {
   struct list *l;
   empty = (struct list *) malloc(sizeof(struct list)); 
   l = generate(n);
-  printf("Преди сортирането:\n"); printList(l);
+  printf("РџСЂРµРґРё СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n"); printList(l);
   l = mergeSort(l,n);
-  printf("След сортирането:\n"); printList(l);
+  printf("РЎР»РµРґ СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n"); printList(l);
   return 0;
 }

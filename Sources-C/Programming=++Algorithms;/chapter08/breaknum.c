@@ -1,11 +1,11 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #define MAX 100
 
-unsigned long M[MAX][MAX];  /* Целева функция */
+unsigned long M[MAX][MAX];  /* Р¦РµР»РµРІР° С„СѓРЅРєС†РёСЏ */
 
 const unsigned n = 10;
 
-/* Намира броя на представянията на n като сума от естествени числа */
+/* РќР°РјРёСЂР° Р±СЂРѕСЏ РЅР° РїСЂРµРґСЃС‚Р°РІСЏРЅРёСЏС‚Р° РЅР° n РєР°С‚Рѕ СЃСѓРјР° РѕС‚ РµСЃС‚РµСЃС‚РІРµРЅРё С‡РёСЃР»Р° */
 unsigned long getNum(unsigned n)
 { unsigned i, j;
   for (i = 1; i <= n; i++)
@@ -25,7 +25,7 @@ unsigned long getNum(unsigned n)
 
 int main(void)
 { 
-  printf("Броят на представянията на %u като сума от естествени числа е: %lu",
+  printf("Р‘СЂРѕСЏС‚ РЅР° РїСЂРµРґСЃС‚Р°РІСЏРЅРёСЏС‚Р° РЅР° %u РєР°С‚Рѕ СЃСѓРјР° РѕС‚ РµСЃС‚РµСЃС‚РІРµРЅРё С‡РёСЃР»Р° Рµ: %lu",
          n, getNum(n));
   return 0;
 }

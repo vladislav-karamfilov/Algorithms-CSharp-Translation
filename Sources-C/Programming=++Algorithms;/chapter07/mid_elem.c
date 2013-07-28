@@ -1,21 +1,21 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 #define MAX 100
 int m[MAX];
 
-const unsigned n = 100; /* Брой елементи в масива */
-const unsigned k = 10;  /* Пореден номер на търсения елемент */
+const unsigned n = 100; /* Р‘СЂРѕР№ РµР»РµРјРµРЅС‚Рё РІ РјР°СЃРёРІР° */
+const unsigned k = 10;  /* РџРѕСЂРµРґРµРЅ РЅРѕРјРµСЂ РЅР° С‚СЉСЂСЃРµРЅРёСЏ РµР»РµРјРµРЅС‚ */
 
-void init(int m[], unsigned n) /* Запълва масива със случайни числа */
+void init(int m[], unsigned n) /* Р—Р°РїСЉР»РІР° РјР°СЃРёРІР° СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅРё С‡РёСЃР»Р° */
 { unsigned i;
   for (i = 0; i < n; i++)
     m[i] = rand() % (2*n+1);
 }
 
-void swap(int *el1, int *el2) /* Разменя стойностите на две променливи */
+void swap(int *el1, int *el2) /* Р Р°Р·РјРµРЅСЏ СЃС‚РѕР№РЅРѕСЃС‚РёС‚Рµ РЅР° РґРІРµ РїСЂРѕРјРµРЅР»РёРІРё */
 { int tmp = *el1; *el1 = *el2; *el2 = tmp; }
 
-void find(int m[], unsigned n, unsigned k) /* намира k-ия елемент */
+void find(int m[], unsigned n, unsigned k) /* РЅР°РјРёСЂР° k-РёСЏ РµР»РµРјРµРЅС‚ */
 { int i,j,l,r;
   int x;
   l = 0; r = n - 1;
@@ -37,7 +37,7 @@ void find(int m[], unsigned n, unsigned k) /* намира k-ия елемент */
   }
 }
 
-void print(int m[], unsigned n) /* Извежда масива на екрана */
+void print(int m[], unsigned n) /* РР·РІРµР¶РґР° РјР°СЃРёРІР° РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   for (i = 0; i < n; i++)
     printf("%8d", m[i]);
@@ -45,10 +45,10 @@ void print(int m[], unsigned n) /* Извежда масива на екрана */
 
 int main(void) {
   init(m,n);
-  printf("Масивът преди търсенето:"); print(m,n);
-  printf("\nТърсим k-ия елемент: k=%u", k);
+  printf("РњР°СЃРёРІСЉС‚ РїСЂРµРґРё С‚СЉСЂСЃРµРЅРµС‚Рѕ:"); print(m,n);
+  printf("\nРўСЉСЂСЃРёРј k-РёСЏ РµР»РµРјРµРЅС‚: k=%u", k);
   find(m,n,k);
-  printf("\nМасивът след търсенето:"); print(m,n);
-  printf("\nk-ият елемент е: %d", m[k]);
+  printf("\nРњР°СЃРёРІСЉС‚ СЃР»РµРґ С‚СЉСЂСЃРµРЅРµС‚Рѕ:"); print(m,n);
+  printf("\nk-РёСЏС‚ РµР»РµРјРµРЅС‚ Рµ: %d", m[k]);
   return 0;
 }

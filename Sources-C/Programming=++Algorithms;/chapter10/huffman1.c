@@ -1,35 +1,35 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 
 #define MAX 256
 #define MSG "afbabcdefacbabcdecde"
 
 struct tree {
-  char sym;                  /* Символ (буква) */
-  unsigned freq;             /* Честота на срещане на символа */
-  struct tree *left, *right; /* Ляв и десен наследници */
+  char sym;                  /* РЎРёРјРІРѕР» (Р±СѓРєРІР°) */
+  unsigned freq;             /* Р§РµСЃС‚РѕС‚Р° РЅР° СЃСЂРµС‰Р°РЅРµ РЅР° СЃРёРјРІРѕР»Р° */
+  struct tree *left, *right; /* Р›СЏРІ Рё РґРµСЃРµРЅ РЅР°СЃР»РµРґРЅРёС†Рё */
 };
  
 struct {
-  unsigned weight;           /* Тегло на дървото */
-  struct tree *root;         /* Родител */
-} forest[MAX];               /* Гора: масив от дървета */
+  unsigned weight;           /* РўРµРіР»Рѕ РЅР° РґСЉСЂРІРѕС‚Рѕ */
+  struct tree *root;         /* Р РѕРґРёС‚РµР» */
+} forest[MAX];               /* Р“РѕСЂР°: РјР°СЃРёРІ РѕС‚ РґСЉСЂРІРµС‚Р° */
 
-unsigned treeCnt;            /* Брой дървета в гората */
-char code[MAX];              /* Код на Хъфман за съответия символ */
+unsigned treeCnt;            /* Р‘СЂРѕР№ РґСЉСЂРІРµС‚Р° РІ РіРѕСЂР°С‚Р° */
+char code[MAX];              /* РљРѕРґ РЅР° РҐСЉС„РјР°РЅ Р·Р° СЃСЉРѕС‚РІРµС‚РёСЏ СЃРёРјРІРѕР» */
 
-void initModel(char *msg)    /* Намира честотата на срещане на символите */
+void initModel(char *msg)    /* РќР°РјРёСЂР° С‡РµСЃС‚РѕС‚Р°С‚Р° РЅР° СЃСЂРµС‰Р°РЅРµ РЅР° СЃРёРјРІРѕР»РёС‚Рµ */
 { char *c = msg;
-  unsigned freqs[MAX];       /* Честоти на срещане на символите */
+  unsigned freqs[MAX];       /* Р§РµСЃС‚РѕС‚Рё РЅР° СЃСЂРµС‰Р°РЅРµ РЅР° СЃРёРјРІРѕР»РёС‚Рµ */
   unsigned i;
 
-  /* Построяване на таблица на честотите на срещане */
+  /* РџРѕСЃС‚СЂРѕСЏРІР°РЅРµ РЅР° С‚Р°Р±Р»РёС†Р° РЅР° С‡РµСЃС‚РѕС‚РёС‚Рµ РЅР° СЃСЂРµС‰Р°РЅРµ */
   for (i = 0; i < MAX; i++)
     freqs[i] = 0;
   while (*c)
     freqs[(unsigned char) *c++]++;
 
-  /* За всеки символ с ненулева честота на срещане се създава тривиално дърво */
+  /* Р—Р° РІСЃРµРєРё СЃРёРјРІРѕР» СЃ РЅРµРЅСѓР»РµРІР° С‡РµСЃС‚РѕС‚Р° РЅР° СЃСЂРµС‰Р°РЅРµ СЃРµ СЃСЉР·РґР°РІР° С‚СЂРёРІРёР°Р»РЅРѕ РґСЉСЂРІРѕ */
   for (treeCnt = i = 0; i < MAX; i++)
     if (freqs[i]) {
       forest[treeCnt].weight = freqs[i];
@@ -42,7 +42,7 @@ void initModel(char *msg)    /* Намира честотата на срещане на символите */
 }
 
 void findMins(unsigned *min,
-              unsigned *secondMin) /* Намира двата най-редки елемента */
+              unsigned *secondMin) /* РќР°РјРёСЂР° РґРІР°С‚Р° РЅР°Р№-СЂРµРґРєРё РµР»РµРјРµРЅС‚Р° */
 { unsigned i;
   if (forest[0].weight <= forest[1].weight) {
     *min = 0;
@@ -66,21 +66,21 @@ void huffman(void)
   struct tree *t;
 
   while (treeCnt > 1) {
-    findMins(&i,&j);  /* Намиране на двата най-редки върха */
+    findMins(&i,&j);  /* РќР°РјРёСЂР°РЅРµ РЅР° РґРІР°С‚Р° РЅР°Р№-СЂРµРґРєРё РІСЉСЂС…Р° */
 
-    /* Създаване на нов възел - обединение на двата най-редки */
+    /* РЎСЉР·РґР°РІР°РЅРµ РЅР° РЅРѕРІ РІСЉР·РµР» - РѕР±РµРґРёРЅРµРЅРёРµ РЅР° РґРІР°С‚Р° РЅР°Р№-СЂРµРґРєРё */
     t = (struct tree *) malloc(sizeof(*t));
     t->left = forest[i].root;
     t->right = forest[j].root;
     t->freq = forest[i].weight += forest[j].weight;
     forest[i].root = t;
 
-    /* j-тото дърво не е нужно повече. Заместване с последното. */
+    /* j-С‚РѕС‚Рѕ РґСЉСЂРІРѕ РЅРµ Рµ РЅСѓР¶РЅРѕ РїРѕРІРµС‡Рµ. Р—Р°РјРµСЃС‚РІР°РЅРµ СЃ РїРѕСЃР»РµРґРЅРѕС‚Рѕ. */
     forest[j] = forest[--treeCnt];
   }
 }
 
-void printTree(struct tree *t, unsigned h) /* Извежда дървото на екрана */
+void printTree(struct tree *t, unsigned h) /* РР·РІРµР¶РґР° РґСЉСЂРІРѕС‚Рѕ РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   if (t) {
     printTree(t->left,h+1);
@@ -93,11 +93,11 @@ void printTree(struct tree *t, unsigned h) /* Извежда дървото на екрана */
     printTree(t->right,h+1); }
 }
 
-void writeCodes(struct tree *t, unsigned index) /* Извежда кодовете */
+void writeCodes(struct tree *t, unsigned index) /* РР·РІРµР¶РґР° РєРѕРґРѕРІРµС‚Рµ */
 { if (t) {
     code[index] = '0'; 
     writeCodes(t->left,index+1);
-    if (NULL == t->left) {/* Всеки връх на Хъфм. дърво има 0 или 2 наследника */
+    if (NULL == t->left) {/* Р’СЃРµРєРё РІСЂСЉС… РЅР° РҐСЉС„Рј. РґСЉСЂРІРѕ РёРјР° 0 РёР»Рё 2 РЅР°СЃР»РµРґРЅРёРєР° */
       code[index] = '\0';
       printf("%c = %s\n",t->sym,code);
     }
@@ -109,7 +109,7 @@ void writeCodes(struct tree *t, unsigned index) /* Извежда кодовете */
 int main(void) {
   initModel(MSG);
   huffman();
-  printf("Дърво на Хъфман за %s:\n",MSG);
+  printf("Р”СЉСЂРІРѕ РЅР° РҐСЉС„РјР°РЅ Р·Р° %s:\n",MSG);
   printTree(forest[0].root,0);
   writeCodes(forest[0].root,0);
   return 0;

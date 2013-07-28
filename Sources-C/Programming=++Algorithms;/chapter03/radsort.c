@@ -1,17 +1,17 @@
-#include <assert.h>
+п»ї#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 
 #define MAX     100
-#define BASE   16 /* Основа на бройната система */
+#define BASE   16 /* РћСЃРЅРѕРІР° РЅР° Р±СЂРѕР№РЅР°С‚Р° СЃРёСЃС‚РµРјР° */
 #define POW2    4 /* 16 = 1 << 4 */
-#define DIG_CNT 8 /* Брой цифри */
+#define DIG_CNT 8 /* Р‘СЂРѕР№ С†РёС„СЂРё */
 
 struct CElem {
   int key;
   /* .............
-     Някакви данни
+     РќСЏРєР°РєРІРё РґР°РЅРЅРё
      ............. */
 };
 
@@ -20,7 +20,7 @@ struct CList {
   struct CList *next;
 };
 
-struct CList *init(unsigned n) /* Запълва масива със случайни цели числа */
+struct CList *init(unsigned n) /* Р—Р°РїСЉР»РІР° РјР°СЃРёРІР° СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅРё С†РµР»Рё С‡РёСЃР»Р° */
 { struct CList *head, *p;
   unsigned i;
   srand(time(NULL));
@@ -35,43 +35,43 @@ struct CList *init(unsigned n) /* Запълва масива със случайни цели числа */
 }
 
 struct CList *radixSort(struct CList *head)
-{ struct { struct CList *st, *en; } mod[BASE]; /* Класове на еквивалентност */
+{ struct { struct CList *st, *en; } mod[BASE]; /* РљР»Р°СЃРѕРІРµ РЅР° РµРєРІРёРІР°Р»РµРЅС‚РЅРѕСЃС‚ */
   unsigned i, dig, mask, shrM;
 
-  /* 1. Инициализация */
+  /* 1. РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
   for (i = 0; i < BASE; i++)
     mod[i].st = (struct CList *) malloc(sizeof(struct CList));
 
-  /* 2. Сортиране */
+  /* 2. РЎРѕСЂС‚РёСЂР°РЅРµ */
   mask = BASE-1; shrM = 0;
   for (dig = 1; dig <= DIG_CNT; dig++) {
 
-    /* 2.1. Инициализация */
+    /* 2.1. РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
     for (i = 0; i < BASE; i++)
       mod[i].en = mod[i].st;
 
-    /* 2.2. Разпределяне елементите по списъци */
+    /* 2.2. Р Р°Р·РїСЂРµРґРµР»СЏРЅРµ РµР»РµРјРµРЅС‚РёС‚Рµ РїРѕ СЃРїРёСЃСЉС†Рё */
     while (NULL != head) {
-      /* 2.2.1. Намиране i-тата цифра в BASE-ичното представяне на числото */
+      /* 2.2.1. РќР°РјРёСЂР°РЅРµ i-С‚Р°С‚Р° С†РёС„СЂР° РІ BASE-РёС‡РЅРѕС‚Рѕ РїСЂРµРґСЃС‚Р°РІСЏРЅРµ РЅР° С‡РёСЃР»РѕС‚Рѕ */
       i = (head->data.key & mask) >> shrM;
-      /* 2.2.2. Включване числото в съответния списък */
+      /* 2.2.2. Р’РєР»СЋС‡РІР°РЅРµ С‡РёСЃР»РѕС‚Рѕ РІ СЃСЉРѕС‚РІРµС‚РЅРёСЏ СЃРїРёСЃСЉРє */
       mod[i].en->next = head;
       mod[i].en = mod[i].en->next;
 
       head = head->next;
     }
 
-    /* 2.3. Обединение на списъците */
+    /* 2.3. РћР±РµРґРёРЅРµРЅРёРµ РЅР° СЃРїРёСЃСЉС†РёС‚Рµ */
     mod[BASE-1].en->next = NULL;
     for (i = BASE - 1; i > 0; i--)
       mod[i-1].en->next = mod[i].st->next;
     head = mod[0].st->next;
 
-    /* 2.4. Изчисляваме новите маски */
+    /* 2.4. РР·С‡РёСЃР»СЏРІР°РјРµ РЅРѕРІРёС‚Рµ РјР°СЃРєРё */
     shrM += POW2; mask <<= POW2;
   }
 
-  /* 3. Освобождаване на паметта */
+  /* 3. РћСЃРІРѕР±РѕР¶РґР°РІР°РЅРµ РЅР° РїР°РјРµС‚С‚Р° */
   for (i = 0; i < BASE; i++)
     free(mod[i].st);
 
@@ -101,10 +101,10 @@ void clear(struct CList *head)
 int main(void) {
   struct CList *head;
   head = init(MAX);
-  printf("Масивът преди сортирането:\n");
+  printf("РњР°СЃРёРІСЉС‚ РїСЂРµРґРё СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
   print(head);
   head = radixSort(head);
-  printf("Масивът след сортирането:\n");
+  printf("РњР°СЃРёРІСЉС‚ СЃР»РµРґ СЃРѕСЂС‚РёСЂР°РЅРµС‚Рѕ:\n");
   print(head);
   check(head);
   clear(head);

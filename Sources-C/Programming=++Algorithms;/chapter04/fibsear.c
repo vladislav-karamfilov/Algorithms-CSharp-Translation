@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 
 #define MAX 100
@@ -9,13 +9,13 @@ struct CElem {
   int key;
   DataType data;
   /* ... */
-} m[MAX+1];        /* Масив от записи */
-unsigned n;        /* Брой елементи в масива */
-unsigned fib[MAX]; /* Числата на Фибоначи, ненадвишаващи n */
+} m[MAX+1];        /* РњР°СЃРёРІ РѕС‚ Р·Р°РїРёСЃРё */
+unsigned n;        /* Р‘СЂРѕР№ РµР»РµРјРµРЅС‚Рё РІ РјР°СЃРёРІР° */
+unsigned fib[MAX]; /* Р§РёСЃР»Р°С‚Р° РЅР° Р¤РёР±РѕРЅР°С‡Рё, РЅРµРЅР°РґРІРёС€Р°РІР°С‰Рё n */
 
-void fibInit(void) { n = 0; }                    /* Инициализация */
+void fibInit(void) { n = 0; }                    /* РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
 
-void sort(void)                                  /* Сортиране */
+void sort(void)                                  /* РЎРѕСЂС‚РёСЂР°РЅРµ */
 { unsigned i,j;
   for (i = 1; i < n; i++)
     for (j = i + 1; j <= n; j++)
@@ -26,7 +26,7 @@ void sort(void)                                  /* Сортиране */
       }
 }
 
-unsigned findFib(unsigned n)                    /* Намира числата на Фибоначи */ 
+unsigned findFib(unsigned n)                    /* РќР°РјРёСЂР° С‡РёСЃР»Р°С‚Р° РЅР° Р¤РёР±РѕРЅР°С‡Рё */ 
 { unsigned k;
   fib[0] = 0;
   fib[1] = 1;
@@ -37,7 +37,7 @@ unsigned findFib(unsigned n)                    /* Намира числата на Фибоначи */
   return 0;
 }
 
-unsigned fibSearch(int key)                      /* Извършва Фибоначиево търсене */
+unsigned fibSearch(int key)                      /* РР·РІСЉСЂС€РІР° Р¤РёР±РѕРЅР°С‡РёРµРІРѕ С‚СЉСЂСЃРµРЅРµ */
 { int p,q,r,k;
   k = findFib(n);
   p = fib[k-1];
@@ -70,12 +70,12 @@ unsigned fibSearch(int key)                      /* Извършва Фибоначиево търсене
   return NOT_FOUND;
 }
 	
-void fibInsert(int key, int data)               /* Добавяне на нов елемент */
+void fibInsert(int key, int data)               /* Р”РѕР±Р°РІСЏРЅРµ РЅР° РЅРѕРІ РµР»РµРјРµРЅС‚ */
 { m[++n].key = key;
   m[n].data = data;
 }
 
-void fibPrint(void)                             /* Извежда списъка на екрана */
+void fibPrint(void)                             /* РР·РІРµР¶РґР° СЃРїРёСЃСЉРєР° РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   char buf[9];
   for (i = 1; i <= n; i++) {
@@ -87,11 +87,11 @@ void fibPrint(void)                             /* Извежда списъка на екрана */
 void performSearchTest(void)
 { unsigned ind, elem2Search;
   for (elem2Search = 0; elem2Search < 2*MAX; elem2Search++) {
-    printf("Търсим елемент с ключ %u.\n", elem2Search);
+    printf("РўСЉСЂСЃРёРј РµР»РµРјРµРЅС‚ СЃ РєР»СЋС‡ %u.\n", elem2Search);
     if (NOT_FOUND == (ind = fibSearch(elem2Search)))
-      printf("%s","Елемент с такъв ключ не съществува!\n");
+      printf("%s","Р•Р»РµРјРµРЅС‚ СЃ С‚Р°РєСЉРІ РєР»СЋС‡ РЅРµ СЃСЉС‰РµСЃС‚РІСѓРІР°!\n");
     else
-      printf("%Елементът е намерен! Стойност на инф. част: %d\n", m[ind].data);
+      printf("%Р•Р»РµРјРµРЅС‚СЉС‚ Рµ РЅР°РјРµСЂРµРЅ! РЎС‚РѕР№РЅРѕСЃС‚ РЅР° РёРЅС„. С‡Р°СЃС‚: %d\n", m[ind].data);
   }
 }
 
@@ -101,8 +101,8 @@ int main(void) {
   for (ind = 0; ind < MAX; ind++)
     fibInsert(rand() % (MAX*2), ind);
   sort();
-  printf("Списъкът съдържа следните елементи: \n"); fibPrint();
-  printf("\nТестване:\n");
+  printf("РЎРїРёСЃСЉРєСЉС‚ СЃСЉРґСЉСЂР¶Р° СЃР»РµРґРЅРёС‚Рµ РµР»РµРјРµРЅС‚Рё: \n"); fibPrint();
+  printf("\nРўРµСЃС‚РІР°РЅРµ:\n");
   performSearchTest();
   return 0;
 }

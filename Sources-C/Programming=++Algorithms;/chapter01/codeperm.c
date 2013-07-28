@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 
 #define MAXN 100
 
@@ -40,8 +40,8 @@ void decodePerm(unsigned long num, unsigned n, unsigned perm[])
 
 int main(void) {
   unsigned i;
-  printf("Дадената пермутация се кодира като %lu \n", codePerm(n, perm));
-  printf("Декодираме пермутацията отговаряща на числото %lu: ", code);
+  printf("Р”Р°РґРµРЅР°С‚Р° РїРµСЂРјСѓС‚Р°С†РёСЏ СЃРµ РєРѕРґРёСЂР° РєР°С‚Рѕ %lu \n", codePerm(n, perm));
+  printf("Р”РµРєРѕРґРёСЂР°РјРµ РїРµСЂРјСѓС‚Р°С†РёСЏС‚Р° РѕС‚РіРѕРІР°СЂСЏС‰Р° РЅР° С‡РёСЃР»РѕС‚Рѕ %lu: ", code);
   decodePerm(code, n, perm);
   for (i = 0; i < n; i++) printf("%u ", perm[i]);
   printf("\n");

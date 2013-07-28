@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #define MAX 100
 
@@ -10,15 +10,15 @@ struct CElem {
   /* ... */
 } *head;
 
-void listInit(void) { head = NULL; } /* Èíèöèàëèçàöèÿ */
+void listInit(void) { head = NULL; } /* Ð˜Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ */
 
-void listInsert(int key, DataType data) /* Äîáàâÿ íîâ åëåìåíò */
+void listInsert(int key, DataType data) /* Ð”Ð¾Ð±Ð°Ð²Ñ Ð½Ð¾Ð² ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ */
 { struct CElem *q = (struct CElem *) malloc(sizeof *head);
   q->key = key; q->data = data;
   q->next = head; head = q;
 }
 
-struct CElem *listSearch(int key) /* Ïîñëåäîâàòåëíî òúðñåíå ñ ïðåïîäðåæäàíå */
+struct CElem *listSearch(int key) /* ÐŸÐ¾ÑÐ»ÐµÐ´Ð¾Ð²Ð°Ñ‚ÐµÐ»Ð½Ð¾ Ñ‚ÑŠÑ€ÑÐµÐ½Ðµ Ñ Ð¿Ñ€ÐµÐ¿Ð¾Ð´Ñ€ÐµÐ¶Ð´Ð°Ð½Ðµ */
 { struct CElem *q, *p = head;
   if (NULL == head)
     return NULL;
@@ -36,7 +36,7 @@ struct CElem *listSearch(int key) /* Ïîñëåäîâàòåëíî òúðñåíå ñ ïðåïîäðåæäàíå */
   return NULL;
 }
 
-void listPrint(void) /* Èçâåæäà ñïèñúêà íà åêðàíà */
+void listPrint(void) /* Ð˜Ð·Ð²ÐµÐ¶Ð´Ð° ÑÐ¿Ð¸ÑÑŠÐºÐ° Ð½Ð° ÐµÐºÑ€Ð°Ð½Ð° */
 { struct CElem *q;
   char buf[9];
   for (q = head; q != NULL; q = q->next) {
@@ -50,11 +50,11 @@ void performSearchTest(void)
   struct CElem *p;
 
   for (elem2Search = 0; elem2Search < 2*MAX; elem2Search++) {
-    printf("Òúðñèì åëåìåíò ñ êëþ÷ %u.\n", elem2Search);
+    printf("Ð¢ÑŠÑ€ÑÐ¸Ð¼ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ñ ÐºÐ»ÑŽÑ‡ %u.\n", elem2Search);
     if (NULL == (p = listSearch(elem2Search)))
-      printf("%s","Åëåìåíò ñ òàêúâ êëþ÷ íå ñúùåñòâóâà!\n");
+      printf("%s","Ð•Ð»ÐµÐ¼ÐµÐ½Ñ‚ Ñ Ñ‚Ð°ÐºÑŠÐ² ÐºÐ»ÑŽÑ‡ Ð½Ðµ ÑÑŠÑ‰ÐµÑÑ‚Ð²ÑƒÐ²Ð°!\n");
     else
-      printf("%Åëåìåíòúò å íàìåðåí! Ñòîéíîñò íà èíô. ÷àñò: %d\n", p->data);
+      printf("%Ð•Ð»ÐµÐ¼ÐµÐ½Ñ‚ÑŠÑ‚ Ðµ Ð½Ð°Ð¼ÐµÑ€ÐµÐ½! Ð¡Ñ‚Ð¾Ð¹Ð½Ð¾ÑÑ‚ Ð½Ð° Ð¸Ð½Ñ„. Ñ‡Ð°ÑÑ‚: %d\n", p->data);
   }
 }
 
@@ -63,9 +63,9 @@ int main(void) {
   listInit();
   for (ind = 0; ind < MAX; ind++)
     listInsert(rand() % (MAX*2), ind);
-  printf("Ñïèñúêúò ñúäúðæà ñëåäíèòå åëåìåíòè: \n"); listPrint();
-  printf("\nÒåñòâàíå:\n");
+  printf("Ð¡Ð¿Ð¸ÑÑŠÐºÑŠÑ‚ ÑÑŠÐ´ÑŠÑ€Ð¶Ð° ÑÐ»ÐµÐ´Ð½Ð¸Ñ‚Ðµ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¸: \n"); listPrint();
+  printf("\nÐ¢ÐµÑÑ‚Ð²Ð°Ð½Ðµ:\n");
   performSearchTest();
-  printf("Ñïèñúêúò ñëåä òúðñåíåòî: \n"); listPrint();
+  printf("Ð¡Ð¿Ð¸ÑÑŠÐºÑŠÑ‚ ÑÐ»ÐµÐ´ Ñ‚ÑŠÑ€ÑÐµÐ½ÐµÑ‚Ð¾: \n"); listPrint();
   return 0;
 }

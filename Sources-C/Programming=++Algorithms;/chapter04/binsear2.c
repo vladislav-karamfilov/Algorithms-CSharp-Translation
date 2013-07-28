@@ -1,4 +1,4 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 
 #define MAX 100
@@ -9,12 +9,12 @@ struct CElem {
   int key;
   DataType data;
   /* ... */
-} m[MAX];   /* Масив от записи */
-unsigned n; /* Брой елементи в масива */
+} m[MAX];   /* РњР°СЃРёРІ РѕС‚ Р·Р°РїРёСЃРё */
+unsigned n; /* Р‘СЂРѕР№ РµР»РµРјРµРЅС‚Рё РІ РјР°СЃРёРІР° */
 
-void binInit(void) { n = 0; }                    /* Инициализация */
+void binInit(void) { n = 0; }                    /* РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ */
 
-void sort(void)                                  /* Сортиране */
+void sort(void)                                  /* РЎРѕСЂС‚РёСЂР°РЅРµ */
 { unsigned i,j;
   for (i = 0; i < n-1; i++)
     for (j = i + 1; j < n; j++)
@@ -31,7 +31,7 @@ unsigned getMaxPower2(unsigned k)
   return pow2 >> 1;
 }
 	
-unsigned binSearch(int key)                      /* Извършва двоично търсене */
+unsigned binSearch(int key)                      /* РР·РІСЉСЂС€РІР° РґРІРѕРёС‡РЅРѕ С‚СЉСЂСЃРµРЅРµ */
 { unsigned i, l, ind;
   i = getMaxPower2(n);
   l = m[i].key >= key ? 0 : n - i + 1;
@@ -46,12 +46,12 @@ unsigned binSearch(int key)                      /* Извършва двоично търсене */
   return NOT_FOUND;
 }
 	
-void binInsert(int key, int data)               /* Добавяне на нов елемент */
+void binInsert(int key, int data)               /* Р”РѕР±Р°РІСЏРЅРµ РЅР° РЅРѕРІ РµР»РµРјРµРЅС‚ */
 { m[n].key = key;
   m[n++].data = data;
 }
 
-void binPrint(void)                             /* Извежда списъка на екрана */
+void binPrint(void)                             /* РР·РІРµР¶РґР° СЃРїРёСЃСЉРєР° РЅР° РµРєСЂР°РЅР° */
 { unsigned i;
   char buf[9];
   for (i = 0; i < n; i++) {
@@ -63,11 +63,11 @@ void binPrint(void)                             /* Извежда списъка на екрана */
 void performSearchTest(void)
 { unsigned ind, elem2Search;
   for (elem2Search = 0; elem2Search < 2*MAX; elem2Search++) {
-    printf("Търсим елемент с ключ %u.\n", elem2Search);
+    printf("РўСЉСЂСЃРёРј РµР»РµРјРµРЅС‚ СЃ РєР»СЋС‡ %u.\n", elem2Search);
     if (NOT_FOUND == (ind = binSearch(elem2Search)))
-      printf("%s","Елемент с такъв ключ не съществува!\n");
+      printf("%s","Р•Р»РµРјРµРЅС‚ СЃ С‚Р°РєСЉРІ РєР»СЋС‡ РЅРµ СЃСЉС‰РµСЃС‚РІСѓРІР°!\n");
     else
-      printf("%Елементът е намерен! Стойност на инф. част: %d\n", m[ind].data);
+      printf("%Р•Р»РµРјРµРЅС‚СЉС‚ Рµ РЅР°РјРµСЂРµРЅ! РЎС‚РѕР№РЅРѕСЃС‚ РЅР° РёРЅС„. С‡Р°СЃС‚: %d\n", m[ind].data);
   }
 }
 
@@ -77,8 +77,8 @@ int main(void) {
   for (ind = 0; ind < MAX; ind++)
     binInsert(rand() % (MAX*2), ind);
   sort();
-  printf("Списъкът съдържа следните елементи: \n"); binPrint();
-  printf("\nТестване:\n");
+  printf("РЎРїРёСЃСЉРєСЉС‚ СЃСЉРґСЉСЂР¶Р° СЃР»РµРґРЅРёС‚Рµ РµР»РµРјРµРЅС‚Рё: \n"); binPrint();
+  printf("\nРўРµСЃС‚РІР°РЅРµ:\n");
   performSearchTest();
   return 0;
 }

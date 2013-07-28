@@ -1,10 +1,10 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <stdlib.h>
 
-const unsigned n = 127; /* проверява се дали даденото число n е просто */
-const unsigned k = 10;  /* брой опити на Монте Карло алгоритъма със случайна база a */
+const unsigned n = 127; /* РїСЂРѕРІРµСЂСЏРІР° СЃРµ РґР°Р»Рё РґР°РґРµРЅРѕС‚Рѕ С‡РёСЃР»Рѕ n Рµ РїСЂРѕСЃС‚Рѕ */
+const unsigned k = 10;  /* Р±СЂРѕР№ РѕРїРёС‚Рё РЅР° РњРѕРЅС‚Рµ РљР°СЂР»Рѕ Р°Р»РіРѕСЂРёС‚СЉРјР° СЃСЉСЃ СЃР»СѓС‡Р°Р№РЅР° Р±Р°Р·Р° a */
 
-/* пресмята a^t mod n; */
+/* РїСЂРµСЃРјСЏС‚Р° a^t mod n; */
 unsigned long bigmod(unsigned long a, unsigned long t, unsigned long n)
 { return (t == 1) ? (a % n) : (bigmod(a, t - 1, n) * (a % n)) % n;
 }
@@ -12,19 +12,19 @@ unsigned long bigmod(unsigned long a, unsigned long t, unsigned long n)
 char strongRandom(unsigned long n, unsigned long a)
 { unsigned long s = 1, t = n - 1, x, i;
 
-  /* частен случай */
+  /* С‡Р°СЃС‚РµРЅ СЃР»СѓС‡Р°Р№ */
   if (n < 2) return 0;
   if (n == 2) return 1;
 
-  /* стъпка 1) */
+  /* СЃС‚СЉРїРєР° 1) */
   while (t % 2 != 1) {
     s++;
     t /= 2;
   }
-  /* стъпка 2) x = a^t mod n; */
+  /* СЃС‚СЉРїРєР° 2) x = a^t mod n; */
   x = bigmod(a, t, n);
   if (1 == x) return 1;
-  /* стъпка 3 */
+  /* СЃС‚СЉРїРєР° 3 */
   for (i = 0; i < s; i++) {
     if (x == n - 1) return 1;
     x = x * x % n;
@@ -42,6 +42,6 @@ char isPrime(unsigned long n)
 }
 
 int main(void) {
-  printf("Числото %d e %s.\n", n, (isPrime(n)) ? "просто" : "съставно");
+  printf("Р§РёСЃР»РѕС‚Рѕ %d e %s.\n", n, (isPrime(n)) ? "РїСЂРѕСЃС‚Рѕ" : "СЃСЉСЃС‚Р°РІРЅРѕ");
   return 0;
 }

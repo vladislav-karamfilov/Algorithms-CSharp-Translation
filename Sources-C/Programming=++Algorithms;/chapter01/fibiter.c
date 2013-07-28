@@ -1,4 +1,4 @@
-//n->const, FibIter -> fibIter
+﻿//n->const, FibIter -> fibIter
 #include <stdio.h>
 
 const unsigned n = 7;
