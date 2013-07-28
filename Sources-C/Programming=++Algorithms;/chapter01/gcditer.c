@@ -15,6 +15,5 @@ unsigned gcd(unsigned a, unsigned b)
 
 int main(void) {
   printf("NOD(%u,%u) = %u\n", a, b, gcd(a, b));
-  system("pause");
   return 0;
 }

@@ -1,7 +1,7 @@
 ﻿#include <stdio.h>
 
 /* Число, което ще се разлага */
-unsigned n = 520;
+unsigned n = 435;
 
 int main(void) {
   unsigned how, i, j;
@@ -18,6 +18,5 @@ int main(void) {
     for (j = 0; j < how; j++) printf("%u ", i);
   }
   printf("\n");
-  system("pause");
   return 0;
 }

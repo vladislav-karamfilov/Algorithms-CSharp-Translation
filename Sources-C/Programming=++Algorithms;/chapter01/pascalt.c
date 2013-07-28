@@ -3,8 +3,8 @@
 /* Максимален размер на триъгълника */
 #define MAXN 1000
 
-unsigned n = 368;
-unsigned k = 159;
+unsigned n = 7;
+unsigned k = 3;
 
 unsigned long lastLine[MAXN + 1];
 
@@ -17,6 +17,5 @@ int main(void) {
       lastLine[j] += lastLine[j - 1];
   }
   printf("C(%u,%u) = %lu\n", n, k, lastLine[k]);
-  system("pause");
   return 0;
 }

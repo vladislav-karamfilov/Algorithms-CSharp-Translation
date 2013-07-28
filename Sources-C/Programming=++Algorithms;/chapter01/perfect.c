@@ -34,7 +34,6 @@ void perfect(unsigned s, unsigned m)
 int main() {
   unsigned i;
   for (i = 1; i <= MN; i++) perfect(i, mPrimes[i - 1]);
-  system("pause");
   return 0;
 }
 

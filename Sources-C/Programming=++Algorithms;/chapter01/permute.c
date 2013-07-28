@@ -30,6 +30,5 @@ int main(void) {
   unsigned i;
   for (i = 0; i < n; i++) used[i] = 0;
   permute(0);
-  system("pause");
   return 0;
 }

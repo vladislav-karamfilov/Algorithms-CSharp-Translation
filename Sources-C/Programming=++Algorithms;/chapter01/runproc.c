@@ -29,7 +29,6 @@ void findPrimes(unsigned n)
 int main(void) {
   findPrimes(n);
   printf("\n");
-  system("pause");
   return 0;
 }
 
