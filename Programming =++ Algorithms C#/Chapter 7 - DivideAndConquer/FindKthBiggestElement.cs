@@ -15,7 +15,7 @@ class FindKElement
 
     static void HeapFindKthElement(int k) /* Търсене на k-ия елемент с пирамида */
     {
-        int n = array.Length;
+        int n = array.Length; /* Брой елементи в масива */
         int left, right;
         bool useMax = (k > n/2);
         if (useMax)
@@ -24,6 +24,7 @@ class FindKElement
         left = n/2;
         right = n - 1;
 
+        /* Построяване на пирамидата */
         while (left > 0)
         {
             left--;
@@ -33,6 +34,7 @@ class FindKElement
                 SiftMin(left, right);
         }
 
+        /* (k-1)-кратно премахване на минималния елемент */
         for (right = n - 1; right >= n - k; right--)
         {
             array[0] = array[right];
@@ -43,7 +45,7 @@ class FindKElement
         }
     }
 
-    static void SiftMax(int left, int right)
+    static void SiftMax(int left, int right) /* Отсява елем. от върха на пирамидата */
     {
         int i = left;
         int j = i + i + 1;
@@ -65,7 +67,7 @@ class FindKElement
         array[i] = x;
     }
 
-    static void SiftMin(int left, int right)
+    static void SiftMin(int left, int right) /* Отсява елем. от върха на пирамидата */
     {
         int i = left;
         int j = i + i + 1;
@@ -90,8 +92,10 @@ class FindKElement
     static void Main()
     {
         InitializeArray();
-        Console.WriteLine(string.Join(" ", array));
-        HeapFindKthElement(5);
-        Console.WriteLine(string.Join(" ", array[0]));
+        Console.WriteLine("Масивът: {0}", string.Join(" ", array));
+
+        int k = 5;
+        HeapFindKthElement(k); /* Пореден номер на търсения елемент */
+        Console.WriteLine("\n K-тия елемент е: {0}", string.Join(" ", array[0]));
     }
 }
