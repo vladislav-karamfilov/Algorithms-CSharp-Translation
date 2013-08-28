@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinAndMaxElement", "MinAndM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Majorant1", "Majorant1\Majorant1.csproj", "{9070F989-1434-4CCE-9513-0CBB7279A199}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Majorant2", "Majorant2\Majorant2.csproj", "{3141BF4F-50C3-47B7-9038-B1E823FBCFBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Majorant3", "Majorant3\Majorant3.csproj", "{872806FD-13B6-4329-A948-617AC4DD2154}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,14 @@ Global
 		{9070F989-1434-4CCE-9513-0CBB7279A199}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9070F989-1434-4CCE-9513-0CBB7279A199}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9070F989-1434-4CCE-9513-0CBB7279A199}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3141BF4F-50C3-47B7-9038-B1E823FBCFBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3141BF4F-50C3-47B7-9038-B1E823FBCFBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3141BF4F-50C3-47B7-9038-B1E823FBCFBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3141BF4F-50C3-47B7-9038-B1E823FBCFBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{872806FD-13B6-4329-A948-617AC4DD2154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{872806FD-13B6-4329-A948-617AC4DD2154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{872806FD-13B6-4329-A948-617AC4DD2154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{872806FD-13B6-4329-A948-617AC4DD2154}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
