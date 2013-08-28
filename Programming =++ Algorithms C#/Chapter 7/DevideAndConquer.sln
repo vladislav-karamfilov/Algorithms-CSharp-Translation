@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddleFindKthElement2", "Mi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinAndMaxElement", "MinAndMaxElement\MinAndMaxElement.csproj", "{D35340AF-9B9E-49D4-9518-A7A8D0B24D8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Majorant1", "Majorant1\Majorant1.csproj", "{9070F989-1434-4CCE-9513-0CBB7279A199}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{D35340AF-9B9E-49D4-9518-A7A8D0B24D8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D35340AF-9B9E-49D4-9518-A7A8D0B24D8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D35340AF-9B9E-49D4-9518-A7A8D0B24D8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9070F989-1434-4CCE-9513-0CBB7279A199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9070F989-1434-4CCE-9513-0CBB7279A199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9070F989-1434-4CCE-9513-0CBB7279A199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9070F989-1434-4CCE-9513-0CBB7279A199}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
