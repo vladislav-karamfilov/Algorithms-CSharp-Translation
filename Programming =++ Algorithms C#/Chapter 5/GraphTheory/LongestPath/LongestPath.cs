@@ -16,7 +16,6 @@ class LongestPath
         { 0, 0, 20, 0, 0, 0 }
     };
 
-    // maybe list...
     static readonly int[] MaximalDistances = new int[VerticesCount];
     static readonly int[] SavePath = new int[VerticesCount];
 
