@@ -58,6 +58,6 @@ class MinimalHamiltonianCycle
         Console.Write("Минимален Хамилтонов цикъл: 1");
         for (int i = 0; i < VerticesCount; i++)
             Console.Write(" {0}", MinimalCycle[i] + 1);
-        Console.WriteLine(" с дължина {0}", minSum);
+        Console.WriteLine(" с дължина {0}.", minSum);
     }
 }
