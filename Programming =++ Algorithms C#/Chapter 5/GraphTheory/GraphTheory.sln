@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphComponents", "GraphCom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerticesBase", "VerticesBase\VerticesBase.csproj", "{6C29EA4A-2679-4D4A-B08A-2F8242E96444}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinimalHamiltonianCycle", "MinimalHamiltonianCycle\MinimalHamiltonianCycle.csproj", "{B47230A5-2320-4751-A4BE-3ABEFED030B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FordFulkersonAlgorithm", "FordFulkersonAlgorithm\FordFulkersonAlgorithm.csproj", "{EA0E7AB4-1ADD-4DA3-8DA1-8A9202811007}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,14 @@ Global
 		{6C29EA4A-2679-4D4A-B08A-2F8242E96444}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C29EA4A-2679-4D4A-B08A-2F8242E96444}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C29EA4A-2679-4D4A-B08A-2F8242E96444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B47230A5-2320-4751-A4BE-3ABEFED030B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B47230A5-2320-4751-A4BE-3ABEFED030B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B47230A5-2320-4751-A4BE-3ABEFED030B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B47230A5-2320-4751-A4BE-3ABEFED030B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA0E7AB4-1ADD-4DA3-8DA1-8A9202811007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA0E7AB4-1ADD-4DA3-8DA1-8A9202811007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA0E7AB4-1ADD-4DA3-8DA1-8A9202811007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA0E7AB4-1ADD-4DA3-8DA1-8A9202811007}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
