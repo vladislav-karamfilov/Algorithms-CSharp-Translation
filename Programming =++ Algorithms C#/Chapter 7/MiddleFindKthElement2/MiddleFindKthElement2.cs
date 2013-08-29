@@ -45,7 +45,7 @@ class MiddleFindKthElement2
     {
         int i = left - 1;
         int x = array[right];
-        for (int j = 0; j < right; j++)
+        for (int j = left; j <= right; j++)
         {
             if (array[j] <= x)
             {
@@ -67,5 +67,6 @@ class MiddleFindKthElement2
         InitializeArray(array);
         PrintArray(array);
         FindKthElement(0, n - 1, k);
+        PrintArray(array);
     }
 }
