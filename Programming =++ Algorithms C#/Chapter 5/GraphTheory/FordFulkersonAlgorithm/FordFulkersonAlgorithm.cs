@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 class FordFulkersonAlgorithm
 {
@@ -40,7 +39,6 @@ class FordFulkersonAlgorithm
             for (int j = 0; j < VerticesCount; j++) Console.Write("{0,4}", FlowGraph[i, j]);
             Console.WriteLine();
         }
-        Console.WriteLine();
 
         int flow = 0;
         for (int i = 0; i < VerticesCount; i++) flow += FlowGraph[i, EndVertex - 1];
