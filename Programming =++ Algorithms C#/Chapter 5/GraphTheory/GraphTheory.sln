@@ -43,6 +43,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KruskalAlgorithm", "Kruskal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimAlgorithm", "PrimAlgorithm\PrimAlgorithm.csproj", "{454733A7-21A5-438E-829B-931864543335}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StronglyConnectedComponents", "StronglyConnectedComponents\StronglyConnectedComponents.csproj", "{2132306D-2BD9-40BF-948C-9188417E3AFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximalIndependentSets", "MaximalIndependentSets\MaximalIndependentSets.csproj", "{92617229-AB3D-43B8-A3F0-6C0989C5DCE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +133,14 @@ Global
 		{454733A7-21A5-438E-829B-931864543335}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{454733A7-21A5-438E-829B-931864543335}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{454733A7-21A5-438E-829B-931864543335}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2132306D-2BD9-40BF-948C-9188417E3AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2132306D-2BD9-40BF-948C-9188417E3AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2132306D-2BD9-40BF-948C-9188417E3AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2132306D-2BD9-40BF-948C-9188417E3AFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92617229-AB3D-43B8-A3F0-6C0989C5DCE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92617229-AB3D-43B8-A3F0-6C0989C5DCE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92617229-AB3D-43B8-A3F0-6C0989C5DCE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92617229-AB3D-43B8-A3F0-6C0989C5DCE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
