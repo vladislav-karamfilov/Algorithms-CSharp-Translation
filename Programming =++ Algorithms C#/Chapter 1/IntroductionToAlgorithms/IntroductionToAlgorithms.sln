@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.20617.1 PREVIEW
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitsCountOfANumber", "DigitsCountOfANumber\DigitsCountOfANumber.csproj", "{9A3AF3B0-CFD6-4FA0-9D7D-321F0AEA8506}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SumOfFirstNNaturalNumbers", "SumOfFirstNNaturalNumbers\SumOfFirstNNaturalNumbers.csproj", "{2FF11C23-06E8-480E-AED6-BDB66D147D0E}"
@@ -38,6 +36,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MersennePrimeNumbersFinder", "MersennePrimeNumbersFinder\MersennePrimeNumbersFinder.csproj", "{8CF9BD47-503F-406A-B2F4-083C97ADBF28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PascalTriangle", "PascalTriangle\PascalTriangle.csproj", "{E026F904-CDBC-42D0-96AB-675EC437A1EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinomialCoefficientCalculator", "BinomialCoefficientCalculator\BinomialCoefficientCalculator.csproj", "{3F617055-36F7-4294-97E9-7C52E86785FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +117,10 @@ Global
 		{E026F904-CDBC-42D0-96AB-675EC437A1EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E026F904-CDBC-42D0-96AB-675EC437A1EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E026F904-CDBC-42D0-96AB-675EC437A1EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F617055-36F7-4294-97E9-7C52E86785FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F617055-36F7-4294-97E9-7C52E86785FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F617055-36F7-4294-97E9-7C52E86785FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F617055-36F7-4294-97E9-7C52E86785FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
