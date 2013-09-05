@@ -72,7 +72,6 @@ namespace Majorant4
 
         static void Main()
         {
-            
             int[] array = { 1, 4, 2, 3, 4, 2, 6, 5, 4, 4, 4, 4, 4 };
             int majority = 0;
             FindMajority(array, out majority);
