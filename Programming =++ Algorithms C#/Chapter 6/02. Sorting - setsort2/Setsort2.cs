@@ -2,102 +2,87 @@
 
 class Setsort2
 {
-    const int MAX = 100;
-    const int FACTOR = 5;
-    const int MAX_VALUE = (MAX * FACTOR);
-    const uint NO_INDEX = (uint)(-1);
+    const int Max = 100;
+    const int Factor = 5;
+    const int MaxValue = (Max * Factor);
+    const int NOIndex = int.MinValue;
 
     struct CElem
     {
-        public int key;
+        public int Key;
         /* .............
         Някакви данни
         ............. */
     };
 
-    void init(CElem m[], unsigned n) /* Запълва масива със случайни цели числа */
-            {
-                unsigned i;
-
-                /* 1. Запълване със случайни стойности в нарастващ ред */
-                srand(time(NULL));
-                m[0].key = rand() % FACTOR;
-                for (i = 1; i < n; i++)
-                    m[i].key = 1 + m[i - 1].key + rand() % FACTOR;
-
-                /* 2. Разменяме елементи */
-                for (i = 1; i < n; i++)
-                {
-                    unsigned ind1, ind2;
-                    struct CElem tmp;
-
-                    /* 2.1. Избиране на два случайни индекса */
-                    ind1 = rand() % n;
-                    ind2 = rand() % n;
-
-                    /* 2.2. Разменяме ги */
-                    tmp = m[ind1];
-                    m[ind1] = m[ind2];
-                    m[ind2] = tmp;
-                }
-            }
-
-    void print(struct
-        CElem m
-        [], unsigned n) /* Извежда ключовете на масива на екрана */
-            {
-                unsigned i;
-                for (i = 0; i < n; i++)
-                    printf("%8d", m[i].key);
-            }
-
-    void do4Elem(const
-        CElem e)
-            {
-                printf("%8d", e.key);
-            }
-
-    void setSort(struct
-        CElem m
-        [], unsigned n) /* Сортира масив с използване на множество */
-            {
-                unsigned indSet
-                [MAX_VALUE
-                ]; /* Индексно множество */
-                unsigned i,j;
-
-                /* 0. Инициализиране на множеството */
-                for (i = 0; i < MAX_VALUE; i++)
-                    indSet[i] = NO_INDEX;
-
-                /* 1. Формиране на множеството */
-                for (j = 0; j < n; j++)
-                {
-                    assert(m[j].key >= 0 && m[j].key < MAX_VALUE);
-                    assert(NO_INDEX == indSet[m[j].key]);
-                    indSet[m[j].key] = j;
-                }
-
-                /* 2. Генериране на сортирана последователност */
-                for (i = j = 0; i < MAX_VALUE; i++)
-                    if (NO_INDEX != indSet[i])
-                        do4Elem(m[indSet[i]]);
-            }
-
-    int main(void)
+    static void Init(CElem[] array, uint n) /* Запълва масива със случайни цели числа */
     {
-        struct CElem m
-        [MAX
-        ];
-        init(m, MAX);
-        printf("Масивът преди сортирането:\n");
-        print(m, MAX);
-        printf("Масивът след сортирането:\n");
-        setSort(m, MAX);
-        return 0;
+        /* 1. Запълване със случайни стойности в нарастващ ред */
+        Random rand = new Random();
+        array[0].Key = rand.Next() % Factor;
+        for (int i = 1; i < n; i++)
+            array[i].Key = 1 + array[i - 1].Key + rand.Next() % Factor;
+
+        /* 2. Разменяме елементи */
+        for (int i = 1; i < n; i++)
+        {
+            long index1, index2;
+            CElem tmp;
+
+            /* 2.1. Избиране на два случайни индекса */
+            index1 = rand.Next() % n;
+            index2 = rand.Next() % n;
+
+            /* 2.2. Разменяме ги */
+            tmp = array[index1];
+            array[index1] = array[index2];
+            array[index2] = tmp;
+        }
+    }
+
+    static void Print(CElem[] array, uint n) /* Извежда ключовете на масива на екрана */
+    {
+        for (int i = 0; i < n; i++)
+            Console.Write("{0,4}", array[i].Key);
+        Console.WriteLine();
+    }
+
+    static void Do4Elem(CElem e)
+    {
+        Console.Write("{0,4}", e.Key);
+    }
+
+    static void SetSort(CElem[] array, uint n) /* Сортира масив с използване на множество */
+    {
+        int[] indexSet = new int[MaxValue]; /* Индексно множество */
+
+        /* 0. Инициализиране на множеството */
+        for (int i = 0; i < MaxValue; i++)
+            indexSet[i] = NOIndex;
+
+        /* 1. Формиране на множеството */
+        for (int j = 0; j < n; j++)
+        {
+            if ((array[j].Key >= 0 && array[j].Key < MaxValue) == false ||
+                (NOIndex == indexSet[array[j].Key]) == false)
+                Environment.Exit(0);
+            indexSet[array[j].Key] = j;
+        }
+
+        /* 2. Генериране на сортирана последователност */
+        for (int i = 0; i < MaxValue; i++)
+            if (NOIndex != indexSet[i])
+                Do4Elem(array[indexSet[i]]);
     }
 
     static void Main(string[] args)
     {
+        CElem[] m = new CElem[Max];
+        Init(m, Max);
+        Console.WriteLine("Масивът преди сортирането:");
+        Print(m, Max);
+        Console.WriteLine("Масивът след сортирането:");
+        SetSort(m, Max);
+        Console.WriteLine();
     }
 }
