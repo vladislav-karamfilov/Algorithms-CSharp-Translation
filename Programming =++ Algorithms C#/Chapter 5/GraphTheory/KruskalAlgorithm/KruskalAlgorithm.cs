@@ -39,7 +39,7 @@ class KruskalAlgorithm
 
     static void Main()
     {
-        for (int i = 0; i < VerticesCount + 1; i++) Previous[i] = -1;
+        for (int i = 0; i < VerticesCount + 1; i++) Previous[i] = NoParent;
         FindMinSpanningTree();
     }
 

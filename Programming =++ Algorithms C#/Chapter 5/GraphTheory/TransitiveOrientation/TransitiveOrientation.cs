@@ -65,13 +65,9 @@ class TransitiveOrientation
             {
                 flag = false;
                 for (int i = 0; i < VerticesCount; i++)
-                {
                     for (int j = 0; j < VerticesCount; j++)
-                    {
                         if (Graph[i, j] == 2)
-                        {
                             for (int k = 0; k < VerticesCount; k++)
-                            {
                                 if (i != k && j != k)
                                 {
                                     if (Graph[i, k] == 0 || Graph[i, k] < -2) // случай 2.1)
@@ -100,10 +96,6 @@ class TransitiveOrientation
                                         }
                                     }
                                 }
-                            }
-                        }
-                    }
-                }
             } while (flag);
 
             // Стъпка 3 – изключваме ориентираните ребра от графа

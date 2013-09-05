@@ -41,7 +41,7 @@ class FloydAlgorithm
 
     static void InitializeGraph()
     {
-        // Стойностите 0 се променят на uint.MaxValue
+        // Стойностите 0 се променят на MaxValue
         for (int i = 0; i < VerticesCount; i++)
             for (int j = 0; j < VerticesCount; j++)
                 if (Graph[i, j] == 0) Graph[i, j] = MaxValue;

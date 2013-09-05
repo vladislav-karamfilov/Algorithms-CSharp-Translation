@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 class FullTopologicalSorter
 {
@@ -35,7 +34,6 @@ class FullTopologicalSorter
 
         // Намира всички върхове без предшественик
         for (int i = 0; i < VerticesCount; i++)
-        {
             if (!Used[i])
             {
                 int j = 0;
@@ -51,12 +49,11 @@ class FullTopologicalSorter
 
                     Used[i] = true;
                     TopologicalSort[count] = i;
-                    FullTopologicalSort(count + 1); // рекурсия
+                    FullTopologicalSort(count + 1); // Рекурсия
                     Used[i] = false;
                     for (int k = 0; k < VerticesCount; k++) Graph[i, k] = saved[k];
                 }
             }
-        }
     }
 
     static void PrintSort()
