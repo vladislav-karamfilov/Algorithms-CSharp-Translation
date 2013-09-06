@@ -16,9 +16,9 @@ class Program
   static int LCS_Length()
   { /* Начална инициализация */
     for (int i = 1; i <= m; i++)
-  	f[i,0] = 0;
+  	  f[i,0] = 0;
     for (int j = 0; j <= n; j++)
-  	f[0,j] = 0;
+  	  f[0,j] = 0;
     /* Основен цикъл */
     for (int i = 1; i <= m; i++) {
       for (int j = 1; j <= n; j++) {

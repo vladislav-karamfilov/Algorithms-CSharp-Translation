@@ -20,9 +20,9 @@ class Program
         while (l < r - 1) {
           int med = (l + r) / 2;
           if (LNS[med] <= x[i])
-  		  l = med;
+  		    l = med;
           else
-  		  r = med;
+  		    r = med;
         }
         LNS[r] = x[i];
       }

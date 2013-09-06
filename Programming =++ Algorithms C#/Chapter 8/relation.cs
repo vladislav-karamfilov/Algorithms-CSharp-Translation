@@ -16,19 +16,19 @@ class Program
   static bool Can(int i, int j, int ch)
   { int c1, c2, pos;
     if (table[i,j,ch] != NOT_CALCULATED)
-  	return table[i,j,ch].Value; /* Вече сметнато */
+      return table[i,j,ch].Value; /* Вече сметнато */
     if (i == j)
-  	return s[i] == (ch + 'a');
+      return s[i] == (ch + 'a');
     for (c1 = 0; c1 < LETTS; c1++)
       for (c2 = 0; c2 < LETTS; c2++)
         if (rel[c1,c2] == ch + 'a')
           for (pos = i; pos <= j - 1; pos++)
             if (Can(i, pos, c1))
-  			if (Can(pos + 1, j, c2)) {
-                table[i,j,ch] = true;
-                split[i,j] = pos;
-                return true;
-  			}
+              if (Can(pos + 1, j, c2)) {
+                      table[i,j,ch] = true;
+                      split[i,j] = pos;
+                      return true;
+              }
     table[i,j,ch] = false;
     return false;
   }
@@ -50,8 +50,8 @@ class Program
     int len = s.Length;
     
     if (Can(0, len - 1, 0))
-  	PutBrackets(0, len - 1);
+      PutBrackets(0, len - 1);
     else
-  	Console.Write("Няма решение");
+      Console.Write("Няма решение");
   }
 }

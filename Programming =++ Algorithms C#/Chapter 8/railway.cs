@@ -18,15 +18,17 @@ class Program
       for (i = cur - 1; i >= start && (dist[cur] - dist[i]) <= l1; i--);
       if (++i < cur)
         if ((price = Calc(i) + c1) < minPrice[cur])
-  		 minPrice[cur] = price;
+          minPrice[cur] = price;
       /* Търсим най-лявата гара и пресмятаме евентуалната цена, ако вземем билет тип 2 */
       for (; i >= start && (dist[cur] - dist[i]) <= l2; i--);
       if (++i < cur)
-        if ((price = Calc(i) + c2) < minPrice[cur]) minPrice[cur] = price;
+        if ((price = Calc(i) + c2) < minPrice[cur]) 
+          minPrice[cur] = price;
       /* Търсим най-лявата гара и пресмятаме евентуалната цена, ако вземем билет тип 3 */
       for (; i >= start && (dist[cur] - dist[i]) <= l3; i--);
       if (++i < cur)
-        if ((price = Calc(i) + c3) < minPrice[cur]) minPrice[cur] = price;
+        if ((price = Calc(i) + c3) < minPrice[cur]) 
+          minPrice[cur] = price;
     }
     return minPrice[cur];
   }
@@ -35,9 +37,9 @@ class Program
     /* Иницализация */
     int i;
     for (i = 0; i < start; i++)
-  	minPrice[i] = 0;
+      minPrice[i] = 0;
     for (; i < n; i++)
-  	minPrice[i] = NOT_CALCULATED;
+      minPrice[i] = NOT_CALCULATED;
     /* Решаване на задачата */
     start--;
     Console.WriteLine("Минимална цена: {0}", Calc(end-1));

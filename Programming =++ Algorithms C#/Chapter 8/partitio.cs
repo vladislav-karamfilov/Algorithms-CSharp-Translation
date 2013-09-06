@@ -13,31 +13,31 @@ class Program
   { p[0] = 0;
     /* Пресмятане на префиксните суми */
     for (int i = 1; i <= n; i++)
-  	p[i] = p[i - 1] + s[i];
+      p[i] = p[i - 1] + s[i];
     /* Установяване на граничните условия */
     for (int i = 1; i <= n; i++)
-  	F[i,1] = p[i];
+      F[i,1] = p[i];
     for (int j = 1; j <= k; j++)
-  	F[1,j] = s[1];
+      F[1,j] = s[1];
     /* Основен цикъл */
     for (int i = 2; i <= n; i++)
       for (int j = 2; j <= k; j++) {
-  	  F[i,j] = long.MaxValue;
+      F[i,j] = long.MaxValue;
         for (int l = 1; l <= i - 1; l++) {
-  	    long m = Math.Max(F[l,j - 1], p[i] - p[l]);
-   	    if (m < F[i,j]) {
+          long m = Math.Max(F[l,j - 1], p[i] - p[l]);
+          if (m < F[i,j]) {
             F[i,j] = m;
             b[i,j] = l;
           }
-  	  }
-  	}
+      }
+    }
     return F[n,k];
   }
   
   static void Print(long from, long to)
   { Console.Write("\n");
     for (long i = from; i <= to; i++)
-  	Console.Write("{0} ", s[i]);
+      Console.Write("{0} ", s[i]);
   }
   
   static void PrintPartition(long n, long k)

@@ -53,7 +53,7 @@ class Program
   static void ScheduleCargo()
   { for (int i = 0; i <= k; i++)
       for (int j = 0; j <= n; j++)
-  	  f[i,j] = int.MaxValue;
+      f[i,j] = int.MaxValue;
     f[k - 1,n] = MaxIncome(k - 1, n);
   }
   
@@ -67,11 +67,11 @@ class Program
         Console.WriteLine("В град {0} продайте количество {1}.", k+1, amount[k,n]);
         n -= amount[k,n];
       }
-  	if (k-- == 0)
-  	  break;
+    if (k-- == 0)
+      break;
     }
     if (n > 0)
-  	Console.WriteLine("Остава стока: {0}", n);
+    Console.WriteLine("Остава стока: {0}", n);
   }
   
   static void Main()

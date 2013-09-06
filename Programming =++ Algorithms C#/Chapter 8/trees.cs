@@ -56,7 +56,7 @@ class Program
           || ((max1[i].Len + max2[n-i+1].Len == bestLen)
               && (max1[i].Sum + max2[n-i+1].Sum > bestSum))) {
         bestLen = max1[i].Len + max2[n-i+1].Len;
-        bestSum = max1[i].Sum + max2[n-i+1].Sum; /* Must be decreased by 1 */
+        bestSum = max1[i].Sum + max2[n-i+1].Sum; /* Трябва да се намали с 1 */
         top = i;
       }
     }

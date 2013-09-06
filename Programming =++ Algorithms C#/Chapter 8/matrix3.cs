@@ -18,9 +18,9 @@ class Program
   static void Solve()
   { /* Инициализация */
     for (int i = 0; i < order.Length; ++i)
-        order[i] = new Order();
+      order[i] = new Order();
     for (int i = 1; i <= n; i++)
-  	m[i,i] = 0; 
+  	  m[i,i] = 0; 
     /* Основен цикъл */
     for (int j = 1; j <= n; j++) {            
       for (int i = 1; i <= n - j; i++) {
@@ -54,7 +54,7 @@ class Program
   { Console.Write("Матрица на минимумите :");
     for (int i = 1; i <= n; i++) {
       for (int j = 1; j <= n; j++)
-  	   Console.Write("{0,8}", m[i,j]);
+  	    Console.Write("{0,8}", m[i,j]);
       Console.WriteLine();
     }
   }

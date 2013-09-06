@@ -17,7 +17,7 @@ class Program
         r[k] *
         r[j];
       if (q < m[i,j])
-  	  m[i,j] = q;
+  	    m[i,j] = q;
     }
   
     return m[i,j];

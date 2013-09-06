@@ -10,9 +10,9 @@ class Program
   static int LNS_Length()
   { /* Начална инициализация */
     for (int i = 0; i <= n; i++) {
-      for (int j = 1; j <= n; j++)
-  	  LNS[i,j] = int.MaxValue;
       LNS[i,0] = -1;
+      for (int j = 1; j <= n; j++)
+  	    LNS[i,j] = int.MaxValue;
     }
   
     /* Основен цикъл */
@@ -23,11 +23,11 @@ class Program
             x[i] <= LNS[i - 1,j] && 
             LNS[i - 1,j - 1] <= LNS[i - 1,j]) {
           LNS[i,j] = x[i];
-          if (r < j)
-  		  r = j;
+            if (r < j)
+  		      r = j;
         }
         else
-  		LNS[i,j] = LNS[i - 1,j];
+  		  LNS[i,j] = LNS[i - 1,j];
       }
     }
   
@@ -39,10 +39,10 @@ class Program
   { int i = n;
     do {
       if (LNS[i,j] == LNS[i - 1,j])
-  	  i--;
+  	    i--;
       else {
         Console.Write("{0} ", x[i]);
-  	  j--;
+  	    j--;
       }
     } while (i > 0);
   }

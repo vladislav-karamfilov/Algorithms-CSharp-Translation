@@ -3,9 +3,6 @@ class Program
 { const int COST_DELETE = 1;
   const int COST_INSERT = 2;
   
-  
-  
-  
   static string s1 = "_abracadabra";  /* Изходен низ (първият символ няма значение) */
   static string s2 = "_mabragabra";   /* Низ-цел (първият символ няма значение) */
   static int n1 = s1.Length - 1;                /* Дължина на първия низ */

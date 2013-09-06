@@ -14,7 +14,7 @@ class Program
       for (int k = i; k <= j - 1; k++) {
         long q = SolveMemo(i, k) + SolveMemo(k + 1, j) + r[i-1] * r[k] * r[j];
         if (q < m[i,j])
-  		m[i,j] = q;
+  		  m[i,j] = q;
   	}
     }
     return m[i,j];
@@ -23,7 +23,7 @@ class Program
   static long SolveMemoization()
   { for (int i = 1; i <= n; i++)
       for (int j = i; j <= n; j++)
-  	  m[i,j] = NOT_SOLVED;
+  	    m[i,j] = NOT_SOLVED;
     return SolveMemo(1, n);
   }
   
