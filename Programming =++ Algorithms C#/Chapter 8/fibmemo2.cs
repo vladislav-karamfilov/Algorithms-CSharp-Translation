@@ -12,15 +12,16 @@ class fibmemo2
     {
         if (n < 2)
             memo[n] = 1;
-        else if (0 == memo[n])
-            if (1 == n % 2)
+        else if (memo[n] == 0)
+            if (n % 2 == 1)
                 memo[n] = FibMemo(n - 1) + FibMemo(n - 2);
             else
-                memo[n] = Square(FibMemo(n / 2)) + Square(FibMemo(n / 2 - 1));
+                memo[n] = GetSquare(FibMemo(n / 2)) + GetSquare(FibMemo(n / 2 - 1));
+
         return memo[n];
     }
 
-    static int Square(int num)
+    static int GetSquare(int num)
     {
         int square = (int)Math.Pow(num, 2);
         return square;

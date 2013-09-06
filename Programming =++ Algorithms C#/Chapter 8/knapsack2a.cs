@@ -14,7 +14,7 @@ class knapsack2a
     static readonly int[] values = new int[] { 0, 5, 3, 9, 1, 2, 7, 1, 12 }; /* Стойности */
 
     /* Пресмята стойността на функцията за k */
-    static void F(int k)
+    static void CalculateFunction(int k)
     {
         int i, bestI, fnBest, fnCur;
         /* Пресмятане на най-голямата стойност на F */
@@ -23,7 +23,7 @@ class knapsack2a
             if (k >= weights[i])
             {
                 if (Fn[k - weights[i]] == NotCalculated)
-                    F(k - weights[i]);
+                    CalculateFunction(k - weights[i]);
                 if (!set[k - weights[i], i])
                     fnCur = values[i] + Fn[k - weights[i]];
                 else
@@ -96,6 +96,7 @@ class knapsack2a
         for (int i = 1; i <= N; i++)
             if (set[TotalCapacity, i])
                 Console.Write("{0} ", i);
+
         Console.WriteLine("\nМаксимална постигната стойност: {0}", Fn[TotalCapacity]);
     }
 

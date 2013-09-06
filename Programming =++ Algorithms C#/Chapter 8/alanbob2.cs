@@ -7,10 +7,10 @@ namespace Translations._2.brothers
         const int MaxObjects = 100; /* Максимален брой предмети */
         const int MaxValue = 200; /* Максимална стойност на отделен предмет */
         const int NotSet = -1;
+        const int N = 10; /* Общ брой на предметите за поделяне */
 
         static int[] lastAdded = new int[MaxObjects * MaxValue]; /* Кой предмет е бил добавен последен? */
-        static int[] objectValues = new int[] { 3, 2, 3, 2, 2, 77, 89, 23, 90, 11 };
-        const int n = 10; /* Общ брой на предметите за поделяне */
+        static readonly int[] objectValues = new int[] { 3, 2, 3, 2, 2, 77, 89, 23, 90, 11 };
 
         static void Solve()
         {
@@ -19,14 +19,14 @@ namespace Translations._2.brothers
             int i, j;
 
             /* Пресмятаме totalSum */
-            for (totalSum = i = 0; i < n; totalSum += objectValues[i++]);
+            for (totalSum = i = 0; i < N; totalSum += objectValues[i++]);
 
             /* Начално инициализиране */
             for (lastAdded[0] = 0, i = 1; i <= totalSum; i++)
                 lastAdded[i] = NotSet;
 
             /* Намиране на всевъзможните суми от стойности на подаръците */
-            for (i = 0; i < n; i++)
+            for (i = 0; i < N; i++)
             {
                 for (j = totalSum; j + 1 > 0; j--)
                     if (NotSet != lastAdded[j] && NotSet == lastAdded[j + objectValues[i]])

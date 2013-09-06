@@ -7,21 +7,19 @@ class knapsack3b
     const int M = 14;
     const int N = 9;
 
-    static int[,] F = new int[MaxN, MaxM];
-    static int[] weights = new int[] { 0, 6, 3, 10, 2, 4, 8, 1, 13, 3 };  /* Тегло на предметите */
-    static int[] values = new int[] { 0, 5, 3, 9, 1, 2, 7, 1, 12, 3 };   /* Цена на предметите */
+    static int[,] f = new int[MaxN, MaxM];
     static int[] set = new int[MaxN];
+    static readonly int[] weights = new int[] { 0, 6, 3, 10, 2, 4, 8, 1, 13, 3 };  /* Тегло на предметите */
+    static readonly int[] values = new int[] { 0, 5, 3, 9, 1, 2, 7, 1, 12, 3 };   /* Цена на предметите */
 
     static void Calculate()
     {
-        for (int j = 0; j <= M; j++)
-            F[0, j] = 0;
         for (int i = 1; i <= N; i++)
             for (int j = 0; j <= M; j++)
-                if (j >= weights[i] && F[i - 1, j] < F[i - 1, j - weights[i]] + values[i])
-                    F[i, j] = F[i - 1, j - weights[i]] + values[i];
+                if (j >= weights[i] && f[i - 1, j] < f[i - 1, j - weights[i]] + values[i])
+                    f[i, j] = f[i - 1, j - weights[i]] + values[i];
                 else
-                    F[i, j] = F[i - 1, j];
+                    f[i, j] = f[i - 1, j];
     }
 
     /* Извежда съдържанието на таблицата F[i, j] */
@@ -31,12 +29,12 @@ class knapsack3b
         {
             Console.WriteLine();
             for (int j = 0; j <= M; j++)
-                Console.Write("{0, 4}", F[i, j]);
+                Console.Write("{0, 4}", f[i, j]);
         }
         Console.WriteLine();
     }
 
-    static void PrintAll(int i, int j, int k)
+    static void PrintAllSolutions(int i, int j, int k)
     {
         /* Извежда ВСИЧКИ възможни множества от предмети, за които */
         /* се постига максимална стойност на целевата функция */
@@ -49,12 +47,12 @@ class knapsack3b
         }
         else
         {
-            if (F[i, j] == F[i - 1, j])
-                PrintAll(i - 1, j, k);
-            if (j >= weights[i] && F[i, j] == F[i - 1, j - weights[i]] + values[i])
+            if (f[i, j] == f[i - 1, j])
+                PrintAllSolutions(i - 1, j, k);
+            if (j >= weights[i] && f[i, j] == f[i - 1, j - weights[i]] + values[i])
             {
                 set[k] = i;
-                PrintAll(i - 1, j - weights[i], k + 1);
+                PrintAllSolutions(i - 1, j - weights[i], k + 1);
             }
         }
     }
@@ -66,8 +64,8 @@ class knapsack3b
         Calculate();
         Console.Write("Таблица F[i, j]: ");
         PrintTable();
-        Console.WriteLine("Максимална постигната стойност: {0}", F[N, M]);
+        Console.WriteLine("Максимална постигната стойност: {0}", f[N, M]);
         Console.WriteLine("Следват всевъзможните множества от решения:");
-        PrintAll(N, M, 0);
+        PrintAllSolutions(N, M, 0);
     }
 }

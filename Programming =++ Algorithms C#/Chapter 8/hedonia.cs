@@ -4,43 +4,44 @@ class hedonia
 {
     const int Max = 100;
     const int NotCalculated = 2;
+    const string CheckString = "NNNNNNNNECINNxqpCDNNNNNwNNNtNNNNs"; /* Изречение за проверка */
 
-    static int[,] values = new int[Max, Max]; /* Целева функция */
-    static readonly string checkString = "NNNNNNNNECINNxqpCDNNNNNwNNNtNNNNs"; /* Изречение за проверка */
+
+    static int[,] f = new int[Max, Max]; /* Целева функция */
     static int n; /* Дължина на изречението */
 
     static void Init()
     {
-        n = checkString.Length;
+        n = CheckString.Length;
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
-                values[i, j] = NotCalculated;
+                f[i, j] = NotCalculated;
     }
 
     static int Check(int start, int end)
     {
         int k;
-        if (values[start, end] != NotCalculated)
-            return values[start, end];
+        if (f[start, end] != NotCalculated)
+            return f[start, end];
         else
         {
             /* Вместо следващите 2 реда */
             if (start == end)
-                values[start, end] = (checkString[start] >= 'p' && checkString[start] <= 'z') ? 1 : 0;
-            else if ('N' == checkString[start])
-                values[start, end] = Check(start + 1, end);
-            else if ('C' == checkString[start] || 'D' == checkString[start] 
-                || 'E' == checkString[start] || 'I' == checkString[start])
+                f[start, end] = (CheckString[start] >= 'p' && CheckString[start] <= 'z') ? 1 : 0;
+            else if (CheckString[start] == 'N')
+                f[start, end] = Check(start + 1, end);
+            else if (CheckString[start] == 'C' || CheckString[start] == 'D' 
+                || CheckString[start] == 'E' || CheckString[start] == 'I')
             {
                 k = start + 1;
                 while (k < end && !(Check(start + 1, k) != 0 && Check(k + 1, end) != 0))
                     k++;
-                values[start, end] = (k != end) ? 1 : 0;
+                f[start, end] = (k != end) ? 1 : 0;
             }
             else
-                values[start, end] = 0;
+                f[start, end] = 0;
 
-            return values[start, end];
+            return f[start, end];
         }
     }
 

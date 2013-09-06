@@ -7,20 +7,18 @@ class knapsack3a
     const int TotalCapacity = 15;
     const int N = 6;
 
-    static int[,] F = new int[MaxN, MaxCapacity];
-    static int[] weights = new int[] { 0, 1, 2, 3, 5, 6, 7 }; /* Тегло на предметите */
-    static int[] values = new int[] { 0, 1, 10, 19, 22, 25, 30 }; /* Цена на предметите */
+    static int[,] f = new int[MaxN, MaxCapacity]; /* Таблица - целева функция */
+    static readonly int[] weights = new int[] { 0, 1, 2, 3, 5, 6, 7 }; /* Тегло на предметите */
+    static readonly int[] values = new int[] { 0, 1, 10, 19, 22, 25, 30 }; /* Цена на предметите */
 
     static void Calculate() /* Пресмята стойностите на целевата функция */
     {
-        for (int j = 0; j <= TotalCapacity; j++)
-            F[0, j] = 0;
         for (int i = 1; i <= N; i++)
             for (int j = 0; j <= TotalCapacity; j++)
-                if (j >= weights[i] && F[i - 1, j] < F[i - 1, j - weights[i]] + values[i])
-                    F[i, j] = F[i - 1, j - weights[i]] + values[i];
+                if (j >= weights[i] && f[i - 1, j] < f[i - 1, j - weights[i]] + values[i])
+                    f[i, j] = f[i - 1, j - weights[i]] + values[i];
                 else
-                    F[i, j] = F[i - 1, j];
+                    f[i, j] = f[i - 1, j];
     }
 
     /* Извежда съдържанието на таблицата F[i][j] */
@@ -30,7 +28,7 @@ class knapsack3a
         {
             Console.WriteLine();
             for (int j = 0; j <= TotalCapacity; j++)
-                Console.Write("{0, 4}", F[i, j]);
+                Console.Write("{0, 4}", f[i, j]);
         }
         Console.WriteLine();
     }
@@ -41,7 +39,7 @@ class knapsack3a
             j = TotalCapacity;
         while (j != 0)
         {
-            if (F[i, j] == F[i - 1, j])
+            if (f[i, j] == f[i - 1, j])
                 i--;
             else
             {
@@ -50,6 +48,7 @@ class knapsack3a
                 i--;
             }
         }
+
         Console.WriteLine();
     }
 
@@ -58,9 +57,9 @@ class knapsack3a
         Console.WriteLine("Брой предмети: {0}", N);
         Console.WriteLine("Максимално допустимо общо тегло: {0}\n", TotalCapacity);
         Calculate();
-        Console.Write("Таблица F[i, j]: ");
+        Console.Write("Таблица f[i, j]: ");
         PrintTable();
-        Console.WriteLine("Максимална постигната стойност: {0}", F[N, TotalCapacity]);
+        Console.WriteLine("Максимална постигната стойност: {0}", f[N, TotalCapacity]);
         Console.Write("Вземете предметите с номера: ");
         PrintSet();
     }

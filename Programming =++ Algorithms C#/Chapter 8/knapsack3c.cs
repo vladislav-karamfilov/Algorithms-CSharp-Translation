@@ -7,28 +7,28 @@ class knapsack3c
     const int TotalCapacity = 15; /* Обща вместимост на раницата */
     const int N = 6; /* Брой предмети */
 
-    static int[] weights = new int[] { 0, 1, 2, 3, 5, 6, 7 }; /* Тегло на предметите */
-    static int[] values = new int[] { 0, 1, 10, 19, 22, 25, 30 }; /* Стойност на предметите */
+    static readonly int[] weights = new int[] { 0, 1, 2, 3, 5, 6, 7 }; /* Тегло на предметите */
+    static readonly int[] values = new int[] { 0, 1, 10, 19, 22, 25, 30 }; /* Стойност на предметите */
 
     /* Пресмята стойностите на целевата функция */
     static int Calculate()
     {
-        int[] F = new int[MaxCapacity]; /* Целева функция */
-        int[] OldF = new int[MaxCapacity];
+        int[] f = new int[MaxCapacity]; /* Целева функция */
+        int[] oldF = new int[MaxCapacity];
 
-        for (int j = 0; j <= TotalCapacity; j++)
-            OldF[j] = 0;
         for (int i = 1; i <= N; i++)
         {
             for (int j = 0; j <= TotalCapacity; j++)
-                if (j >= weights[i] && OldF[j] < OldF[j - weights[i]] + values[i])
-                    F[j] = OldF[j - weights[i]] + values[i];
-                else F[j] = OldF[j];
+                if (j >= weights[i] && oldF[j] < oldF[j - weights[i]] + values[i])
+                    f[j] = oldF[j - weights[i]] + values[i];
+                else 
+                    f[j] = oldF[j];
+
             for (int k = 0; k < TotalCapacity; k++)
-                OldF[k] = F[k];
+                oldF[k] = f[k];
         }
 
-        return F[TotalCapacity];
+        return f[TotalCapacity];
     }
 
     static void Main()
