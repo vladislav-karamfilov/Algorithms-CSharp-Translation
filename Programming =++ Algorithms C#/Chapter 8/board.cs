@@ -5,7 +5,7 @@ class board
     const int Max = 100;
     const int N = 9; /* Брой накрайници */
 
-    static int[] values = new int[Max]; /* Целева функция */
+    static int[] f = new int[Max]; /* Целева функция */
     static int[] nextConductor = new int[Max]; 
     static int[] permutation = new int[] { 0, 9, 1, 3, 6, 2, 7, 5, 4, 8 }; /* Изх. пермутация */
 
@@ -14,16 +14,16 @@ class board
         /* Инициализиране */
         for (int i = 1; i <= N; i++)
         {
-            values[i] = 1;
+            f[i] = 1;
         }
 
         /* Основен цикъл */
         for (int k = N; k >= 1; k--)
             for (int i = k + 1; i <= N; i++)
                 if (permutation[k] < permutation[i])
-                    if (1 + values[i] > values[k])
+                    if (1 + f[i] > f[k])
                     {
-                        values[k] = 1 + values[i];
+                        f[k] = 1 + f[i];
                         nextConductor[k] = i;
                     }
     }
@@ -31,10 +31,10 @@ class board
     static void Print()
     {
         int i, max, index = 1;
-        for (max = values[index], i = 2; i <= N; i++)
-            if (values[i] > max)
+        for (max = f[index], i = 2; i <= N; i++)
+            if (f[i] > max)
             {
-                max = values[i];
+                max = f[i];
                 index = i;
             }
         Console.WriteLine("Максимален брой кабели: {0}", max);
@@ -43,6 +43,7 @@ class board
             Console.Write("{0} ", index);
             index = nextConductor[index];
         } while (index != 0);
+
         Console.WriteLine();
     }
 

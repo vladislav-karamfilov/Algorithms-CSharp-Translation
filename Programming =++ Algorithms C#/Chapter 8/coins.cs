@@ -41,12 +41,12 @@ class coins_problem
             sums[i].Num = MaxCoins;
             for (int j = 1; j <= N; j++)
             {
-                    if (CanJ(i, j))
-                        if ((sums[i - coins[j]].Num + 1) < sums[i].Num)
-                        {
-                            sums[i].Num = 1 + sums[i - coins[j]].Num;
-                            sums[i].Last = j;
-                        }
+                if (CanJ(i, j))
+                    if ((sums[i - coins[j]].Num + 1) < sums[i].Num)
+                    {
+                        sums[i].Num = 1 + sums[i - coins[j]].Num;
+                        sums[i].Last = j;
+                    }
             }
         }
     }

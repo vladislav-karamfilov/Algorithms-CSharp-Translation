@@ -9,9 +9,9 @@ class knapsack2b
     const int N = 8; /* Брой предмети */
 
     static int[,] set = new int[MaxCapacity, MaxN / 8];
-    static int[] Fn = new int[MaxCapacity];
-    static int[] weights = new int[] { 0, 30, 15, 50, 10, 20, 40, 5, 65 }; /* Тегла */
-    static int[] values = new int[] { 0, 5, 3, 9, 1, 2, 7, 1, 12 }; /* Стойности */
+    static int[] fn = new int[MaxCapacity];
+    static readonly int[] weights = new int[] { 0, 30, 15, 50, 10, 20, 40, 5, 65 }; /* Тегла */
+    static readonly int[] values = new int[] { 0, 5, 3, 9, 1, 2, 7, 1, 12 }; /* Стойности */
 
     static void Calculate()
     {
@@ -25,16 +25,16 @@ class knapsack2b
             for (int j = 1; j <= N; j++)
             {
                 if (weights[j] <= i && ((set[i - weights[j], j >> 3] & (1 << (j & 7))) == 0))
-                    if (values[j] + Fn[i - weights[j]] > maxValue)
+                    if (values[j] + fn[i - weights[j]] > maxValue)
                     {
-                        maxValue = values[j] + Fn[i - weights[j]];
+                        maxValue = values[j] + fn[i - weights[j]];
                         maxIndex = j;
                     }
             }
             if (maxIndex > 0)
             {
                 /* Има ли предмет с тегло по-малко от i? */
-                Fn[i] = maxValue;
+                fn[i] = maxValue;
                 /* Новото множество set[i] се получава от set[i-m[maxIndex]]
                 * чрез прибавяне на елемента maxIndex */
                 int count = (N >> 3) + 1;
@@ -45,9 +45,9 @@ class knapsack2b
 
                 set[i, maxIndex >> 3] |= 1 << (maxIndex & 7);
             }
-            if (Fn[i] < Fn[i - 1])
+            if (fn[i] < fn[i - 1])
             { /* Побират се всички предмети и още */
-                Fn[i] = Fn[i - 1];
+                fn[i] = fn[i - 1];
                 int count = (N >> 3) + 1;
                 for (int p = 0; p < count; p++)
                 {
@@ -61,8 +61,8 @@ class knapsack2b
         for (int i = 1; i <= N; i++)
             if ((set[TotalCapacity, i >> 3] & (1 << (i & 7))) != 0)
                 Console.Write("{0} ", i);
-        Console.WriteLine();
-        Console.WriteLine("Максимална постигната стойност: {0}", Fn[TotalCapacity]);
+
+        Console.WriteLine("\nМаксимална постигната стойност: {0}", fn[TotalCapacity]);
     }
 
     static void Main()

@@ -9,7 +9,7 @@ class knapsack1
     const int N = 8; /* Брой предмети */
 
     static bool[,] set = new bool[MaxCapacity, MaxN];
-    static int[] Fn = new int[MaxCapacity];
+    static int[] fn = new int[MaxCapacity]; /* Целева функция */
     static readonly int[] weights = new int[] { 0, 30, 15, 50, 10, 20, 40, 5, 65 }; /* Тегла */
     static readonly int[] values = new int[] { 0, 5, 3, 9, 1, 2, 7, 1, 12 }; /* Стойности */
 
@@ -22,10 +22,10 @@ class knapsack1
         {
             if (k >= weights[i])
             {
-                if (Fn[k - weights[i]] == NotCalculated)
+                if (fn[k - weights[i]] == NotCalculated)
                     CalculateFunction(k - weights[i]);
                 if (!set[k - weights[i], i])
-                    fnCur = values[i] + Fn[k - weights[i]];
+                    fnCur = values[i] + fn[k - weights[i]];
                 else
                     fnCur = 0;
                 if (fnCur > fnBest)
@@ -37,7 +37,7 @@ class knapsack1
         }
 
         /* Регистриране на най-голямата стойност на функцията */
-        Fn[k] = fnBest;
+        fn[k] = fnBest;
         if (bestI > 0)
         {
             for (int p = 0; p < N; p++)
@@ -55,13 +55,13 @@ class knapsack1
 
         /* Инициализиране */
         for (i = 0; i <= TotalCapacity; i++) /* Иниц. на целевата функция */
-            Fn[i] = NotCalculated;
+            fn[i] = NotCalculated;
 
         /* Дали не можем да вземем всички предмети? */
         for (sumM = weights[1], i = 2; i <= N; i++)
             sumM += weights[i];
 
-        if (TotalCapacity >= sumM)
+        if (sumM <= TotalCapacity)
         {
             Console.WriteLine("Можете да вземете всички предмети!");
             return;
@@ -69,13 +69,14 @@ class knapsack1
         else
         {
             CalculateFunction(TotalCapacity); /* Пресмятане на стойността */
+
             /* Отпечатване на резултата */
             Console.Write("Вземете предметите с номера: ");
             for (i = 1; i <= N; i++)
                 if (set[TotalCapacity, i])
                     Console.Write("{0} ", i);
-            System.Console.WriteLine();
-            Console.WriteLine("Максимална постигната стойност: {0}", Fn[TotalCapacity]);
+
+            Console.WriteLine("\nМаксимална постигната стойност: {0}", fn[TotalCapacity]);
         }
     }
 

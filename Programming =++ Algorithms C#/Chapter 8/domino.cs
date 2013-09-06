@@ -3,12 +3,12 @@
 class domino
 {
     const int Max = 100;
-    const int NumeralBase = 10; /* Основа на бройната система */
+    const int NumeralSystemBase = 10; /* Основа на бройната система */
     const int N = 17; /* Брой елементи в редицата */
 
     static int[] successors = new int[Max]; /* Наследници за всеки връх */
-    static int[] maxLengths = new int[NumeralBase]; /* F[i]: текуща макс. дължина на подредица за i */
-    static int[] startIndices = new int[NumeralBase]; /* ind[i]: индекс на началото на редицата за i */
+    static int[] maxLengths = new int[NumeralSystemBase]; /* F[i]: текуща макс. дължина на подредица за i */
+    static int[] startIndices = new int[NumeralSystemBase]; /* ind[i]: индекс на началото на редицата за i */
     static int[] sequence = new int[] {0, 72, 121, 1445, 178, 123, 3462, 762, 33434,
                     444, 472, 4, 272, 4657, 7243, 7326, 3432, 3465}; /* Редица */
 
@@ -17,17 +17,18 @@ class domino
     {
         int l, r;
 
-        for (int i = 0; i < NumeralBase; i++)
+        for (int i = 0; i < NumeralSystemBase; i++)
             maxLengths[i] = startIndices[i] = 0;
+
         /* Намиране дължините на редиците, започващи с цифрите от 0 до 9 */
         for (int i = N; i > 0; i--)
         {
             /* Определяне на най-старшата и най-младшата цифри на числото */
-            r = sequence[i] % NumeralBase;
+            r = sequence[i] % NumeralSystemBase;
             l = sequence[i];
 
-            while (l > NumeralBase)
-                l /= NumeralBase;
+            while (l > NumeralSystemBase)
+                l /= NumeralSystemBase;
 
             /* Актуализиране на редицата, започваща със старшата цифра */
             if (maxLengths[r] >= maxLengths[l])
@@ -43,7 +44,7 @@ class domino
     {
         int i, bestIndex = 0;
         /* Определяне на най-дългата редица */
-        for (i = 1; i < NumeralBase; i++) /* Никое число не започва с 0 */
+        for (i = 1; i < NumeralSystemBase; i++) /* Никое число не започва с 0 */
             if (maxLengths[i] > maxLengths[bestIndex])
                 bestIndex = i;
 

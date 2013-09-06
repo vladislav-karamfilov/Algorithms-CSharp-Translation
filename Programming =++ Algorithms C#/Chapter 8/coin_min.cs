@@ -22,7 +22,6 @@ class coin_min
     /* Намира броя на представянията на sum */
     static int Count(int sum, int max)
     {
-        int i;
         if (sum <= 0)
             return 0;
         if (values[sum, max] > 0)
@@ -33,10 +32,11 @@ class coin_min
                 max = sum;
             if (sum == max && exist[sum])   /* Съществува монета с такава стойност */
                 values[sum, max] = 1;
-            for (i = max; i > 0; i--)  /* Пресмятаме всички */
+            for (int i = max; i > 0; i--)  /* Пресмятаме всички */
                 if (exist[i])
                     values[sum, max] += Count(sum - i, i);
         }
+
         return values[sum, max];
     }
 

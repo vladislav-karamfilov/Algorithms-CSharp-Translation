@@ -5,7 +5,7 @@ class fibmatr
     const int N = 10;
 
     static int[,] matrE = new int[,] { { 1, 1 }, { 1, 0 } };    /* Изходна матрица */
-    static int[,] matrix = new int[2, 2];
+    static int[,] matrix = new int[2, 2];   /* Резултатна матрица */
     static int[,] helpMatrix = new int[2, 2];  /* Помощна матрица */
 
     static int sq12; /* Помощна променлива */
