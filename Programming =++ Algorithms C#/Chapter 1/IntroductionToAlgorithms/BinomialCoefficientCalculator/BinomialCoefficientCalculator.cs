@@ -3,45 +3,33 @@ using System.Collections.Generic;
 
 class BinomialCoefficientCalculator
 {
-    static uint n = 7;
-    static uint k = 3;
-    static int pN = 0;
-    static List<ulong> primes = new List<ulong>();
-    static List<ulong> counts = new List<ulong>();
+    static long n = 7;
+    static long k = 3;
+    static readonly List<long> Primes = new List<long>();
+    static readonly List<long> Counts = new List<long>();
 
-    static void Main()
+    static void Modify(long x, long how)
     {
-        Console.Write("C({0}, {1}) = ", n, k);
-        if (n - k < k) k = n - k;
-        Solve(n - k + 1, n, 1);
-        Solve(1, k, -1);
-        Console.WriteLine(CalculateBinomialCoefficient());
-    }
-
-    static void Modify(ulong x, long how)
-    {
-        for (int i = 0; i < pN; i++)
-        {
-            if (primes[i] == x)
+        for (int i = 0; i < Primes.Count; i++)
+            if (Primes[i] == x)
             {
-                counts[i] += (ulong)how;
+                Counts[i] += how;
                 return;
             }
 
-            counts[pN] = (ulong)how;
-            primes[pN++] = x;
-        }
+        Counts.Add(how);
+        Primes.Add(x);
     }
 
-    static void Solve(ulong start, ulong end, long inc)
+    static void Solve(long start, long end, long inc)
     {
-        for (ulong i = start; i <= end; i++)
+        for (long i = start; i <= end; i++)
         {
-            ulong multiplier = i;
-            ulong prime = 2;
+            long multiplier = i;
+            long prime = 2;
             while (multiplier != 1)
             {
-                uint how = 0;
+                int how = 0;
                 while (multiplier % prime == 0)
                 {
                     multiplier /= prime;
@@ -54,12 +42,22 @@ class BinomialCoefficientCalculator
         }
     }
 
-    static ulong CalculateBinomialCoefficient()
+    static long CalculateBinomialCoefficient()
     {
-        ulong result = 1;
-        for (int i = 0; i < pN; i++)
-            for (ulong j = 0; j < counts[i]; j++)
-                result *= primes[i];
+        long result = 1;
+        for (int i = 0; i < Primes.Count; i++)
+            for (long j = 0; j < Counts[i]; j++)
+                result *= Primes[i];
         return result;
     }
+
+    static void Main()
+    {
+        Console.Write("C({0}, {1}) = ", n, k);
+        if (n - k < k) k = n - k;
+        Solve(n - k + 1, n, 1); // Факторизира числителя (n – k + 1), ..., n
+        Solve(1, k, -1); // Факторизира знаменателя 1, ..., k
+        Console.WriteLine(CalculateBinomialCoefficient());
+    }
+
 }

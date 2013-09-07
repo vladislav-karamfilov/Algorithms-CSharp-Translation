@@ -1,5 +1,5 @@
 ﻿using System;
-// TODO: FIX IT!!!
+
 class MaximalIndependentSets
 {
     const int VerticesCount = 8;
@@ -48,7 +48,10 @@ class MaximalIndependentSets
                 FindMaxIndependentSets(i + 1); // Рекурсия
                 T[i] = 0; tN--;
                 for (int j = 0; j < VerticesCount; j++)
-                    if (S[j] == last + 1) { S[j] = 0; sN--; }
+                    if (S[j] == last + 1)
+                    {
+                        S[j] = 0; sN--;
+                    }
             }
     }
 
@@ -57,5 +60,4 @@ class MaximalIndependentSets
         Console.WriteLine("Всички максимални независими множества в графа са:");
         FindMaxIndependentSets(0);
     }
-
 }
