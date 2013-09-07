@@ -1,8 +1,8 @@
 ﻿using System;
 
-class Program
+class LinkeListExample
 {
-    private static Random random = new Random();
+    static Random random = new Random();
 
     static void Main()
     {

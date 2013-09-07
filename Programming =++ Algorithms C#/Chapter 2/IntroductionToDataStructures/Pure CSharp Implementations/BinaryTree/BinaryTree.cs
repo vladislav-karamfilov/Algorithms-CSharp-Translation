@@ -1,8 +1,8 @@
 ﻿using System;
 
-class Program
+class BinaryTreeExample
 {
-    private static Random random = new Random();
+    static Random random = new Random();
 
     static void Main()
     {

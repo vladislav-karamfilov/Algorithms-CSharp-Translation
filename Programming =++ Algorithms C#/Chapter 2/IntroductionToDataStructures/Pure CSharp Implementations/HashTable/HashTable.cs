@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-class Program
+class HashTableExample
 {
     static void Main()
     {
@@ -29,7 +29,7 @@ class Program
 
 // Можем да използваме имплементирания от нас свързан списък, но за по-голямо удобство
 // в тази имплементация на Хеш таблица ще се използва вградения в .NET
-public class HashTable<K, T>
+class HashTable<K, T>
 {
     private const int DefaultCapacity = 211;
 
