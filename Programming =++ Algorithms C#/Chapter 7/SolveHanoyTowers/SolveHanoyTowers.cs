@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolveHanoyTowers
 {
-    class Program
+    class SolveHanoyTowers
     {
         static void MoveDisk(int n, char a, char b)
         {
