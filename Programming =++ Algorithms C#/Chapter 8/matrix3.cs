@@ -23,8 +23,8 @@ class Program
         PrintMatrix();
         Console.WriteLine();
         PrintMultiplyPlan();
-        Console.Write("Ред на умножение на матриците: ");
         Console.WriteLine();
+        Console.Write("Ред на умножение на матриците: ");
         GetOrder(1, n);
     }
     
@@ -75,7 +75,7 @@ class Program
     
     static void PrintMatrix() /* Извежда матрицата на минимумите на екрана */
     {
-        Console.Write("Матрица на минимумите :");
+        Console.WriteLine("Матрица на минимумите:");
         for (int i = 1; i <= n; i++)
         {
             for (int j = 1; j <= n; j++)

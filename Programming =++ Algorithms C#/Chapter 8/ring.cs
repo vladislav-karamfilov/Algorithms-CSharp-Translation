@@ -11,11 +11,11 @@ class Program
         public int LenMax { get; set; }
     } 
     
-    static Goal[,] f = new Goal[n+1, n+1];    /* Целеви функции Fmin() и Fmax() */
     
     static long[] x = new long[] { 0, 9, -3, 8, 7, -8, 0, 7 }; /* Стойности на числата (без първото) */
-    static readonly int n = x.Length - 1;                      /* Брой числа */
     static char[] sign = new char[]{ ' ', '+', '*', '*', '-', '+', '*', '-' }; /* Знаци между тях */
+    static readonly int n = x.Length - 1;                      /* Брой числа */
+    static Goal[,] f = new Goal[n+1, n+1];    /* Целеви функции Fmin() и Fmax() */
     
     static void Main()
     {
@@ -30,7 +30,7 @@ class Program
         sign[0] = sign[n];
         for (int i = 1; i <= n; i++)
             for (int j = 1; j <= n; j++)
-            f[i, j].Min = int.MaxValue;
+                f[i, j].Min = int.MaxValue;
         /* Пресмятане на стойностите на целевата функция */
         for (int i = 1; i <= n; i++)
          Calculate(i, n);
@@ -109,6 +109,7 @@ class Program
         Console.WriteLine("Минимална стойност: {0}", f[minIndex, n].Min);
         PrintMinMax(minIndex, n, true);
         Console.WriteLine();
+        Console.WriteLine();
         Console.WriteLine("Максимална стойност: {0}", f[maxIndex, n].Max);
         PrintMinMax(maxIndex, n, false);
     }
@@ -118,20 +119,20 @@ class Program
     {
         int i, beg2;
         if (beg > n)
-         beg -= n;
+            beg -= n;
         if (1 == len)
             Console.Write(x[beg]);
         else {
             if (len < n)
-            Console.Write("(");
+                Console.Write("(");
             i = printMin ? f[beg, len].LenMin : f[beg, len].LenMax;
-        if ((beg2 = beg + i) > n)
-            beg2 -= n;
+            if ((beg2 = beg + i) > n)
+                beg2 -= n;
             PrintMinMax(beg, i, printMin); /* Рекурсия за лявата част на израза */
             Console.Write(sign[beg2 - 1]); /* Извеждане на операцията */
             PrintMinMax(beg2, len - i, printMin); /* Рекурсия за дясната част на израза */
             if (len < n)
-            Console.Write(")");
+                Console.Write(")");
         }
     }
 }

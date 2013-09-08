@@ -17,13 +17,13 @@ class Program
     static void Main()
     {
         Console.WriteLine("Дължина на най-дългата обща подредица: {0}", LCS_Length());
-        Console.WriteLine("PrintLCS:    Максимална обща подредица (в обратен ред): ");
+        Console.Write("PrintLCS:  Максимална обща подредица (в обратен ред): ");
         PrintLCS();
         Console.WriteLine();
-        Console.WriteLine("PrintLCS2: Максимална обща подредица: ");
+        Console.Write("PrintLCS2: Максимална обща подредица: ");
         PrintLCS2(x.Length, y.Length);
         Console.WriteLine();
-        Console.WriteLine("PrintLCS3: Максимална обща подредица: ");
+        Console.Write("PrintLCS3: Максимална обща подредица: ");
         PrintLCS3(x.Length, y.Length);
     }
     
