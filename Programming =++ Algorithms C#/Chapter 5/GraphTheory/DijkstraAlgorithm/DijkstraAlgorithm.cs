@@ -7,6 +7,7 @@ class DijkstraAlgorithm
     const int StartVertex = 1;
     const int NoParent = -1;
     const int MaxValue = 1000000;
+
     static readonly int[,] Graph = new int[VerticesCount, VerticesCount]
     {
         { 0, 23, 0, 0, 0, 0, 0, 8, 0, 0 },
@@ -24,17 +25,11 @@ class DijkstraAlgorithm
     static readonly int[] DijkstraDistances = new int[VerticesCount];
     static readonly int[] Predecessors = new int[VerticesCount];
 
-
-    static void Main()
-    {
-        Dijkstra(StartVertex - 1);
-        PrintResult(StartVertex - 1);
-    }
-
     // Алгоритъм на Дейкстра - минимален път от s до останалите върхове
     static void Dijkstra(int startVertex)
     {
-        for (int i = 0; i < VerticesCount; i++) // Инициализиране: DijkstraDistances[i]=A[s][i], i∈V, i != s
+        // Инициализиране: DijkstraDistances[i] = A[StartVertex, i], i∈V, i != StartVertex
+        for (int i = 0; i < VerticesCount; i++)
             if (Graph[startVertex, i] == 0)
             {
                 DijkstraDistances[i] = MaxValue;
@@ -47,8 +42,8 @@ class DijkstraAlgorithm
             }
 
         for (int i = 0; i < VerticesCount; i++)
-            T.Add(i); // T съдържа всички върхове
-        T.Remove(startVertex); // От графа, с изключение на s
+            T.Add(i);          // T съдържа всички върхове
+        T.Remove(startVertex); // от графа, с изключение на startVertex
         Predecessors[startVertex] = NoParent;
 
         while (T.Count > 0)
@@ -66,7 +61,8 @@ class DijkstraAlgorithm
             if (j == NoParent) break; // DijkstraDistances[i] = MaxValue, за всички i: изход
             T.Remove(j);
 
-            // За всяко i от T изпълняваме DijkstraDistances[i] = min(DijkstraDistances[i], DijkstraDistances[j] + Graph[j, i])
+            // За всяко i от T изпълняваме DijkstraDistances[i] = 
+            // min(DijkstraDistances[i], DijkstraDistances[j] + Graph[j, i])
             for (int i = 0; i < VerticesCount; i++)
                 if (T.Contains(i) && Graph[j, i] != 0)
                     if (DijkstraDistances[i] > DijkstraDistances[j] + Graph[j, i])
@@ -86,9 +82,7 @@ class DijkstraAlgorithm
     static void PrintResult(int startVertex)
     {
         for (int i = 0; i < VerticesCount; i++)
-        {
             if (i != startVertex)
-            {
                 if (DijkstraDistances[i] == MaxValue)
                     Console.WriteLine("Няма път между върховете {0} и {1}", startVertex + 1, i + 1);
                 else
@@ -97,7 +91,11 @@ class DijkstraAlgorithm
                     PrintPath(startVertex, i);
                     Console.WriteLine(", дължина на пътя: {0}", DijkstraDistances[i]);
                 }
-            }
-        }
+    }
+
+    static void Main()
+    {
+        Dijkstra(StartVertex - 1);
+        PrintResult(StartVertex - 1);
     }
 }

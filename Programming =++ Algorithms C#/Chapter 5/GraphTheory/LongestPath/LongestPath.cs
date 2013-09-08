@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 class LongestPath
 {
@@ -18,6 +17,25 @@ class LongestPath
 
     static readonly int[] MaximalDistances = new int[VerticesCount];
     static readonly int[] SavePath = new int[VerticesCount];
+
+    static void DFS(int vertex)
+    {
+        if (MaximalDistances[vertex] > 0) return;
+        int max = MaximalDistances[vertex];
+        for (int i = 0; i < VerticesCount; i++)
+            if (Graph[vertex, i] != 0)
+            {
+                DFS(i);
+                int distance = MaximalDistances[i] + Graph[vertex, i];
+                if (distance > max)
+                {
+                    max = distance;
+                    SavePath[vertex] = i;
+                }
+            }
+
+        MaximalDistances[vertex] = max;
+    }
 
     static void Main()
     {
@@ -39,24 +57,5 @@ class LongestPath
         }
 
         Console.WriteLine("{0} ", maxI + 1);
-    }
-
-    static void DFS(int vertex)
-    {
-        if (MaximalDistances[vertex] > 0) return;
-        int max = MaximalDistances[vertex];
-        for (int i = 0; i < VerticesCount; i++)
-            if (Graph[vertex, i] != 0)
-            {
-                DFS(i);
-                int distance = MaximalDistances[i] + Graph[vertex, i];
-                if (distance > max)
-                {
-                    max = distance;
-                    SavePath[vertex] = i;
-                }
-            }
-
-        MaximalDistances[vertex] = max;
     }
 }

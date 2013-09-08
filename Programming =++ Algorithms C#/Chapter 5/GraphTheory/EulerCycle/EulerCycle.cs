@@ -17,12 +17,6 @@ class EulerCycle
         { 1, 0, 0, 0, 0, 0, 0, 0 }
     };
 
-    static void Main()
-    {
-        if (IsEulerGraph()) FindEulerCycle(0);
-        else Console.WriteLine("Графът не е Ойлеров!");
-    }
-
     static void FindEulerCycle(int vertex)
     {
         Stack<int> currentCycle = new Stack<int>();
@@ -69,5 +63,11 @@ class EulerCycle
         }
 
         return true;
+    }
+
+    static void Main()
+    {
+        if (IsEulerGraph()) FindEulerCycle(0);
+        else Console.WriteLine("Графът не е Ойлеров!");
     }
 }

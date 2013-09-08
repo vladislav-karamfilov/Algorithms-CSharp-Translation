@@ -37,12 +37,6 @@ class KruskalAlgorithm
     };
     static readonly int[] Previous = new int[VerticesCount + 1];
 
-    static void Main()
-    {
-        for (int i = 0; i < VerticesCount + 1; i++) Previous[i] = NoParent;
-        FindMinSpanningTree();
-    }
-
     static void FindMinSpanningTree()
     {
         Array.Sort(Graph);
@@ -69,6 +63,7 @@ class KruskalAlgorithm
         // Намиране на корена на дървото
         int root = vertex;
         while (Previous[root] != NoParent) root = Previous[root];
+
         // Свиване на пътя
         int saveVertex = 0;
         while (vertex != root)
@@ -77,7 +72,12 @@ class KruskalAlgorithm
             vertex = Previous[vertex];
             Previous[saveVertex] = root;
         }
-
         return root;
+    }
+
+    static void Main()
+    {
+        for (int i = 0; i < VerticesCount + 1; i++) Previous[i] = NoParent;
+        FindMinSpanningTree();
     }
 }

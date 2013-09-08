@@ -18,32 +18,7 @@ class FordFulkersonAlgorithm
     static readonly int[,] FlowGraph = new int[VerticesCount, VerticesCount];
     static readonly bool[] Used = new bool[VerticesCount];
     static readonly int[] Path = new int[VerticesCount];
-
     static bool found = false;
-
-    static void Main()
-    {
-        // Намира увеличаващ път, докато е възможно
-        do
-        {
-            for (int i = 0; i < VerticesCount; i++) Used[i] = false;
-            found = false;
-            Used[StartVertex - 1] = true;
-            Path[0] = StartVertex - 1;
-            FindAugmentingPath(StartVertex - 1, 1);
-        } while (found);
-
-        Console.WriteLine("Максимален поток през графа:");
-        for (int i = 0; i < VerticesCount; i++)
-        {
-            for (int j = 0; j < VerticesCount; j++) Console.Write("{0,4}", FlowGraph[i, j]);
-            Console.WriteLine();
-        }
-
-        int flow = 0;
-        for (int i = 0; i < VerticesCount; i++) flow += FlowGraph[i, EndVertex - 1];
-        Console.WriteLine("С големина: {0}", flow);
-    }
 
     static void FindAugmentingPath(int vertex, int level)
     {
@@ -86,5 +61,29 @@ class FordFulkersonAlgorithm
             Graph[p1, p2] -= increasingFlow;
             Graph[p2, p1] += increasingFlow;
         }
+    }
+
+    static void Main()
+    {
+        // Намира увеличаващ път, докато е възможно
+        do
+        {
+            for (int i = 0; i < VerticesCount; i++) Used[i] = false;
+            found = false;
+            Used[StartVertex - 1] = true;
+            Path[0] = StartVertex - 1;
+            FindAugmentingPath(StartVertex - 1, 1);
+        } while (found);
+
+        Console.WriteLine("Максимален поток през графа:");
+        for (int i = 0; i < VerticesCount; i++)
+        {
+            for (int j = 0; j < VerticesCount; j++) Console.Write("{0,4}", FlowGraph[i, j]);
+            Console.WriteLine();
+        }
+
+        int flow = 0;
+        for (int i = 0; i < VerticesCount; i++) flow += FlowGraph[i, EndVertex - 1];
+        Console.WriteLine("С големина: {0}", flow);
     }
 }

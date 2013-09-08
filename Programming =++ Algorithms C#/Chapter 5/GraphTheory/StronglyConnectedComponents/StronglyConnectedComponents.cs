@@ -21,12 +21,6 @@ class StronglyConnectedComponents
     static readonly int[] Postnum = new int[VerticesCount];
     static int traversedVertices = 0;
 
-    static void Main()
-    {
-        Console.WriteLine("Силно свързаните компоненти в графа са:");
-        FindStronglyConnectedComponents();
-    }
-
     static void FindStronglyConnectedComponents()
     {
         while (traversedVertices < VerticesCount - 1)
@@ -70,5 +64,11 @@ class StronglyConnectedComponents
         Used[vertex] = true;
         for (int i = 0; i < VerticesCount; i++)
             if (!Used[i] && Graph[i, vertex] == 1) BackDFS(i);
+    }
+
+    static void Main()
+    {
+        Console.WriteLine("Силно свързаните компоненти в графа са:");
+        FindStronglyConnectedComponents();
     }
 }

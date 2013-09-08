@@ -18,13 +18,6 @@ class MinimalHamiltonianCycle
     static readonly int[] MinimalCycle = new int[VerticesCount];
     static int currentSum = 0, minSum = int.MaxValue;
 
-    static void Main()
-    {
-        CurrentCycle[0] = 1;
-        FindMinHamiltonianCycle(0, 0);
-        PrintCycle();
-    }
-
     static void FindMinHamiltonianCycle(int vertex, int level)
     {
         if (vertex == 0 && level > 0)
@@ -59,5 +52,12 @@ class MinimalHamiltonianCycle
         for (int i = 0; i < VerticesCount; i++)
             Console.Write(" {0}", MinimalCycle[i] + 1);
         Console.WriteLine(" с дължина {0}.", minSum);
+    }
+
+    static void Main()
+    {
+        CurrentCycle[0] = 1;
+        FindMinHamiltonianCycle(0, 0);
+        PrintCycle();
     }
 }

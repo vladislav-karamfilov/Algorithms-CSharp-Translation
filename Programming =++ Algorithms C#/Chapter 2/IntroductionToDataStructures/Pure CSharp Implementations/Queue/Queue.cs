@@ -1,8 +1,8 @@
 ﻿using System;
 
-class Program
+class QueueExample
 {
-    private const int Max = 10;
+    const int Max = 10;
 
     static void Main()
     {
@@ -41,7 +41,7 @@ class Program
     }
 }
 
-public class Queue<T>
+class Queue<T>
 {
     private const int DefaultCapacity = 4;
 
@@ -127,4 +127,3 @@ public class Queue<T>
         this.queue = newQueue;
     }
 }
-

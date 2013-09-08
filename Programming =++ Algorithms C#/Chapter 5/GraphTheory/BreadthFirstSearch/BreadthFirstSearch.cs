@@ -25,12 +25,6 @@ class BreadthFirstSearch
     };
     static readonly bool[] Used = new bool[VerticesCount];
 
-    static void Main()
-    {
-        Console.WriteLine("Обхождане в ширина от връх {0}: ", StartVertex);
-        BFS(StartVertex - 1);
-    }
-
     static void BFS(int startVertex)
     {
         Queue<int> verticesQueue = new Queue<int>();
@@ -45,17 +39,21 @@ class BreadthFirstSearch
                 Console.Write("{0} ", currentVertex + 1);
 
                 for (int j = 0; j < VerticesCount; j++)
-                {
                     if (Graph[currentVertex, j] == 1 && !Used[j])
                     {
                         verticesQueue.Enqueue(j);
                         Used[j] = true;
                     }
-                }
             }
 
             Console.WriteLine();
             levelVertex = verticesQueue.Count;
         }
+    }
+
+    static void Main()
+    {
+        Console.WriteLine("Обхождане в ширина от връх {0}:", StartVertex);
+        BFS(StartVertex - 1);
     }
 }

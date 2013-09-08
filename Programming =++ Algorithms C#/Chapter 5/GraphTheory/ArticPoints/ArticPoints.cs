@@ -72,7 +72,7 @@ class ArticPoints
                 articPoints.Add(i);
         }
 
-        Console.WriteLine("Разделящите точки в графа са:");
+        Console.Write("Разделящите точки в графа са: ");
         for (int i = 0; i < articPoints.Count; i++)
             Console.Write("{0} ", articPoints[i] + 1);
         Console.WriteLine();

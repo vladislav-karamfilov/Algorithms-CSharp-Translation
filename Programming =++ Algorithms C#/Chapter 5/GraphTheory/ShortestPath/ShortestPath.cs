@@ -27,20 +27,7 @@ class ShortestPath
     static readonly bool[] Used = new bool[VerticesCount];
     static readonly int[] Predecessors = new int[VerticesCount];
 
-    static void Main()
-    {
-        for (int i = 0; i < VerticesCount; i++)
-            Predecessors[i] = -1;
-        BFS(StartVertex - 1);
-        if (Predecessors[EndVertex - 1] > -1)
-        {
-            Console.WriteLine("Намереният път е:");
-            Console.WriteLine("\nДължината на пътя е {0}", PrintPath(EndVertex - 1));
-        }
-        else
-            Console.WriteLine("Не съществува път между двата върха!");
-    }
-
+    // Отпечатва върховете от минималния път и връща дължината му
     static uint PrintPath(int vertex)
     {
         uint count = 1;
@@ -49,6 +36,7 @@ class ShortestPath
         return count;
     }
 
+    // Oбхождане в ширина от даден връх със запазване на предшественика
     static void BFS(int startVertex)
     {
         Queue<int> verticesQueue = new Queue<int>();
@@ -61,7 +49,6 @@ class ShortestPath
             {
                 int currentVertex = verticesQueue.Dequeue();
                 for (int j = 0; j < VerticesCount; j++)
-                {
                     if (Graph[currentVertex, j] == 1 && !Used[j])
                     {
                         verticesQueue.Enqueue(j);
@@ -69,10 +56,23 @@ class ShortestPath
                         Predecessors[j] = currentVertex;
                         if (j == EndVertex) return;
                     }
-                }
             }
 
             levelVertex = verticesQueue.Count;
         }
+    }
+
+    static void Main()
+    {
+        for (int i = 0; i < VerticesCount; i++)
+            Predecessors[i] = -1;
+        BFS(StartVertex - 1);
+        if (Predecessors[EndVertex - 1] > -1)
+        {
+            Console.WriteLine("Намереният път е:");
+            Console.WriteLine("\nДължината на пътя е {0}.", PrintPath(EndVertex - 1));
+        }
+        else
+            Console.WriteLine("Не съществува път между двата върха!");
     }
 }

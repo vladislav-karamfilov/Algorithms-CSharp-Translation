@@ -2,7 +2,6 @@
 
 class CompanyControl
 {
-
     const int VerticesCount = 6; // Брой компании (върхове в графа)
     const int MasterCompany = 1; // Tърсим кои компании контролира компания 1
 
@@ -17,13 +16,6 @@ class CompanyControl
     };
     static readonly bool[] Used = new bool[VerticesCount];
     static readonly int[] Control = new int[VerticesCount];
-
-    static void Main()
-    {
-        for (int i = 0; i < VerticesCount; i++) Control[i] = Graph[MasterCompany - 1, i];
-        for (int i = 0; i < VerticesCount; i++) AddControls();
-        PrintResult();
-    }
 
     static void AddControls()
     {
@@ -41,5 +33,12 @@ class CompanyControl
         Console.WriteLine("Компания {0} контролира следните компании:", MasterCompany);
         for (int i = 0; i < VerticesCount; i++)
             if (Control[i] > 50) Console.WriteLine("{0}: {1,3}%", i, Control[i]);
+    }
+
+    static void Main()
+    {
+        for (int i = 0; i < VerticesCount; i++) Control[i] = Graph[MasterCompany - 1, i];
+        for (int i = 0; i < VerticesCount; i++) AddControls();
+        PrintResult();
     }
 }

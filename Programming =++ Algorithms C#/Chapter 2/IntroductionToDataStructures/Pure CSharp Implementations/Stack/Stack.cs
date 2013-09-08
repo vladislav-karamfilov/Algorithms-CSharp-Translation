@@ -1,6 +1,6 @@
 ﻿using System;
 
-class Program
+class StackExample
 {
     static void Main()
     {
@@ -25,7 +25,7 @@ class Program
     }
 }
 
-public class Stack<T>
+class Stack<T>
 {
     private const int DefaultCapacity = 4;
     private T[] stack;
@@ -116,5 +116,4 @@ public class Stack<T>
 
         this.stack = newStack;
     }
-
 }

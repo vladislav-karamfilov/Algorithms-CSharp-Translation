@@ -20,12 +20,7 @@ class FloydAlgorithm
         { 0, 0, 7, 0, 0, 0, 0, 30, 0, 0 }
     };
 
-    static void Main()
-    {
-        Floyd();
-        PrintMinimalPaths();
-    }
-
+    // Намира дължината на минималния път между всяка двойка върхове
     static void Floyd()
     {
         InitializeGraph();
@@ -33,7 +28,7 @@ class FloydAlgorithm
         for (int k = 0; k < VerticesCount; k++)
             for (int i = 0; i < VerticesCount; i++)
                 for (int j = 0; j < VerticesCount; j++)
-                    if (Graph[i, j] > Graph[i, k] + Graph[k, j]) 
+                    if (Graph[i, j] > Graph[i, k] + Graph[k, j])
                         Graph[i, j] = Graph[i, k] + Graph[k, j];
 
         for (int i = 0; i < VerticesCount; i++) Graph[i, i] = 0;
@@ -56,5 +51,11 @@ class FloydAlgorithm
                 Console.Write("{0,3} ", Graph[i, j] == MaxValue ? 0 : Graph[i, j]);
             Console.WriteLine();
         }
+    }
+
+    static void Main()
+    {
+        Floyd();
+        PrintMinimalPaths();
     }
 }
