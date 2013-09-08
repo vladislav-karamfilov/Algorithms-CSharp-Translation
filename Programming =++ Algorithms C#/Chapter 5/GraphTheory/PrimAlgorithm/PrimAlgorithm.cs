@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 class PrimAlgorithm
 {
@@ -20,11 +19,6 @@ class PrimAlgorithm
     static readonly bool[] Used = new bool[VerticesCount];
     static readonly int[] Previous = new int[VerticesCount];
     static readonly int[] T = new int[VerticesCount];
-
-    static void Main()
-    {
-        FindMinSpanningTree();
-    }
 
     static void FindMinSpanningTree()
     {
@@ -58,5 +52,10 @@ class PrimAlgorithm
         }
 
         Console.WriteLine("\nЦената на минималното покриващо дърво е {0}.", minSpanningTree);
+    }
+
+    static void Main()
+    {
+        FindMinSpanningTree();
     }
 }

@@ -18,11 +18,6 @@ class FullTopologicalSorter
     static readonly int[] TopologicalSort = new int[VerticesCount];
     static int totalSorts = 0;
 
-    static void Main()
-    {
-        FullTopologicalSort(0);
-    }
-
     static void FullTopologicalSort(int count)
     {
         int[] saved = new int[VerticesCount];
@@ -61,5 +56,10 @@ class FullTopologicalSorter
         Console.Write("Топологично сортиране номер {0}: ", ++totalSorts);
         for (int i = 0; i < VerticesCount; i++) Console.Write("{0} ", TopologicalSort[i] + 1);
         Console.WriteLine();
+    }
+
+    static void Main()
+    {
+        FullTopologicalSort(0);
     }
 }

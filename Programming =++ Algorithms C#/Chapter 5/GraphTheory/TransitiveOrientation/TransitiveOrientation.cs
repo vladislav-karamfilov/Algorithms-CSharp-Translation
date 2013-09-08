@@ -3,6 +3,7 @@
 class TransitiveOrientation
 {
     const int VerticesCount = 6;
+
     static readonly int[,] Graph = new int[VerticesCount, VerticesCount]
     {
         { 0, 1, 0, 0, 0, 1 },
@@ -22,14 +23,7 @@ class TransitiveOrientation
         { 0, 1, 0, 1, 0 },
         { 0, 0, 1, 0, 1 },
         { 1, 0, 0, 1, 0 }
-    };
-    */
-
-    static void Main()
-    {
-        if (IsTransitiveOrientable()) PrintGraph();
-        else Console.WriteLine("Графът е транзитивно неориентируем!");
-    }
+    }; */
 
     static bool IsTransitiveOrientable()
     {
@@ -126,5 +120,11 @@ class TransitiveOrientation
                 }
             Console.WriteLine();
         }
+    }
+
+    static void Main()
+    {
+        if (IsTransitiveOrientable()) PrintGraph();
+        else Console.WriteLine("Графът е транзитивно неориентируем!");
     }
 }

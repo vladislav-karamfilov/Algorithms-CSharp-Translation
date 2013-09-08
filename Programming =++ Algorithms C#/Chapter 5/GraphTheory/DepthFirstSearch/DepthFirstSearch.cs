@@ -24,19 +24,19 @@ class DepthFirstSearch
     };
     static readonly bool[] Used = new bool[VerticesCount];
 
-    static void Main()
-    {
-        Console.WriteLine("Обхождане в дълбочина от връх {0}", StartVertex);
-        DFS(StartVertex - 1);
-        Console.WriteLine();
-    }
-
     static void DFS(int vertex)
     {
         Used[vertex] = true;
         Console.Write("{0} ", vertex + 1);
         for (int i = 0; i < VerticesCount; i++)
-            if (Graph[vertex, i] == 1 && !Used[i]) 
+            if (Graph[vertex, i] == 1 && !Used[i])
                 DFS(i);
+    }
+
+    static void Main()
+    {
+        Console.WriteLine("Обхождане в дълбочина от връх {0}:", StartVertex);
+        DFS(StartVertex - 1);
+        Console.WriteLine();
     }
 }

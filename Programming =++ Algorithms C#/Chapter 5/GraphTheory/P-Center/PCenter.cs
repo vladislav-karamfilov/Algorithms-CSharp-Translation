@@ -81,7 +81,7 @@ class PCenter
         Console.Write("{0}-центърът в графа е следното множество от върхове: ( ", P);
         for (int i = 0; i < P; i++) Console.Write("{0} ", pCenter[i] + 1);
         Console.WriteLine(")");
-        Console.WriteLine("{0}-радиусът в графа = {1}", P, pRadius);
+        Console.WriteLine("{0}-радиусът в графа е {1}", P, pRadius);
     }
 
     static void Main()
