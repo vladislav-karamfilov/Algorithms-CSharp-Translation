@@ -42,7 +42,7 @@ class Program
             T += quant[i]; V += value[i];
             i++;
         }
-        Console.WriteLine("Избира се {0:F2} от предмет със стойност {1:F2} и тегло {2:F2}", 
+        Console.WriteLine("Избира се {0:F2}% от предмет със стойност {1:F2} и тегло {2:F2}", 
                                                                                  ((M - T) / quant[i]) * 100, value[i], quant[i]);
         V += (M - T) * (value[i] / quant[i]);
         Console.WriteLine("Обща получена цена: {0:F2}\n", V);

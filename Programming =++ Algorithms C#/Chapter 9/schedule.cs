@@ -45,7 +45,8 @@ class Program
             Console.Write("{0} ", p[taken[i]]);
             income += v[taken[i]];
         }
-    
+        
+        Console.WriteLine();
         Console.WriteLine("Общ доход: {0}", income);
     }
 }
