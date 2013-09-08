@@ -14,64 +14,89 @@ namespace MergingSortedArrays
         }
     }
 
+    class CList
+    {
+        public int Point { get; set; }
+
+        public Element[] Data { get; set; }
+
+        public CList Next { get; set; }
+
+        public int Length { get; set; }
+    }
+
     class MergingSortedArrays
     {
         static Random rand = new Random();
         private const int NumberOfArrays = 6;
         private const int ArraysLength = 12;
 
-        static IEnumerable<Element[]> InitializeArray(int modul)
+        static CList InitializeArray(int modul)
         {
-            var list = new LinkedList<Element[]>();
+            var head = new CList();
             for (int i = 0; i < NumberOfArrays; i++)
             {
-                var array = new Element[ArraysLength];
-                array[0].Key = rand.Next() % modul;
+                var currentList = new CList();
+                currentList.Length = NumberOfArrays;
+                currentList.Point = 0;
+                currentList.Data = new Element[ArraysLength];
+                currentList.Data[0].Key = rand.Next() % modul;
                 for (int j = 1; j < ArraysLength; j++)
-                {
-                    array[j].Key = array[j - 1].Key + rand.Next() % modul;
-                }
-                list.AddLast(array);
+                    currentList.Data[j].Key = currentList.Data[j - 1].Key + rand.Next() % modul;
+                currentList.Next = head;
+                head = currentList;
             }
-            return list;
+
+            return head;
         }
 
-        static void PrintArrays(IEnumerable<Element[]> list)
+        static void PrintArrays(CList list)
         {
-            var stringBuilder = new StringBuilder();
-            foreach (var innerArray in list)
+            do
             {
-                foreach (var element in innerArray)
-                {
-                    stringBuilder.Append(element.Key + " ");
-                }
-
-                stringBuilder.AppendLine();
-            }
-            Console.Write(stringBuilder);
+                foreach (var element in list.Data)
+                    Console.Write("{0} ", element.Key);
+                Console.WriteLine();
+                list = list.Next;
+            } while (list.Next != null);
         }
 
-        private static void MergeArrays(LinkedList<Element[]> list)
+        private static void MergeArrays(CList head)
         {
-            Element k1, k2;
-            var tempList = new LinkedList<Element[]>();
-            var tempListMin = new LinkedList<Element[]>();
-            //tempList.AddFirst(list.First);
+            var current = new CList();
+            current.Next = head;
+            head = current;
             for (int i = 0; i < NumberOfArrays * ArraysLength; i++)
             {
-                tempList.AddFirst(list.First);
-                tempListMin.AddFirst(list.First);
-                //TODO: Implement logic
+                current = head;
+                var minElement = head;
+                while (current.Next.Data != null)
+                {
+                    var k1 = current.Next.Data[current.Next.Point];
+                    var k2 = minElement.Next.Data[minElement.Next.Point];
+                    if (k1.Key < k2.Key)
+                        minElement = current;
+                    current = current.Next;
+                }
+                Console.WriteLine(minElement.Next.Data[minElement.Next.Point].Key);
+                if (minElement.Next.Length - 1 == minElement.Next.Point)
+                {
+                    var q = minElement.Next;
+                    minElement = minElement.Next.Next;
+                }
+                else
+                {
+                    minElement.Next.Point++;
+                }
             }
         }
 
         static void Main()
         {
-            var list = InitializeArray(500);
+            var head = InitializeArray(500);
             Console.WriteLine("Масивите преди сортирането:");
-            PrintArrays(list);
-            MergeArrays(list);
-            PrintArrays(list);
+            PrintArrays(head);
+            MergeArrays(head);
         }
     }
 }

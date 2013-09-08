@@ -31,7 +31,7 @@ void combSort(struct CElem m[], unsigned n)
     gap = (unsigned) (gap/1.3);
     if (gap < 1)
       gap = 1;
-    for (i = 0; i < n-gap; i++) {
+    for (i = 0; i < n - gap; i++) {
       j = i + gap;
       if (m[i].key > m[j].key) {
   	    swap(m+i, m+j);
