@@ -10,6 +10,7 @@ class Program
         { 0, 0, 1, 0, 0, 0 }, 
         { 0, 1, 0, 1, 0, 0 }
     };
+    
     static readonly int rows = A.GetLength(0);
 
     static void Main()
@@ -80,7 +81,8 @@ class Program
     
     static void ShowColor(int[] colors)
     {
-        for (int i = 0; i < colors.Length; i++) Console.Write("{0}-{1}; ", i + 1, colors[i]);
+        for (int i = 0; i < colors.Length; i++) 
+            Console.Write("{0}-{1}; ", i + 1, colors[i]);
         Console.WriteLine();
     }
 }

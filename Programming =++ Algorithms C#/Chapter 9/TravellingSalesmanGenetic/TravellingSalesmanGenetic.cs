@@ -97,7 +97,8 @@ class Program
                 population[q1, i] = population[p2, i];
                 uq1[population[p2, i]]++;
             }
-            else {
+            else 
+            {
                 int j = 0;
                 for (; uq1[j] != 0; j++);
                 population[q1, i] = j;
@@ -109,7 +110,8 @@ class Program
                 population[q2, i] = population[p1, i];
                 uq2[population[p1, i]]++;
             }
-            else {
+            else 
+            {
                 int j = 0;
                 for (j = 0; uq2[j] != 0; j++);
                 population[q2, i] = j;

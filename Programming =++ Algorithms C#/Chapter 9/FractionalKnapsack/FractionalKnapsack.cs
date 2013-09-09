@@ -37,13 +37,13 @@ class Program
         int i = 0;
         double T = 0, V = 0;
         while (T + quant[i] <= M)
-        {         /* взима цели предмети, докато може */
+        {   /* взима цели предмети, докато може */
             Console.WriteLine("Избира 100% от предмет със стойност {0:F2} и тегло {1:F2}", value[i], quant[i]);
             T += quant[i]; V += value[i];
             i++;
         }
         Console.WriteLine("Избира се {0:F2}% от предмет със стойност {1:F2} и тегло {2:F2}", 
-                                                                                 ((M - T) / quant[i]) * 100, value[i], quant[i]);
+                          ((M - T) / quant[i]) * 100, value[i], quant[i]);
         V += (M - T) * (value[i] / quant[i]);
         Console.WriteLine("Обща получена цена: {0:F2}\n", V);
     }

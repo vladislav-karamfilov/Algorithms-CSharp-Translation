@@ -11,6 +11,7 @@ class Program
         public double High { get; set; }
         public char Char { get; set; }
     }
+    
     const bool SHOW_MORE = true;
     
     static void Main()

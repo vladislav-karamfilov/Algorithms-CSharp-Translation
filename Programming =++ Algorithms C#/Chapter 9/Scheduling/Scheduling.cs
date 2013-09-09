@@ -50,5 +50,3 @@ class Program
         Console.WriteLine("Общ доход: {0}", income);
     }
 }
-
-

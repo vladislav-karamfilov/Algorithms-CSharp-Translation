@@ -80,7 +80,7 @@ class Program
     }
     
     static void MarkSolutionElements(
-            int[] f1, int[] f2, int[] fInd1, int[] fInd2, int indF)
+        int[] f1, int[] f2, int[] fInd1, int[] fInd2, int indF)
     {
         if (fInd1[indF] == NO_IND)
             return;

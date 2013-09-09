@@ -54,7 +54,8 @@ class Program
         /* Поставя скобите с израза */
         if (i == j)
             Console.Write(s[i]);
-        else {
+        else 
+        {
             Console.Write("(");
             PutBrackets(i, split[i, j]);
             Console.Write("*");
