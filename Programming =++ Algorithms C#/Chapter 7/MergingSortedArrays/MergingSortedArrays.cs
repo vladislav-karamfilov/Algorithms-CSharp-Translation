@@ -33,7 +33,7 @@ namespace MergingSortedArrays
 
         static CList InitializeArray(int modul)
         {
-            var head = new CList();
+            CList head = null;
             for (int i = 0; i < NumberOfArrays; i++)
             {
                 var currentList = new CList();
@@ -52,41 +52,41 @@ namespace MergingSortedArrays
 
         static void PrintArrays(CList list)
         {
-            do
+            while (list != null)
             {
                 foreach (var element in list.Data)
                     Console.Write("{0} ", element.Key);
                 Console.WriteLine();
                 list = list.Next;
-            } while (list.Next != null);
+            }
         }
 
         private static void MergeArrays(CList head)
         {
-            var current = new CList();
-            current.Next = head;
-            head = current;
+            var currentList = new CList();
+            currentList.Next = head;
+            head = currentList;
             for (int i = 0; i < NumberOfArrays * ArraysLength; i++)
             {
-                current = head;
-                var minElement = head;
-                while (current.Next.Data != null)
+                currentList = head;
+                var minElementList = head;
+                while (currentList.Next != null)
                 {
-                    var k1 = current.Next.Data[current.Next.Point];
-                    var k2 = minElement.Next.Data[minElement.Next.Point];
+                    var k1 = currentList.Next.Data[currentList.Next.Point];
+                    var k2 = minElementList.Next.Data[minElementList.Next.Point];
                     if (k1.Key < k2.Key)
-                        minElement = current;
-                    current = current.Next;
+                        minElementList = currentList;
+                    currentList = currentList.Next;
                 }
-                Console.WriteLine(minElement.Next.Data[minElement.Next.Point].Key);
-                if (minElement.Next.Length - 1 == minElement.Next.Point)
+                Console.WriteLine(minElementList.Next.Data[minElementList.Next.Point].Key);
+                if (minElementList.Next.Data.Length - 1 == minElementList.Next.Point)
                 {
-                    var q = minElement.Next;
-                    minElement = minElement.Next.Next;
+                    var q = minElementList.Next;
+                    minElementList.Next = minElementList.Next.Next;
                 }
                 else
                 {
-                    minElement.Next.Point++;
+                    minElementList.Next.Point++;
                 }
             }
         }
