@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5EFCC0A4-E5D1-44C1-ACCF-1C8F7F29C1E8}</ProjectGuid>
+    <ProjectGuid>{99F8CDD2-42ED-4576-915E-36BBE028CD80}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MiddleFindKthElement</RootNamespace>
-    <AssemblyName>MiddleFindKthElement</AssemblyName>
+    <RootNamespace>MergeSortLinkedList</RootNamespace>
+    <AssemblyName>MergeSortLinkedList</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FindKthMiddleElement.cs" />
+    <Compile Include="MergeSortLinkedList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

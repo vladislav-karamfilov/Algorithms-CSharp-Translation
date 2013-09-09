@@ -57,11 +57,12 @@ namespace BinaryMerge
             while (n > 0 && m > 0)
             {
                 power = (int)(Math.Log(n / m) / Math.Log(2));
-                elementsCount = 1 << power;
+                elementsCount = 1 << power; /* elementsCount <-- 2^power */
                 if (m <= n)
                 {
                     if (b[m - 1].Key < a[n - elementsCount].Key)
                     {
+                        /* Прехвърляне на a[n-t2-1],...,a[n] в изходната последователност */
                         totalLength -= elementsCount;
                         n = elementsCount;
                         for (int j = 0; j < elementsCount; j++)

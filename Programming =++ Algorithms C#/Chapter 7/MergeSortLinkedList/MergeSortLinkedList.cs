@@ -3,46 +3,46 @@
 class Program
 {
     /* Елемент от свързан списък */
-    class Node 
-    { 
+    class Node
+    {
         public int Value { get; set; }
         public Node Next { get; set; }
-    } 
+    }
 
     const int n = 100;
 
-    static void Main() 
+    static void Main()
     {
         Node l = Generate(n);
-        Console.WriteLine("Преди сортирането:"); 
+        Console.WriteLine("Преди сортирането:");
         PrintList(l);
         Console.WriteLine();
-        l = MergeSort(l,n);
-        Console.WriteLine("След сортирането:"); 
+        l = MergeSort(l, n);
+        Console.WriteLine("След сортирането:");
         PrintList(l);
     }
 
-    static Node Generate(int n) 
-    { 
+    static Node Generate(int n)
+    {
         var rand = new Random();
         Node p = null;
-        for (int i = 0; i < n; i++) 
+        for (int i = 0; i < n; i++)
         {
-            var q = new Node  { Value = rand.Next() % (2*n + 1), Next = p };
+            var q = new Node { Value = rand.Next() % (2 * n + 1), Next = p };
             p = q;
         }
         return p;
     }
-    
+
     /* Извежда списъка на екрана */
-    static void PrintList(Node p) 
-    { 
+    static void PrintList(Node p)
+    {
         for (; p != null; p = p.Next)
             Console.Write("{0,4}", p.Value);
     }
 
     static Node MergeSort(Node c, int n)
-    { 
+    {
         /* Ако списъкът съдържа само един елемент: не се прави нищо */
         if (n < 2)
             return c;
@@ -51,7 +51,7 @@ class Program
         /* Разделяне на списъка на две части */
         for (int i = 2; i <= n2; i++)
             c = c.Next;
-            
+
         Node b = c.Next;
         c.Next = null;
 
@@ -60,29 +60,29 @@ class Program
     }
 
     static Node Merge(Node a, Node b)
-    {   
+    {
         /* Предполага се, че и двата списъка съдържат поне по един елемент */
         Node tail = new Node();
         Node head = tail;
-        while (true) 
+        while (true)
         {
-            if (a.Value < b.Value) 
+            if (a.Value < b.Value)
             {
                 tail.Next = a;
                 a = a.Next;
                 tail = tail.Next;
-                if (a == null) 
+                if (a == null)
                 {
                     tail.Next = b;
                     break;
                 }
             }
-            else 
+            else
             {
                 tail.Next = b;
                 b = b.Next;
                 tail = tail.Next;
-                if (b == null) 
+                if (b == null)
                 {
                     tail.Next = a;
                     break;

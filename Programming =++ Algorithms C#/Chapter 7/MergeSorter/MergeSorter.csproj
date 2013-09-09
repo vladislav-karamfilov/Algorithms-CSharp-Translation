@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{350D3D0F-56F7-4AD8-9161-AFF1219796E7}</ProjectGuid>
+    <ProjectGuid>{C08027A7-8E23-406C-AB44-E65BCCB65EEC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FindKElement</RootNamespace>
-    <AssemblyName>FindKElement</AssemblyName>
+    <RootNamespace>MergeSorter</RootNamespace>
+    <AssemblyName>MergeSorter</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FindKthBiggestElement.cs" />
+    <Compile Include="MergeSorter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
